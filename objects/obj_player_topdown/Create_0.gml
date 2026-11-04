@@ -4,7 +4,6 @@ enum PlayerState
     IDDLE,
     WALK
 }
-
 // Movimento.
 move_speed = 5;
 def_spd = move_speed;

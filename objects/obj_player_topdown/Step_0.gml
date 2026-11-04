@@ -1,7 +1,6 @@
 // Atualiza as teclas e calcula a direção/velocidade desejadas.
 scr_inputs(true);
 scr_direction();
-
 // Atualiza o estado conforme o jogador começou ou parou de se mover.
 switch (state)
 {
@@ -24,7 +23,8 @@ switch (state)
 direction = dir;
 hspd = lengthdir_x(spd, dir);
 vspd = lengthdir_y(spd, dir);
-scr_colision(obj_test);
+scr_colision(obj_arvore);
+depth = -y;
 
 // Atualiza a sprite depois da resolução de colisões.
 scr_anim_topdown_player();
