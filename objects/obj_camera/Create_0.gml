@@ -3,8 +3,8 @@
 global.game_resolution_width = 1366;
 global.game_resolution_height = 768;
 
-global.camera_width = 960;
-global.camera_height = 540;
+global.camera_width = 384/2;
+global.camera_height = 216/2;
 
 view_enabled = true;
 view_visible[0] = true;
