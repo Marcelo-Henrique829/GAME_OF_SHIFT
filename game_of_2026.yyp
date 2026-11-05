@@ -57,6 +57,7 @@
     {"id":{"name":"Script5","path":"scripts/Script5/Script5.yy",},},
     {"id":{"name":"simple_colision","path":"scripts/simple_colision/simple_colision.yy",},},
     {"id":{"name":"Som","path":"scripts/Som/Som.yy",},},
+    {"id":{"name":"bg_space_ship","path":"sprites/bg_space_ship/bg_space_ship.yy",},},
     {"id":{"name":"spr_camera_icone","path":"sprites/spr_camera_icone/spr_camera_icone.yy",},},
     {"id":{"name":"spr_player","path":"sprites/spr_player/spr_player.yy",},},
     {"id":{"name":"spr_spaceShip","path":"sprites/spr_spaceShip/spr_spaceShip.yy",},},
