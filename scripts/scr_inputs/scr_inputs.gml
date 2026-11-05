@@ -44,10 +44,10 @@ function scr_inputs(_enabled = true)
     var _i = global.inputs;
 
     // Direcionais seguradas.
-    _i.left = keyboard_check(ord("A")) || keyboard_check(vk_left);
-    _i.right = keyboard_check(ord("D")) || keyboard_check(vk_right);
-    _i.up = keyboard_check(ord("W")) || keyboard_check(vk_up);
-    _i.down = keyboard_check(ord("S")) || keyboard_check(vk_down);
+    _i.left =   keyboard_check(ord("A")) || keyboard_check(vk_left);
+    _i.right =  keyboard_check(ord("D")) || keyboard_check(vk_right);
+    _i.up =		keyboard_check(ord("W")) || keyboard_check(vk_up);
+    _i.down =   keyboard_check(ord("S")) || keyboard_check(vk_down);
 
     // Ações.
     _i.attack = mouse_check_button_pressed(mb_left) || keyboard_check_pressed(ord("J"));
