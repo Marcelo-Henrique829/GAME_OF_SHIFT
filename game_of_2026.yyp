@@ -54,6 +54,7 @@
     {"id":{"name":"Obj_dialogo","path":"objects/Obj_dialogo/Obj_dialogo.yy",},},
     {"id":{"name":"obj_disapear","path":"objects/obj_disapear/obj_disapear.yy",},},
     {"id":{"name":"obj_ground","path":"objects/obj_ground/obj_ground.yy",},},
+    {"id":{"name":"obj_npc_test_dialogo","path":"objects/obj_npc_test_dialogo/obj_npc_test_dialogo.yy",},},
     {"id":{"name":"obj_player_platform","path":"objects/obj_player_platform/obj_player_platform.yy",},},
     {"id":{"name":"obj_player_topdown","path":"objects/obj_player_topdown/obj_player_topdown.yy",},},
     {"id":{"name":"obj_space_ship","path":"objects/obj_space_ship/obj_space_ship.yy",},},

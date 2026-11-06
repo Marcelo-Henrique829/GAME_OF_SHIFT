@@ -19,6 +19,7 @@ jump_force = 15;
 
 // Estado e direção visuais iniciais.
 state = PlayerStatePlatformer.IDDLE;
+dialogo_ativo = false;
 direction = dir;
 dir_state = "down";
 

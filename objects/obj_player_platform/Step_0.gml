@@ -1,5 +1,6 @@
 // Atualiza os controles e a direção do jogador.
 scr_inputs(true);
+if (dialogo_ativo) exit;
 scr_direction();
 if (hspd != 0) image_xscale = sign(hspd);
 
