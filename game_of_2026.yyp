@@ -90,6 +90,7 @@
     {"id":{"name":"spr_player_plataformer_ph_WalkLeft","path":"sprites/spr_player_plataformer_ph_WalkLeft/spr_player_plataformer_ph_WalkLeft.yy",},},
     {"id":{"name":"spr_player_plataformer_ph_WalkRight","path":"sprites/spr_player_plataformer_ph_WalkRight/spr_player_plataformer_ph_WalkRight.yy",},},
     {"id":{"name":"spr_player","path":"sprites/spr_player/spr_player.yy",},},
+    {"id":{"name":"spr_shot","path":"sprites/spr_shot/spr_shot.yy",},},
     {"id":{"name":"spr_spaceShip","path":"sprites/spr_spaceShip/spr_spaceShip.yy",},},
     {"id":{"name":"spr_ss_flip_left","path":"sprites/spr_ss_flip_left/spr_ss_flip_left.yy",},},
     {"id":{"name":"spr_ss_flip_right","path":"sprites/spr_ss_flip_right/spr_ss_flip_right.yy",},},

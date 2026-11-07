@@ -2,8 +2,8 @@
 acel = .2;
 hspd = 0;
 vspd = 0;
-m_vspd  = 10;
-m_hspd  = 12;
+m_vspd  = 14;
+m_hspd  = 16;
 
 
 //estados enumerados e tals
@@ -15,7 +15,7 @@ enum SHIP_STATE
 	FLIP_RIGHT,
 	FLIP_LEFT,
 }
-state = SHIP_STATE.FLIP_LEFT ;
+state = SHIP_STATE.FLIP_RIGHT;
 
 //método com inputs
 ipts = function()
@@ -26,11 +26,11 @@ ipts = function()
  k_right =		keyboard_check(ord("D"));
  k_up    =		keyboard_check(ord("W"));
  k_down  =		keyboard_check(ord("S"));
- 
  kp_left  =		keyboard_check_pressed(ord("A"));
  kp_right =		keyboard_check_pressed(ord("D"));
  
- last_key = noone;
+ shot   = noone;
+ k_shot = keyboard_check(vk_space);
  
 }
 
@@ -39,19 +39,20 @@ ship_control = function()
 {
  //chamando os inputs	
   ipts();
-  
+  //controle de velocidade
   hspd += (k_right - k_left) * acel;
   vspd += (k_down - k_up) * acel;
   
   hspd = clamp(hspd,-m_hspd,m_hspd);
   vspd = clamp(vspd,-m_vspd,m_vspd);
- 
+	
+	
 	if(!k_right && !k_left)
-		{hdps = lerp(hspd,0,.08);}
+		{hdps = lerp(hspd,0,.1);}
 
 	if(!k_up && !k_down)
-		{vspd = lerp(vspd,0,.08);}
- 	
+		{vspd = lerp(vspd,0,.1);}
+	
 	//mudando de direção (esquerda)
 	if(kp_left && state != SHIP_STATE.FLIP_LEFT)
 	 {		
@@ -61,20 +62,22 @@ ship_control = function()
 	//mudando de direção (direita)
 	if(kp_right && state != SHIP_STATE.FLIP_RIGHT)
 	 {
-		 image_xscale = -1; 
 		 sprite_index = spr_ss_flip_right;
 		 state = SHIP_STATE.FLIP_RIGHT;
 	 }
 	
+	 if(k_shot)
+	  {
+		shoting();
+	  }
+	
   x +=hspd;
   y +=vspd;
 }
-//estado de girando
 
-
+//mudando de direção
 ship_flip_left = function()
-{
-			
+{		
 		if(image_index >= image_number-1)
 		 {
 			sprite_index = spr_spaceShip;
@@ -89,4 +92,17 @@ ship_flip_right = function()
 			sprite_index = spr_spaceShip;
 			image_xscale = -1;
 		 }
+}
+
+shoting = function()
+{	
+     _timer = 12;
+	 _timer--;
+     shot = instance_create_depth(x,y,1,obj_shot);		 
+	  if(_timer >= 0)
+	   {	 
+		 shot.image_xscale = image_xscale;
+		 shot.hspeed = 23 * image_xscale;
+	   }	 
+	show_debug_message(_timer);
 }
