@@ -39,7 +39,9 @@
     {"$GMFolder":"","%Name":"TILE_TOPDOWN","folderPath":"folders/TILE_TOPDOWN.yy","name":"TILE_TOPDOWN","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"PlaceHOlder","folderPath":"folders/TILE_TOPDOWN/PlaceHOlder.yy","name":"PlaceHOlder","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
-  "ForcedPrefabProjectReferences":[],
+  "ForcedPrefabProjectReferences":[
+    {"link":"io.gamemaker.gm_filter_ripples-1.0.0","name":"io.gamemaker.gm_filter_ripples-1.0.0","path":"io.gamemaker.gm_filter_ripples-1.0.0.yyp",},
+  ],
   "IncludedFiles":[],
   "isEcma":false,
   "LibraryEmitters":[],
@@ -50,6 +52,7 @@
   "resources":[
     {"id":{"name":"obj_arvore","path":"objects/obj_arvore/obj_arvore.yy",},},
     {"id":{"name":"obj_camera","path":"objects/obj_camera/obj_camera.yy",},},
+    {"id":{"name":"obj_buble","path":"objects/obj_buble/obj_buble.yy",},},
     {"id":{"name":"obj_control","path":"objects/obj_control/obj_control.yy",},},
     {"id":{"name":"Obj_dialogo","path":"objects/Obj_dialogo/Obj_dialogo.yy",},},
     {"id":{"name":"obj_disapear","path":"objects/obj_disapear/obj_disapear.yy",},},

@@ -1,3 +1,22 @@
+#region Geração de bolhas
+// Limite de obj_buble na sala e intervalo entre novas bolhas, em Steps.
+bolhas_maximo = 10;
+bolhas_intervalo = 15;
+
+// Tamanho relativo ao sprite: 1 = tamanho original, 0.5 = metade.
+bolhas_escala_min = 0.05;
+bolhas_escala_max = 0.30;
+
+// Velocidade em pixels por Step e direção em graus (0 a 360 = todas).
+bolhas_velocidade_min = 0.10;
+bolhas_velocidade_max = 0.70;
+bolhas_direcao_min = 0;
+bolhas_direcao_max = 360;
+
+// Começa gerando uma bolha no primeiro Step.
+bolhas_tempo_ate_criar = 0;
+#endregion
+
 #region Sprites das camadas
 // Use -1 para ocultar uma camada.
 parallax_background_sprite = GrassLand_Background_1;
