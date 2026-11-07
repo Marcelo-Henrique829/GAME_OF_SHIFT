@@ -1,13 +1,13 @@
 {
   "$GMRoom":"v1",
-  "%Name":"rm_space_ship",
+  "%Name":"Rm_space_ship_test",
   "creationCodeFile":"",
   "inheritCode":false,
   "inheritCreationOrder":false,
   "inheritLayers":false,
   "instanceCreationOrder":[
-    {"name":"inst_D5D24788","path":"rooms/rm_space_ship/rm_space_ship.yy",},
-    {"name":"inst_68E39700","path":"rooms/rm_space_ship/rm_space_ship.yy",},
+    {"name":"inst_D5D24788","path":"rooms/Rm_space_ship_test/Rm_space_ship_test.yy",},
+    {"name":"inst_68E39700","path":"rooms/Rm_space_ship_test/Rm_space_ship_test.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -17,7 +17,7 @@
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRBackgroundLayer":"","%Name":"Background","animationFPS":30.0,"animationSpeedType":0,"colour":4294967295,"depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"hspeed":-8.0,"htiled":true,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Background","properties":[],"resourceType":"GMRBackgroundLayer","resourceVersion":"2.0","spriteId":{"name":"bg_space_ship","path":"sprites/bg_space_ship/bg_space_ship.yy",},"stretch":false,"userdefinedAnimFPS":false,"userdefinedDepth":false,"visible":true,"vspeed":0.0,"vtiled":false,"x":0,"y":0,},
   ],
-  "name":"rm_space_ship",
+  "name":"Rm_space_ship_test",
   "parent":{
     "name":"spaceship",
     "path":"folders/spaceship.yy",
