@@ -93,6 +93,8 @@
     {"id":{"name":"spr_buble","path":"sprites/spr_buble/spr_buble.yy",},},
     {"id":{"name":"Spr_caixadialogo","path":"sprites/Spr_caixadialogo/Spr_caixadialogo.yy",},},
     {"id":{"name":"spr_camera_icone","path":"sprites/spr_camera_icone/spr_camera_icone.yy",},},
+    {"id":{"name":"spr_house_shadow_1","path":"sprites/spr_house_shadow_1/spr_house_shadow_1.yy",},},
+    {"id":{"name":"spr_house_shadow","path":"sprites/spr_house_shadow/spr_house_shadow.yy",},},
     {"id":{"name":"spr_lighth","path":"sprites/spr_lighth/spr_lighth.yy",},},
     {"id":{"name":"spr_player_plataformer_ph_iddleLeft","path":"sprites/spr_player_plataformer_ph_iddleLeft/spr_player_plataformer_ph_iddleLeft.yy",},},
     {"id":{"name":"spr_player_plataformer_ph_iddleRight","path":"sprites/spr_player_plataformer_ph_iddleRight/spr_player_plataformer_ph_iddleRight.yy",},},
