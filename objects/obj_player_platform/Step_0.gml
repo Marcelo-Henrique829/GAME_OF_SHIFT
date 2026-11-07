@@ -51,4 +51,3 @@ direction = dir;
 hspd = lengthdir_x(spd, dir);
 vspd += grv;
 scr_colision(obj_ground);
-depth = -y;

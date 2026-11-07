@@ -28,8 +28,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"platformPack_tilesheet_walls_1",
-    "path":"sprites/platformPack_tilesheet_walls_1/platformPack_tilesheet_walls_1.yy",
+    "name":"Terrain__16x16__1",
+    "path":"sprites/Terrain__16x16__1/Terrain__16x16__1.yy",
   },
   "spriteMaskId":null,
   "visible":true,
