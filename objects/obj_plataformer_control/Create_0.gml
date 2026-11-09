@@ -47,7 +47,7 @@ parallax_back_middleground_offset_y = 30;
 parallax_middleground_offset_x = 0;
 parallax_middleground_offset_y = -40;
 parallax_foreground_offset_x = 0;
-parallax_foreground_offset_y = 150;
+parallax_foreground_offset_y = 180;
 
 #endregion
 
@@ -90,8 +90,20 @@ function parallax_draw(_sprite, _speed, _offset_x, _offset_y, _repeat_x, _repeat
 
     var _width = sprite_get_width(_sprite);
     var _height = sprite_get_height(_sprite);
-    var _left = round(_view_x * (1 - _speed) + _offset_x);
-    var _top = round(_view_y * (1 - _speed) + _offset_y);
+
+    // Usa o enquadramento padrão centrado na câmera como referência de movimento.
+    // O zoom altera o canto da view mesmo sem mover seu centro; essa compensação
+    // evita que as camadas subam ou deslizem só porque a câmera se aproximou.
+    var _parallax_x = _view_x;
+    var _parallax_y = _view_y;
+    if (instance_exists(obj_camera))
+    {
+        _parallax_x += (_view_width - global.camera_width) * 0.5;
+        _parallax_y += (_view_height - global.camera_height) * 0.5;
+    }
+
+    var _left = round(_parallax_x * (1 - _speed) + _offset_x);
+    var _top = round(_parallax_y * (1 - _speed) + _offset_y);
 
     // Cada eixo se repete apenas quando sua variável está ativada.
     var _first_x = 0;

@@ -1,3 +1,19 @@
+// Aproxima durante o fade-in; ao entrar na sala, afasta até o enquadramento padrão.
+var _controller = instance_find(obj_control, 0);
+var _fade_in = false;
+if (_controller != noone)
+{
+    // Ignora o estado da sala anterior antes do controller atualizar sua transição.
+    _fade_in = (_controller.fade_current_room == room && _controller.fade_in_active);
+}
+
+if (global.player_in_menu && instance_exists(obj_player_platform)) scr_camera_zoom_in(menu_zoom_scale);
+else if (_fade_in) scr_camera_zoom_in();
+else scr_camera_zoom_out();
+
+// Redimensiona antes de centralizar para manter o player no enquadramento.
+camera_set_view_size(view_camera[0], global.camera_width / zoom, global.camera_height / zoom);
+
 var _target = noone;
 
 // Neste projeto, o personagem de plataforma se chama obj_player_platform.

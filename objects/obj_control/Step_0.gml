@@ -9,7 +9,7 @@ if (room != fade_current_room)
 }
 
 // Ao pressionar K, escolhe a outra sala de teste e começa a cobrir a tela.
-if (keyboard_check_pressed(ord("K")) && !fade_in_active)
+if (keyboard_check_pressed(ord("K")) && !fade_in_active && !global.player_in_menu)
 {
 	fade_target_room = (room == Rm_TopDownTest) ? Rm_platform_test : Rm_TopDownTest;
 	fade_in_active = true;

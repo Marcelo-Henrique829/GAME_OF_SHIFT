@@ -5,6 +5,9 @@
 /// @returns {void}
 function scr_fade_in(_draw_overlay = false)
 {
+	// Altere apenas esta variável para trocar o sprite do fade-in.
+	var _sprite = spr_triangle;
+
 	if (!_draw_overlay)
 	{
 		// Sem transição ativa, não há progresso para atualizar.
@@ -31,7 +34,7 @@ function scr_fade_in(_draw_overlay = false)
 	// Calcula a grade no espaço da interface para cobrir toda a tela.
 	var _gui_width = display_get_gui_width();
 	var _gui_height = display_get_gui_height();
-	var _triangle_size = max(1, min(sprite_get_width(spr_triangle), sprite_get_height(spr_triangle)));
+	var _triangle_size = max(1, min(sprite_get_width(_sprite), sprite_get_height(_sprite)));
 	var _progress = clamp(fade_in_progress / max(0.001, fade_in_cover_progress), 0, 1);
 	var _max_scale = max(0.1, fade_in_triangle_max_scale);
 	var _scale = _max_scale * _progress;
@@ -47,7 +50,7 @@ function scr_fade_in(_draw_overlay = false)
 	{
 		for (var _draw_x = _start_x; _draw_x <= _end_x; _draw_x += _spacing)
 		{
-			draw_sprite_ext(spr_triangle, 0, _draw_x, _draw_y, _scale, _scale, 0, c_white, 1);
+			draw_sprite_ext(_sprite, 0, _draw_x, _draw_y, _scale, _scale, 0, c_white, 1);
 		}
 	}
 }
@@ -58,6 +61,9 @@ function scr_fade_in(_draw_overlay = false)
 /// @returns {void}
 function scr_fade_out(_draw_overlay = false)
 {
+	// Altere apenas esta variável para trocar o sprite do fade-out.
+	var _sprite = spr_triangle;
+
 	if (!_draw_overlay)
 	{
 		// Se o efeito já terminou, não é necessário atualizar seu estado.
@@ -76,7 +82,7 @@ function scr_fade_out(_draw_overlay = false)
 	// Calcula a grade no espaço da interface para cobrir toda a tela.
 	var _gui_width = display_get_gui_width();
 	var _gui_height = display_get_gui_height();
-	var _triangle_size = max(1, min(sprite_get_width(spr_triangle), sprite_get_height(spr_triangle)));
+	var _triangle_size = max(1, min(sprite_get_width(_sprite), sprite_get_height(_sprite)));
 	var _max_scale = max(0.1, fade_out_triangle_max_scale);
 	var _scale = _max_scale * clamp(fade_out_progress, 0, 1);
 	var _max_triangle_size = _triangle_size * _max_scale;
@@ -91,7 +97,7 @@ function scr_fade_out(_draw_overlay = false)
 	{
 		for (var _draw_x = _start_x; _draw_x <= _end_x; _draw_x += _spacing)
 		{
-			draw_sprite_ext(spr_triangle, 0, _draw_x, _draw_y, _scale, _scale, 0, c_white, 1);
+			draw_sprite_ext(_sprite, 0, _draw_x, _draw_y, _scale, _scale, 0, c_white, 1);
 		}
 	}
 }

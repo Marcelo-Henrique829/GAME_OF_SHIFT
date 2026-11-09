@@ -2,7 +2,8 @@
 enum PlayerState
 {
     IDDLE,
-    WALK
+    WALK,
+    STOP
 }
 // Movimento.
 move_speed = 5;

@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"Place_holder_sprites",
-    "path":"folders/PLATAFORMER/Place_holder_sprites.yy",
+    "name":"obj_",
+    "path":"folders/PLATAFORMER/obj_.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

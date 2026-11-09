@@ -1,9 +1,15 @@
 // Atualiza as teclas e calcula a direção/velocidade desejadas.
 scr_inputs(true);
-scr_direction();
+if (state != PlayerState.STOP) scr_direction();
 // Atualiza o estado conforme o jogador começou ou parou de se mover.
 switch (state)
 {
+    case PlayerState.STOP:
+        spd = 0;
+        hspd = 0;
+        vspd = 0;
+    break;
+
     case PlayerState.IDDLE:
         if (spd > 0)
         {

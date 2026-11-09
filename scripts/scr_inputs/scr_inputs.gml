@@ -2,6 +2,8 @@
 #macro FLASH_MAX 0.15
 #macro AXIS_DEAD_ZONE 0.25
 
+// Compartilhado pela UI, pelo player e pela câmera.
+global.player_in_menu = false;
 
 global.inputs = {
     left: false,

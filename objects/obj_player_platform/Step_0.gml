@@ -1,12 +1,22 @@
 // Atualiza os controles e a direção do jogador.
 scr_inputs(true);
-if (dialogo_ativo) exit;
-scr_direction();
-if (hspd != 0) image_xscale = sign(hspd);
+if (dialogo_ativo && !global.player_in_menu) exit;
+if (state != PlayerStatePlatformer.STOP)
+{
+    scr_direction();
+    if (hspd != 0) image_xscale = sign(hspd);
+}
 
 // Executa o comportamento do estado atual.
 switch (state)
 {
+    case PlayerStatePlatformer.STOP:
+        sprite_index = spr_player_plataformer_ph_iddleRight;
+        spd = 0;
+        hspd = 0;
+        vspd = 0;
+    break;
+
     case PlayerStatePlatformer.IDDLE:
         sprite_index = spr_player_plataformer_ph_iddleRight;
         check_jump();
@@ -49,5 +59,5 @@ switch (state)
 // Aplica movimento horizontal, gravidade e colisões.
 direction = dir;
 hspd = lengthdir_x(spd, dir);
-vspd += grv;
+if (state != PlayerStatePlatformer.STOP) vspd += grv;
 scr_colision(obj_ground);

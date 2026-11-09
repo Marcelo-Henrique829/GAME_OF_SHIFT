@@ -3,7 +3,8 @@ enum PlayerStatePlatformer
 {
     IDDLE,
     WALK,
-    JUMP
+    JUMP,
+    STOP
 }
 
 // Parâmetros e velocidades do movimento.
@@ -41,4 +42,10 @@ check_jump = function()
 if (!instance_exists(obj_camera))
 {
     instance_create_layer(x, y, "Instances", obj_camera);
+}
+
+// A UI acompanha o player e existe uma única vez por sala.
+if (!instance_exists(obj_UI_player))
+{
+    instance_create_layer(x, y, "Instances", obj_UI_player);
 }
