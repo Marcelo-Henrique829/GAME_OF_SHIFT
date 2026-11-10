@@ -24,3 +24,9 @@ if (!instance_exists(obj_camera))
 {
     instance_create_layer(x, y, "Instances", obj_camera);
 }
+
+// Compartilha o menu com o player de plataforma, sem duplicar a UI.
+if (!instance_exists(obj_UI_player))
+{
+    instance_create_layer(x, y, "Instances", obj_UI_player);
+}

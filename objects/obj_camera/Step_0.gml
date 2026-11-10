@@ -7,7 +7,7 @@ if (_controller != noone)
     _fade_in = (_controller.fade_current_room == room && _controller.fade_in_active);
 }
 
-if (global.player_in_menu && instance_exists(obj_player_platform)) scr_camera_zoom_in(menu_zoom_scale);
+if (global.player_in_menu && (instance_exists(obj_player_platform) || instance_exists(obj_player_topdown))) scr_camera_zoom_in(menu_zoom_scale);
 else if (_fade_in) scr_camera_zoom_in();
 else scr_camera_zoom_out();
 

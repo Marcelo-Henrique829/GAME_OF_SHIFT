@@ -5,7 +5,7 @@
 // Atualiza global.inputs; não lê o teclado diretamente para manter o mapa central.
 scr_inputs(true);
 // Recupera o player se esta UI ainda não tiver uma referência válida.
-if (!instance_exists(player)) player = instance_find(obj_player_platform, 0);
+if (!instance_exists(player)) player = find_player();
 
 if (!instance_exists(player))
 {
@@ -23,9 +23,9 @@ if (global.inputs.esc)
     var _transitioning = false;
     if (_controller != noone) _transitioning = _controller.fade_in_active;
 
-    // Um menu já aberto sempre pode fechar. Para abrir, exige ausência de fade-in.
+    // Top-down pode abrir livremente; plataforma aguarda o fim do fade-in.
     // A checagem de chão fica dentro de menu_set_open para valer para qualquer chamada.
-    if (global.player_in_menu || !_transitioning)
+    if (global.player_in_menu || player.object_index == obj_player_topdown || !_transitioning)
     {
         // ! inverte o booleano: fechado vira aberto, aberto vira fechado.
         menu_set_open(!global.player_in_menu);

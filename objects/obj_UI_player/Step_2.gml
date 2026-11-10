@@ -34,24 +34,22 @@ draw_set_font(menu_font);
 // "Mg" é uma amostra de altura da fonte. Reserva espaço para a maior escala do hover.
 // O fator 0.5 transforma a altura total em meia altura; padding amplia a área do mouse.
 var _half_height = string_height("Mg") * menu_text_scale * menu_hover_scale * 0.5 + menu_padding;
-// Impede que retângulos de linhas vizinhas se sobreponham por falta de espaço.
-var _row_height = max(menu_row_height, _half_height * 2);
-// Guarda a maior meia largura para limitar o grupo inteiro nas bordas da GUI.
-var _half_width = 0;
+// Soma as larguras máximas e os espaços para centralizar a fileira inteira.
+var _group_width = (_count - 1) * menu_option_gap;
 for (var _i = 0; _i < _count; _i++)
 {
     // Cada item é uma struct: alterar seus campos atualiza o item na lista.
     var _option = menu_options[_i];
     _option.half_width = string_width(_option.label) * menu_text_scale * menu_hover_scale * 0.5 + menu_padding;
     _option.half_height = _half_height;
-    _half_width = max(_half_width, _option.half_width);
+    _group_width += _option.half_width * 2;
 }
 draw_set_font(_old_font);
 
-// Altura total: distância entre primeira/última linha + a altura de uma opção.
-var _group_height = (_count - 1) * _row_height + _half_height * 2;
-// Centraliza em X sobre o player; clamp limita o centro para o texto não sair da GUI.
-var _center_x = clamp(_anchor_x, menu_margin + _half_width, max(menu_margin + _half_width, _gui_width - menu_margin - _half_width));
+// Todas as opções ficam na mesma altura, lado a lado.
+var _group_height = _half_height * 2;
+// Centraliza a fileira sobre o player e limita sua posição às bordas da GUI.
+var _left = clamp(_anchor_x - _group_width * 0.5, menu_margin, max(menu_margin, _gui_width - menu_margin - _group_width));
 // Posiciona todo o grupo acima do player, respeitando gap e margem das bordas.
 // max evita um limite superior menor que o inferior se o grupo não couber na GUI.
 var _top = clamp(_anchor_y - menu_player_gap - _group_height, menu_margin, max(menu_margin, _gui_height - menu_margin - _group_height));
@@ -60,12 +58,14 @@ var _top = clamp(_anchor_y - menu_player_gap - _group_height, menu_margin, max(m
 // Se o retângulo encolhesse junto do texto, o mouse poderia entrar e sair sem se mover.
 // Reinicia a seleção para não manter um hover antigo quando o cursor sai do grupo.
 hovered_option = -1;
+var _next_x = _left;
 for (var _i = 0; _i < _count; _i++)
 {
     var _option = menu_options[_i];
-    // Coloca as linhas no mesmo X e distribui os centros verticalmente.
-    _option.gui_x = _center_x;
-    _option.gui_y = _top + _half_height + _i * _row_height;
+    // Distribui em X usando a largura de cada texto e mantém o mesmo Y.
+    _option.gui_x = _next_x + _option.half_width;
+    _option.gui_y = _top + _half_height;
+    _next_x += _option.half_width * 2 + menu_option_gap;
     // Constrói o retângulo a partir do centro e das meias dimensões.
     // A primeira opção atingida ganha prioridade caso as bordas se toquem.
     if (hovered_option == -1 && point_in_rectangle(_mouse_x, _mouse_y,

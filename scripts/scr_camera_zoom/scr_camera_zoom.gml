@@ -4,8 +4,11 @@
 function scr_camera_zoom_in(_target_scale = zoom_in_scale)
 {
     var _fps = max(1, game_get_speed(gamespeed_fps));
-    var _step = max(0, zoom_in_speed) / _fps;
-    zoom += clamp(max(1, _target_scale) - zoom, -_step, _step);
+    var _target = max(1, _target_scale);
+    // Usa as velocidades do Create de obj_camera conforme a direção do zoom.
+    var _speed = (_target < zoom) ? zoom_out_speed : zoom_in_speed;
+    var _step = max(0, _speed) / _fps;
+    zoom += clamp(_target - zoom, -_step, _step);
 }
 
 /// @function scr_camera_zoom_out()

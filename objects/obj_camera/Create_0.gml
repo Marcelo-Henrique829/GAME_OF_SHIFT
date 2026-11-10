@@ -8,8 +8,8 @@ global.camera_height = 216;
 
 // Zoom: 1 é a escala padrão; 2 mostra metade da largura e da altura.
 zoom_in_scale = 3;
-zoom_in_speed = 4;
-zoom_out_speed = 2;
+zoom_in_speed = 6;
+zoom_out_speed = 4;
 menu_zoom_scale = 4;
 zoom = zoom_in_scale;
 

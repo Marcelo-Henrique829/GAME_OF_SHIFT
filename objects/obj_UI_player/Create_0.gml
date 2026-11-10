@@ -1,5 +1,5 @@
 // CREATE — executado uma vez, quando esta instância da UI é criada.
-// O obj_player_platform cria esta UI automaticamente caso ela ainda não exista.
+// Os players de plataforma e top-down criam esta UI caso ela ainda não exista.
 // Fluxo: Begin Step lê Esc -> menu_set_open abre/fecha -> End Step calcula a UI
 // e o mouse -> Draw GUI desenha as opções -> Clean Up libera o estado ao sair.
 // global.player_in_menu é inicializada em scr_inputs e consultada pela câmera
@@ -15,6 +15,13 @@ if (instance_number(obj_UI_player) > 1)
 
 // Referência à instância do player; noone indica que ainda será procurada.
 player = noone;
+// Usa a mesma prioridade da câmera ao procurar o personagem ativo.
+find_player = function()
+{
+    var _player = instance_find(obj_player_platform, 0);
+    if (!instance_exists(_player)) _player = instance_find(obj_player_topdown, 0);
+    return _player;
+};
 // Cópia do estado, velocidades e animação anteriores à abertura do menu.
 saved_player = undefined;
 // Lista de opções. Cada item guarda texto, ação, escala e área de interação.
@@ -33,8 +40,8 @@ menu_hover_scale = 1.2;
 menu_other_scale = 0.85;
 // Velocidade da interpolação do hover: maior = mudança de tamanho mais rápida.
 menu_scale_speed = 14;
-// Distância mínima entre os centros das linhas. O layout aumenta se necessário.
-menu_row_height = 42;
+// Espaço horizontal entre as áreas clicáveis das opções.
+menu_option_gap = 24;
 // Espaço entre o topo da máscara do player e a parte inferior do grupo de opções.
 menu_player_gap = 32;
 // Folga acrescentada em cada lado da área clicável, além do tamanho do texto.
@@ -53,20 +60,24 @@ menu_set_open = function(_open)
     {
         // Procura novamente caso a referência anterior tenha sido destruída.
         // instance_find(..., 0) retorna a primeira instância do objeto.
-        if (!instance_exists(player)) player = instance_find(obj_player_platform, 0);
+        if (!instance_exists(player)) player = find_player();
         if (!instance_exists(player)) return;
 
         // with executa a verificação no contexto do player: x, y, vspd e máscara
         // passam a ser os dele. A variável local _on_ground recebe o resultado.
         // y + 1 verifica se há obj_ground um pixel abaixo. vspd >= 0 impede
         // abrir durante a subida do pulo, mesmo se ainda estiver perto do chão.
-        var _on_ground = false;
-        with (player)
+        var _is_platform = (player.object_index == obj_player_platform);
+        if (_is_platform)
         {
-            _on_ground = (vspd >= 0 && place_meeting(x, y + 1, obj_ground));
+            var _on_ground = false;
+            with (player)
+            {
+                _on_ground = (vspd >= 0 && place_meeting(x, y + 1, obj_ground));
+            }
+            // Apenas o player de plataforma precisa estar no chão.
+            if (!_on_ground) return;
         }
-        // Recusa a abertura sem mudar a flag global nem o estado do personagem.
-        if (!_on_ground) return;
 
         // Guarda o estado e o movimento para continuar de onde parou.
         // state: estado da máquina; spd: velocidade desejada;
@@ -82,11 +93,19 @@ menu_set_open = function(_open)
         };
         // STOP mantém o player em idle e suspende movimento, pulo e gravidade.
         // As velocidades são zeradas já aqui, antes do Step do personagem.
-        player.state = PlayerStatePlatformer.STOP;
+        player.state = _is_platform ? PlayerStatePlatformer.STOP : PlayerState.STOP;
         player.spd = 0;
         player.hspd = 0;
         player.vspd = 0;
-        player.sprite_index = spr_player_plataformer_ph_iddleRight;
+        if (_is_platform)
+        {
+            player.sprite_index = spr_player_plataformer_ph_iddleRight;
+        }
+        else
+        {
+            // Escolhe o idle top-down preservando a direção atual.
+            with (player) scr_anim_topdown_player();
+        }
         player.image_index = 0;
     }
     else if (instance_exists(player) && is_struct(saved_player))
