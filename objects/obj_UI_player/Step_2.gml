@@ -5,7 +5,24 @@
 // Não calcula a interface se o menu estiver fechado ou o player tiver desaparecido.
 if (!global.player_in_menu || !instance_exists(player)) exit;
 // Textos ocultos durante o fade também não recebem hover ou cliques.
-if (global.fade_active) exit;
+if (global.fade_active)
+{
+    clicked_option = -1;
+    menu_click_timer = 0;
+    exit;
+}
+// Aguarda o feedback visual antes de fechar a UI ou iniciar a troca de sala.
+if (clicked_option != -1)
+{
+    menu_click_timer = max(0, menu_click_timer - 1 / max(1, game_get_speed(gamespeed_fps)));
+    if (menu_click_timer <= 0)
+    {
+        var _action = menu_options[clicked_option].action;
+        clicked_option = -1;
+        _action();
+        exit;
+    }
+}
 // Usa a câmera principal. -1 significa que não existe uma câmera atribuída à view.
 var _camera = view_camera[0];
 if (_camera == -1) exit;
@@ -86,15 +103,15 @@ for (var _i = 0; _i < _count; _i++)
 {
     // Sem hover, todas voltam a 1. Com hover, a escolhida cresce e as demais diminuem.
     var _target_scale = 1;
-    if (hovered_option != -1) _target_scale = (_i == hovered_option) ? menu_hover_scale : menu_other_scale;
+    var _selected = (clicked_option != -1) ? clicked_option : hovered_option;
+    if (_selected != -1) _target_scale = (_i == _selected) ? menu_hover_scale : menu_other_scale;
     // lerp aproxima a escala atual da desejada sem uma mudança instantânea.
     menu_options[_i].scale = lerp(menu_options[_i].scale, _target_scale, _blend);
 }
 
-// Executa a ação apenas na pressão inicial do botão esquerdo sobre uma opção.
-// Não depende do texto da opção: cada item possui sua própria função (callback).
-if (hovered_option != -1 && global.inputs.mouse_left_p)
+// Um clique inicia o shake; cliques adicionais aguardam a ação terminar.
+if (clicked_option == -1 && hovered_option != -1 && global.inputs.mouse_left_p)
 {
-    var _action = menu_options[hovered_option].action;
-    _action();
+    clicked_option = hovered_option;
+    menu_click_timer = max(0.001, menu_click_duration);
 }

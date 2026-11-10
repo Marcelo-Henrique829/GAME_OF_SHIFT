@@ -1,3 +1,30 @@
+// MAPA CENTRAL DE INPUTS
+// Os objetos consultam ações (global.inputs.dash, por exemplo), e este script
+// concentra quais teclas/botões ativam cada ação. Para trocar uma tecla,
+// altere a leitura aqui sem precisar mudar os objetos que usam a ação.
+//
+// COMO ADICIONAR UM INPUT — exemplo: interagir com a tecla E
+// 1. Declare um campo dentro de global.inputs, junto aos demais:
+//        interact: false,
+//    Use vírgula entre os campos; o último campo pode ficar sem vírgula.
+// 2. Dentro de scr_inputs, junto às leituras de ações, adicione:
+//        _i.interact = keyboard_check_pressed(ord("E"));
+// 3. No Step do objeto que usa a ação, depois da atualização dos inputs:
+//        if (global.inputs.interact) { /* executar a interação */ }
+//    scr_inputs(true) deve ser executado antes de consultar o mapa no frame.
+//    Se outro evento já o atualizou, basta consultar global.inputs.
+//
+// ESCOLHA O TIPO DE LEITURA
+// keyboard_check(tecla)          : true enquanto a tecla estiver segurada.
+// keyboard_check_pressed(tecla)  : true apenas no frame em que foi pressionada.
+// keyboard_check_released(tecla) : true apenas no frame em que foi solta.
+// Para mouse, use mouse_check_button / mouse_check_button_pressed /
+// mouse_check_button_released com mb_left, mb_right ou mb_middle.
+// Letras usam ord("E"); teclas especiais usam vk_space, vk_enter etc.
+// Combine alternativas com ||: teclado OU mouse podem ativar a mesma ação.
+// Uma tecla pode ativar várias ações: E também ativa tec_e no mapa atual.
+// Prefira nomes de ação (interact) a nomes da tecla para facilitar remapeamentos.
+
 // Constantes compartilhadas pelos sistemas que usam os inputs.
 #macro FLASH_MAX 0.15
 #macro AXIS_DEAD_ZONE 0.25
@@ -5,6 +32,9 @@
 // Compartilhado pela UI, pelo player e pela câmera.
 global.player_in_menu = false;
 
+// Estado inicial do mapa: todas as ações começam desativadas.
+// Esta inicialização fica fora da função; não a repita a cada atualização.
+// Ao adicionar um campo aqui, adicione também sua leitura dentro de scr_inputs.
 global.inputs = {
     left: false,
     right: false,
@@ -39,10 +69,13 @@ global.inputs = {
 
 /// @function scr_inputs(_enabled)
 /// @description Atualiza o mapa global de inputs do jogador.
+/// @param {bool} _enabled Se false, mantém o último mapa, sem ler nem zerar inputs.
 function scr_inputs(_enabled = true)
 {
     if (!_enabled) return;
 
+    // Structs são referências: escrever em _i também atualiza global.inputs.
+    // Cada ação deve receber um valor a cada chamada para não ficar presa em true.
     var _i = global.inputs;
 
     // Direcionais seguradas.
@@ -51,7 +84,8 @@ function scr_inputs(_enabled = true)
     _i.up =		keyboard_check(ord("W")) || keyboard_check(vk_up);
     _i.down =   keyboard_check(ord("S")) || keyboard_check(vk_down);
 
-    // Ações.
+    // Ações. Adicione novas leituras aqui usando o campo declarado no mapa acima.
+    // Sem sufixo, confira a função de leitura: há ações seguradas e pressionadas.
     _i.attack = mouse_check_button_pressed(mb_left) || keyboard_check_pressed(ord("J"));
     _i.attack_2 = mouse_check_button_pressed(mb_right) || keyboard_check_pressed(ord("K"));
     _i.dash = keyboard_check_pressed(vk_space);
@@ -71,7 +105,8 @@ function scr_inputs(_enabled = true)
     _i.mouse_left_p = mouse_check_button_pressed(mb_left);
     _i.texture_filter_reset = keyboard_check_pressed(vk_backspace);
 
-    // Reservados para sistemas de QTE e controle.
+    // Reservados para sistemas de QTE e controle: ainda não possuem botão ligado.
+    // Para habilitar um deles, substitua false pela leitura desejada nesta linha.
     _i.qte_action = false;
     _i.shoulder_right = false;
     _i.shoulder_left = false;

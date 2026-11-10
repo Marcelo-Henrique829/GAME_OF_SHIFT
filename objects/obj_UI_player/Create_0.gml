@@ -28,6 +28,11 @@ saved_player = undefined;
 menu_options = [];
 // Índice da opção sob o mouse (a lista começa em 0); -1 significa nenhuma.
 hovered_option = -1;
+// Feedback do clique: duração em segundos e deslocamento máximo em pixels da GUI.
+menu_click_duration = 0.10;
+menu_click_strength = 10;
+clicked_option = -1;
+menu_click_timer = 0;
 
 // Medidas em pixels da GUI, independentes do zoom da câmera.
 // -1 usa a fonte padrão do GameMaker. Pode ser trocado por um recurso de fonte.
@@ -55,6 +60,9 @@ menu_set_open = function(_open)
 {
     // Evita salvar novamente o player já parado ou restaurar um menu já fechado.
     if (_open == global.player_in_menu) return;
+    // Fechar por Esc cancela qualquer ação que ainda aguardava o shake.
+    clicked_option = -1;
+    menu_click_timer = 0;
 
     if (_open)
     {
