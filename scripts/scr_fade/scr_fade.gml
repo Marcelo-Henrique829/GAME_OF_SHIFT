@@ -73,7 +73,11 @@ function scr_fade_out(_draw_overlay = false)
 		var _fps = max(1, game_get_speed(gamespeed_fps));
 		fade_out_progress = max(0, fade_out_progress - max(0, fade_out_speed) / _fps);
 		// Encerra o efeito quando os triângulos desaparecem.
-		if (fade_out_progress <= 0) fade_out_active = false;
+		if (fade_out_progress <= 0)
+		{
+			fade_out_active = false;
+			global.fade_active = fade_in_active;
+		}
 		return;
 	}
 

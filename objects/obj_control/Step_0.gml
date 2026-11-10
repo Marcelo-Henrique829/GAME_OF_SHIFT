@@ -18,5 +18,6 @@ if (keyboard_check_pressed(ord("K")) && !fade_in_active && !global.player_in_men
 }
 
 // Atualiza os dois efeitos; o script inativo retorna sem alterar seu estado.
+global.fade_active = fade_in_active || fade_out_active;
 scr_fade_in();
 scr_fade_out();

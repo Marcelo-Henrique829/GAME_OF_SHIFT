@@ -6,6 +6,10 @@ if (instance_number(obj_control) > 1)
 	exit;
 }
 
+// O cursor personalizado é desenhado no Draw GUI End, sem o cursor do sistema.
+window_set_cursor(cr_none);
+cursor_sprite = -1;
+
 // Sala atual e destino da próxima transição.
 fade_current_room = room;
 fade_target_room = noone;
@@ -22,3 +26,6 @@ fade_out_active = true;
 fade_out_progress = 1;
 fade_out_speed = 1.5;
 fade_out_triangle_max_scale = 3;
+
+// Flag compartilhada: qualquer um dos efeitos mantém a transição ativa.
+global.fade_active = fade_in_active || fade_out_active;

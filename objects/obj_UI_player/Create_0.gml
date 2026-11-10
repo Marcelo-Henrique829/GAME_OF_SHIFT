@@ -160,10 +160,23 @@ menu_add_option = function(_label, _action)
     });
 };
 
-// Opções iniciais. "menu" ainda é apenas um ponto de expansão sem ação.
+// Volta ao menu principal usando a transição do controller.
 menu_add_option("menu", method(id, function()
 {
-    // Reservado para implementar o menu principal posteriormente.
+    var _controller = instance_find(obj_control, 0);
+    if (!instance_exists(_controller))
+    {
+        room_goto(rm_main_menu);
+        return;
+    }
+    // Evita reiniciar o fade caso a opção seja clicada novamente.
+    if (_controller.fade_in_active) return;
+    _controller.fade_target_room = rm_main_menu;
+    _controller.fade_in_active = true;
+    _controller.fade_in_progress = 0;
+    _controller.fade_out_active = false;
+    // O clique acontece no End Step: oculta a UI já neste mesmo frame.
+    global.fade_active = true;
 }));
 // "resume" usa a mesma função de fechamento chamada pelo Esc.
 menu_add_option("resume", method(id, function()

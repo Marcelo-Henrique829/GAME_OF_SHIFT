@@ -1,7 +1,7 @@
 // DRAW GUI — desenha na resolução da interface, sem ser ampliado pelo zoom do mundo.
 // As posições e escalas já foram preparadas pelo End Step.
 // Nada é desenhado quando o menu está fechado ou o player não existe mais.
-if (!global.player_in_menu || !instance_exists(player)) exit;
+if (global.fade_active || !global.player_in_menu || !instance_exists(player)) exit;
 
 // Guarda o estado de desenho para não afetar outras interfaces desenhadas depois.
 var _old_font = draw_get_font();

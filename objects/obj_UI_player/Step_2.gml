@@ -4,6 +4,8 @@
 
 // Não calcula a interface se o menu estiver fechado ou o player tiver desaparecido.
 if (!global.player_in_menu || !instance_exists(player)) exit;
+// Textos ocultos durante o fade também não recebem hover ou cliques.
+if (global.fade_active) exit;
 // Usa a câmera principal. -1 significa que não existe uma câmera atribuída à view.
 var _camera = view_camera[0];
 if (_camera == -1) exit;
