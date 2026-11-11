@@ -7,5 +7,5 @@ if(image_alpha >= 1)
 
 }
 
-//credit_create();
-close_folder()
+
+close_folder();
