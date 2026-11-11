@@ -8,8 +8,8 @@
   "name":"obj_plataformer_shortcut",
   "overriddenProperties":[],
   "parent":{
-    "name":"obj",
-    "path":"folders/menuPrincipal/obj.yy",
+    "name":"Objetos",
+    "path":"folders/Compartilhado/Menu/Objetos.yy",
   },
   "parentObjectId":{
     "name":"obj_shortcut",

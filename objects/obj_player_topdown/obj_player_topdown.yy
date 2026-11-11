@@ -9,8 +9,8 @@
   "name":"obj_player_topdown",
   "overriddenProperties":[],
   "parent":{
-    "name":"player",
-    "path":"folders/Objetos/Topdown/player.yy",
+    "name":"Objetos",
+    "path":"folders/TopDown/Objetos.yy",
   },
   "parentObjectId":null,
   "persistent":false,

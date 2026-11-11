@@ -9,8 +9,8 @@
   "name":"obj_arvore",
   "overriddenProperties":[],
   "parent":{
-    "name":"PlaceHolder",
-    "path":"folders/Objetos/Topdown/Cenario/PlaceHolder.yy",
+    "name":"Objetos",
+    "path":"folders/TopDown/Objetos.yy",
   },
   "parentObjectId":null,
   "persistent":false,

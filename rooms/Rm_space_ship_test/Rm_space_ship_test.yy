@@ -19,8 +19,8 @@
   ],
   "name":"Rm_space_ship_test",
   "parent":{
-    "name":"spaceship",
-    "path":"folders/spaceship.yy",
+    "name":"Salas",
+    "path":"folders/Spaceship/Salas.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

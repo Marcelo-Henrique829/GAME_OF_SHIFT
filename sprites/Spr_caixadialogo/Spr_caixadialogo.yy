@@ -44,8 +44,8 @@
   },
   "origin":0,
   "parent":{
-    "name":"other",
-    "path":"folders/Sprites/UI/other.yy",
+    "name":"Sprites",
+    "path":"folders/Compartilhado/Interface/Sprites.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

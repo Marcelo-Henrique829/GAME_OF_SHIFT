@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"back_ground",
-    "path":"folders/PLATAFORMER/Place_holder_sprites/back_ground.yy",
+    "name":"Placeholders",
+    "path":"folders/Plataforma/Sprites/Placeholders.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

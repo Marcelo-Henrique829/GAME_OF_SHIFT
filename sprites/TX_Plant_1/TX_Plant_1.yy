@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"tiles",
-    "path":"folders/Sprites/place_holder_topdown/tiles.yy",
+    "name":"Cenario",
+    "path":"folders/TopDown/Sprites/Cenario.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

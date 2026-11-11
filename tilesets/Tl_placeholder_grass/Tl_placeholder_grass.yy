@@ -12,8 +12,8 @@
   "out_tilehborder":2,
   "out_tilevborder":2,
   "parent":{
-    "name":"PlaceHOlder",
-    "path":"folders/TILE_TOPDOWN/PlaceHOlder.yy",
+    "name":"Tilesets",
+    "path":"folders/TopDown/Tilesets.yy",
   },
   "resourceType":"GMTileSet",
   "resourceVersion":"2.0",

@@ -8,8 +8,8 @@
   "name":"obj_menu",
   "overriddenProperties":[],
   "parent":{
-    "name":"Control",
-    "path":"folders/Objetos/Control.yy",
+    "name":"Objetos",
+    "path":"folders/Compartilhado/Interface/Objetos.yy",
   },
   "parentObjectId":null,
   "persistent":false,

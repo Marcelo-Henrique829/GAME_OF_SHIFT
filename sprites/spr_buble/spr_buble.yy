@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"obj_",
-    "path":"folders/PLATAFORMER/obj_.yy",
+    "name":"Efeitos",
+    "path":"folders/Plataforma/Sprites/Efeitos.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -171,8 +171,8 @@
   ],
   "name":"Rm_TopDownTest",
   "parent":{
-    "name":"game_of_2026",
-    "path":"game_of_2026.yyp",
+    "name":"Salas",
+    "path":"folders/TopDown/Salas.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

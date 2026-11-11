@@ -6,7 +6,7 @@
   "name":"scr_fade",
   "parent":{
     "name":"Scripts",
-    "path":"folders/Scripts.yy",
+    "path":"folders/Compartilhado/Scripts.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

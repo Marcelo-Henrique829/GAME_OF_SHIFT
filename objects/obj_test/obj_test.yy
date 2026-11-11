@@ -6,8 +6,8 @@
   "name":"obj_test",
   "overriddenProperties":[],
   "parent":{
-    "name":"Control",
-    "path":"folders/Objetos/Control.yy",
+    "name":"Objetos",
+    "path":"folders/Compartilhado/Testes/Objetos.yy",
   },
   "parentObjectId":null,
   "persistent":false,

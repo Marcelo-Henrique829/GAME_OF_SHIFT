@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"player",
-    "path":"folders/PLATAFORMER/Place_holder_sprites/player.yy",
+    "name":"Cenario",
+    "path":"folders/Plataforma/Sprites/Cenario.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -215,8 +215,8 @@
   "maintainGms1Font":false,
   "name":"fn_UI",
   "parent":{
-    "name":"fonte",
-    "path":"folders/fonte.yy",
+    "name":"Fontes",
+    "path":"folders/Compartilhado/Interface/Fontes.yy",
   },
   "pointRounding":0,
   "ranges":[

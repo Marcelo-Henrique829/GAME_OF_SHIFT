@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"Place_holder_sprites",
-    "path":"folders/PLATAFORMER/Place_holder_sprites.yy",
+    "name":"Efeitos",
+    "path":"folders/Plataforma/Sprites/Efeitos.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

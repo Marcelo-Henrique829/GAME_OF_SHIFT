@@ -28,8 +28,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"walk",
-    "path":"folders/Sprites/place_holder_topdown/player/walk.yy",
+    "name":"Jogador",
+    "path":"folders/TopDown/Sprites/Jogador.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

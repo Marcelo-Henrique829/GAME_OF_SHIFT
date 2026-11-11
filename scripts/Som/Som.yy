@@ -6,7 +6,7 @@
   "name":"Som",
   "parent":{
     "name":"Scripts",
-    "path":"folders/Scripts.yy",
+    "path":"folders/Compartilhado/Testes/Scripts.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

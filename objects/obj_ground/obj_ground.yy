@@ -6,8 +6,8 @@
   "name":"obj_ground",
   "overriddenProperties":[],
   "parent":{
-    "name":"obj_",
-    "path":"folders/PLATAFORMER/obj_.yy",
+    "name":"Objetos",
+    "path":"folders/Plataforma/Objetos.yy",
   },
   "parentObjectId":null,
   "persistent":false,

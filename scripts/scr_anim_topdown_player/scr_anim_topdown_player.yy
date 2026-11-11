@@ -6,7 +6,7 @@
   "name":"scr_anim_topdown_player",
   "parent":{
     "name":"Scripts",
-    "path":"folders/Scripts.yy",
+    "path":"folders/TopDown/Scripts.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

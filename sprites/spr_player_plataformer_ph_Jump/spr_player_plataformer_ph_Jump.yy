@@ -30,8 +30,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"player",
-    "path":"folders/PLATAFORMER/Place_holder_sprites/player.yy",
+    "name":"Jogador",
+    "path":"folders/Plataforma/Sprites/Jogador.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

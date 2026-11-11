@@ -26,8 +26,8 @@
   ],
   "name":"rm_main_menu",
   "parent":{
-    "name":"menuPrincipal",
-    "path":"folders/menuPrincipal.yy",
+    "name":"Salas",
+    "path":"folders/Compartilhado/Menu/Salas.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

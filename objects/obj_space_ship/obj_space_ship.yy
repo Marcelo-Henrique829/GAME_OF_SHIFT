@@ -9,8 +9,8 @@
   "name":"obj_space_ship",
   "overriddenProperties":[],
   "parent":{
-    "name":"objs",
-    "path":"folders/spaceship/objs.yy",
+    "name":"Objetos",
+    "path":"folders/Spaceship/Objetos.yy",
   },
   "parentObjectId":null,
   "persistent":false,

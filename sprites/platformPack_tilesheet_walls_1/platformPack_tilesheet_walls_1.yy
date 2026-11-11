@@ -44,8 +44,8 @@
   },
   "origin":9,
   "parent":{
-    "name":"Place_holder_sprites",
-    "path":"folders/PLATAFORMER/Place_holder_sprites.yy",
+    "name":"Cenario",
+    "path":"folders/Plataforma/Sprites/Cenario.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

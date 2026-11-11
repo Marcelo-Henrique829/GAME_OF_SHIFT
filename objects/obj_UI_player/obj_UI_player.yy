@@ -12,8 +12,8 @@
   "name":"obj_UI_player",
   "overriddenProperties":[],
   "parent":{
-    "name":"PLATAFORMER",
-    "path":"folders/PLATAFORMER.yy",
+    "name":"Objetos",
+    "path":"folders/Compartilhado/Interface/Objetos.yy",
   },
   "parentObjectId":null,
   "persistent":false,

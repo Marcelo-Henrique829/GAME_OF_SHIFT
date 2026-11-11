@@ -10,8 +10,8 @@
   "name":"obj_shortcut",
   "overriddenProperties":[],
   "parent":{
-    "name":"obj",
-    "path":"folders/menuPrincipal/obj.yy",
+    "name":"Objetos",
+    "path":"folders/Compartilhado/Menu/Objetos.yy",
   },
   "parentObjectId":null,
   "persistent":false,

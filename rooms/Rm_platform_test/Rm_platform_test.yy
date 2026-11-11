@@ -30,8 +30,8 @@
   ],
   "name":"Rm_platform_test",
   "parent":{
-    "name":"PLATAFORMER",
-    "path":"folders/PLATAFORMER.yy",
+    "name":"Salas",
+    "path":"folders/Plataforma/Salas.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

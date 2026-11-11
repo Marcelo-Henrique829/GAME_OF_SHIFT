@@ -8,8 +8,8 @@
   "name":"obj_trail",
   "overriddenProperties":[],
   "parent":{
-    "name":"efx",
-    "path":"folders/Objetos/efx.yy",
+    "name":"Efeitos",
+    "path":"folders/Compartilhado/Objetos/Efeitos.yy",
   },
   "parentObjectId":null,
   "persistent":false,
