@@ -2,8 +2,8 @@
 acel = .2;
 hspd = 0;
 vspd = 0;
-m_vspd  = 14;
-m_hspd  = 16;
+m_vspd  = 10;
+m_hspd  = 15;
 
 
 //estados enumerados e tals
@@ -58,12 +58,14 @@ ship_control = function()
 	 {		
 		sprite_index = spr_ss_flip_left; 
 		state = SHIP_STATE.FLIP_LEFT;
+		
 	 }
 	//mudando de direção (direita)
 	if(kp_right && state != SHIP_STATE.FLIP_RIGHT)
 	 {
 		 sprite_index = spr_ss_flip_right;
 		 state = SHIP_STATE.FLIP_RIGHT;
+		 image_xscale = 1;
 	 }
 	
 	 if(k_shot)
