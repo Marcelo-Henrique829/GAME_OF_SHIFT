@@ -8,7 +8,7 @@ if (!_show_cursor) exit;
 // Começa sempre no cursor padrão para não manter uma seleção do frame anterior.
 // O Draw normal dos atalhos e o End Step da UI já atualizaram seus hovers.
 var _selected = false;
-with (obj_plataformer_shotcut)
+with (obj_shortcut)
 {
     if (visible && image_alpha > 0 && sprite_index != -1 && is_hovered) _selected = true;
 }

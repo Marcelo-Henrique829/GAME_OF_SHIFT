@@ -1,5 +1,5 @@
 if (sprite_index == -1) exit;
-// A mesma medição é usada pelo End Step para detectar o clique.
+// Todos os filhos usam a mesma medição no desenho e no End Step.
 var _bounds = get_shortcut_bounds();
 
 // Preserva o estado de desenho para os demais objetos.

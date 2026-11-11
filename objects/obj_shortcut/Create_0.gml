@@ -1,4 +1,5 @@
-text = "Plataformer";
+// Padrões compartilhados. Os filhos chamam event_inherited() antes de configurar.
+text = "";
 // Distância em pixels entre a parte inferior do sprite e o topo do texto.
 text_gap = 5;
 text_font = fnt_shortcut;
@@ -15,7 +16,7 @@ is_hovered = false;
 // mesmo se mudar a fonte, o conteúdo, a escala do sprite ou text_gap.
 
 // Destino do clique. O controller troca de sala somente após cobrir a tela.
-target_room = Rm_platform_test;
+target_room = noone;
 
 // Compartilha a mesma área entre o clique e o desenho, sem depender do Draw
 // do frame anterior. Medir o texto não deve mudar a fonte dos outros objetos.

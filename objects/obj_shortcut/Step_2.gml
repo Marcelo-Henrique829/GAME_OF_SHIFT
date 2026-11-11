@@ -6,6 +6,8 @@ var _bounds = get_shortcut_bounds();
 is_hovered = point_in_rectangle(mouse_x, mouse_y,
     _bounds.left, _bounds.top, _bounds.right, _bounds.bottom);
 if (!is_hovered || !mouse_check_button_pressed(mb_left)) exit;
+// Um filho sem destino configurado não deve iniciar uma transição.
+if (!room_exists(target_room)) exit;
 
 var _controller = instance_find(obj_control, 0);
 if (!instance_exists(_controller)) exit;
