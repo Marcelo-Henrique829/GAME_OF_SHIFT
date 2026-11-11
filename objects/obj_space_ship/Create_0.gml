@@ -2,10 +2,12 @@
 acel = .2;
 hspd = 0;
 vspd = 0;
-m_vspd  = 14;
-m_hspd  = 16;
+m_vspd  = 8;
+m_hspd  = 10;
 
-
+//variaveis do tiro
+deley_shot = 8;
+timer_shot = 0;
 //estados enumerados e tals
 enum SHIP_STATE 
 {
@@ -58,15 +60,19 @@ ship_control = function()
 	 {		
 		sprite_index = spr_ss_flip_left; 
 		state = SHIP_STATE.FLIP_LEFT;
+		
 	 }
 	//mudando de direção (direita)
 	if(kp_right && state != SHIP_STATE.FLIP_RIGHT)
 	 {
 		 sprite_index = spr_ss_flip_right;
 		 state = SHIP_STATE.FLIP_RIGHT;
+		 image_xscale = 1;
 	 }
 	
-	 if(k_shot)
+	//tiro
+	timer_shot--;
+	 if(k_shot && timer_shot <= 0)
 	  {
 		shoting();
 	  }
@@ -96,13 +102,9 @@ ship_flip_right = function()
 
 shoting = function()
 {	
-     _timer = 12;
-	 _timer--;
-     shot = instance_create_depth(x,y,1,obj_shot);		 
-	  if(_timer >= 0)
-	   {	 
+     
+		 shot = instance_create_layer(x,y,"shot",obj_shot);		 	 
 		 shot.image_xscale = image_xscale;
 		 shot.hspeed = 23 * image_xscale;
-	   }	 
-	show_debug_message(_timer);
+		 timer_shot = deley_shot 	
 }
