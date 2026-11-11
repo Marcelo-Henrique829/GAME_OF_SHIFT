@@ -1,5 +1,5 @@
 // Padrões compartilhados. Os filhos chamam event_inherited() antes de configurar.
-text = "Credits  ";
+text = "";
 // Distância em pixels entre a parte inferior do sprite e o topo do texto.
 text_gap = 5;
 text_font = fnt_shortcut;
@@ -16,7 +16,7 @@ is_hovered = false;
 // mesmo se mudar a fonte, o conteúdo, a escala do sprite ou text_gap.
 
 // Destino do clique. O controller troca de sala somente após cobrir a tela.
-//target_room = noone;
+target_obj = noone;
 
 // Compartilha a mesma área entre o clique e o desenho, sem depender do Draw
 // do frame anterior. Medir o texto não deve mudar a fonte dos outros objetos.
@@ -54,8 +54,33 @@ get_shortcut_bounds = function()
 };
 
 
-instance_obj = function(_obj)
+instance_obj = function(_obj = obj_credit_arquive)
 {
-	instance_create_layer(room_width / 2,room_height / 2,"credits",_obj)
+	
+	var _qtd_instance = instance_number(_obj);
+    var _spr_width  = sprite_get_width(spr_folder_credits);
+    var _spr_height = sprite_get_height(spr_folder_credits);
+	
+	if(_qtd_instance <= 5)
+	{
+	  var _inst = instance_create_layer((room_width /2) - (_spr_width / 2),
+	  (room_height / 2)- (_spr_height / 2),"credits",_obj);		
+	  
+	}	
+	
+	//caso aperte dnv 
+	 if(_qtd_instance > 1 && _qtd_instance <= 5)
+	  {
+		/*var _inst =	instance_create_depth((room_width / 2) +(5 * (_qtd_instance)),
+		(room_height / 2)+(5 * (_qtd_instance)),0,_obj);*/
 
+        var _inst = instance_create_depth((room_width /2) - (_spr_width / 2)+(5* _qtd_instance),
+	    (room_height / 2)- (_spr_height / 2)+(5 * (_qtd_instance)),-1,_obj);			
+		
+	  }		
+		
+		if(_qtd_instance <= 5) exit;
+		show_message("deixe de graça");
+		instance_destroy(obj_credit_arquive);
 }
+

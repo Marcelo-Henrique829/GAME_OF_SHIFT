@@ -32,3 +32,7 @@ draw_set_halign(_halign);
 draw_set_valign(_valign);
 draw_set_color(_color);
 draw_set_alpha(_alpha);
+
+
+draw_text(mouse_x + 60,mouse_y - 30,mouse_x);
+draw_text(mouse_x + 60,mouse_y - 20,mouse_y);
