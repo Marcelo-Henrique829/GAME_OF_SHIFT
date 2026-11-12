@@ -1,9 +1,10 @@
 //parametros de velocidade
-acel = .2;
+acel = .3;
 hspd = 0;
 vspd = 0;
-m_vspd  = 8;
-m_hspd  = 10;
+m_vspd  = 6;
+m_hspd  = 8;
+
 
 //variaveis do tiro
 deley_shot = 8;
@@ -11,13 +12,12 @@ timer_shot = 0;
 //estados enumerados e tals
 enum SHIP_STATE 
 {
+	ENTER, 
 	CONTROL,
-	D_LEFT,
-	D_RIGHT,
 	FLIP_RIGHT,
-	FLIP_LEFT,
+	FLIP_LEFT
 }
-state = SHIP_STATE.FLIP_RIGHT;
+state = SHIP_STATE.ENTER;
 
 //método com inputs
 ipts = function()
@@ -36,6 +36,19 @@ ipts = function()
  
 }
 
+//iniciando a fase
+ship_enter = function()
+{
+//calma, pera aí
+	x += lerp(x,room_width  / 2,.1);
+	y += lerp(y,room_height / 2,.1);
+
+if(x == room_width / 2)
+ {
+	state = SHIP_STATE.FLIP_RIGHT;
+ }
+
+}
 //estado de controle geral
 ship_control = function()
 {
@@ -48,13 +61,12 @@ ship_control = function()
   hspd = clamp(hspd,-m_hspd,m_hspd);
   vspd = clamp(vspd,-m_vspd,m_vspd);
 	
-	
-	if(!k_right && !k_left)
+	if(!k_right || !k_left)
 		{hdps = lerp(hspd,0,.1);}
 
-	if(!k_up && !k_down)
+	if(!k_up || !k_down)
 		{vspd = lerp(vspd,0,.1);}
-	
+		
 	//mudando de direção (esquerda)
 	if(kp_left && state != SHIP_STATE.FLIP_LEFT)
 	 {		
@@ -76,6 +88,9 @@ ship_control = function()
 	  {
 		shoting();
 	  }
+	
+  x = clamp(x,0,room_width);		
+  y = clamp(y,0,room_height);		
 	
   x +=hspd;
   y +=vspd;

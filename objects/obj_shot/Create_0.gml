@@ -1,0 +1,1 @@
+enemy_ar = [obj_enemybase_pai,oEnemy_sps];
