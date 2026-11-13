@@ -19,3 +19,11 @@ create_base_enemy = function()
 		timer_create = choose(60,120,240,300);
 	 }
 }
+
+create_explode_enemy = function()
+{
+	var random_posx = choose(-40,room_width + 40);
+	
+	//var _bomb = instance_create_layer
+	
+}

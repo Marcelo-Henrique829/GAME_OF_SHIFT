@@ -25,8 +25,7 @@ move_to_ship = function()
 
 damage = function()
 {
-	if(position_meeting(x,y,hazzard) || 
-	place_meeting(x,y,self)) //levando tiro
+	if(position_meeting(x,y,hazzard)) //levando tiro
 		{
 			hp--;
 			with(hazzard)
