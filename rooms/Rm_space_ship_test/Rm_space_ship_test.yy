@@ -11,6 +11,8 @@
     {"name":"inst_D5D24788","path":"rooms/Rm_space_ship_test/Rm_space_ship_test.yy",},
     {"name":"inst_1212A50C","path":"rooms/Rm_space_ship_test/Rm_space_ship_test.yy",},
     {"name":"inst_45F04FDA","path":"rooms/Rm_space_ship_test/Rm_space_ship_test.yy",},
+    {"name":"inst_2C0DAD28","path":"rooms/Rm_space_ship_test/Rm_space_ship_test.yy",},
+    {"name":"inst_7CE3A868","path":"rooms/Rm_space_ship_test/Rm_space_ship_test.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -21,6 +23,8 @@
     {"$GMRInstanceLayer":"","%Name":"enemys","depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"$GMRInstance":"v4","%Name":"inst_1212A50C","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_1212A50C","objectId":{"name":"oEnemy_sps","path":"objects/oEnemy_sps/oEnemy_sps.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":-3889.0,"y":384.0,},
         {"$GMRInstance":"v4","%Name":"inst_45F04FDA","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_45F04FDA","objectId":{"name":"oEnemy_sps","path":"objects/oEnemy_sps/oEnemy_sps.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":3472.0,"y":448.0,},
+        {"$GMRInstance":"v4","%Name":"inst_2C0DAD28","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_2C0DAD28","objectId":{"name":"oEnemy_sps","path":"objects/oEnemy_sps/oEnemy_sps.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1479.0,"y":403.0,},
+        {"$GMRInstance":"v4","%Name":"inst_7CE3A868","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_7CE3A868","objectId":{"name":"oEnemy_sps","path":"objects/oEnemy_sps/oEnemy_sps.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":-144.0,"y":382.0,},
       ],"layers":[],"name":"enemys","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"space_ship","depth":200,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"$GMRInstance":"v4","%Name":"inst_68E39700","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_68E39700","objectId":{"name":"obj_space_ship","path":"objects/obj_space_ship/obj_space_ship.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":694.5,"y":390.5,},

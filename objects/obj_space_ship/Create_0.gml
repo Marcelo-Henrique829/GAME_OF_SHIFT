@@ -1,13 +1,12 @@
 //parametros de velocidade
-acel = .3;
+acel = 15;
 hspd = 0;
 vspd = 0;
 m_vspd  = 6;
 m_hspd  = 8;
 
-
 //variaveis do tiro
-deley_shot = 8;
+deley_shot = 3;
 timer_shot = 0;
 //estados enumerados e tals
 enum SHIP_STATE 
@@ -55,8 +54,8 @@ ship_control = function()
  //chamando os inputs	
   ipts();
   //controle de velocidade
-  hspd += (k_right - k_left) * acel;
-  vspd += (k_down - k_up) * acel;
+  hspd = (k_right - k_left) * acel;
+  vspd = (k_down - k_up) * acel;
   
   hspd = clamp(hspd,-m_hspd,m_hspd);
   vspd = clamp(vspd,-m_vspd,m_vspd);
@@ -116,10 +115,10 @@ ship_flip_right = function()
 }
 
 shoting = function()
-{	
-     
+{	  
+	var _shot_spd = 20;
 		 shot = instance_create_layer(x,y,"shot",obj_shot);		 	 
 		 shot.image_xscale = image_xscale;
-		 shot.hspeed = 23 * image_xscale;
-		 timer_shot = deley_shot 	
+		 shot.hspeed = _shot_spd * image_xscale;
+		 timer_shot = deley_shot;
 }

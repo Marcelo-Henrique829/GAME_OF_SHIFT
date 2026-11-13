@@ -24,7 +24,7 @@ credit_create();
 
 close_folder = function()
 {	
-	//tamanho do sprite
+	//tamanho do sprites
 	var _spr_width  = sprite_get_width(spr_folder_credits);
     var _spr_height = sprite_get_height(spr_folder_credits);
 		
@@ -38,13 +38,12 @@ close_folder = function()
 	var _poss_met = position_meeting(m_x_gap,m_y_gap,self)
 
 	if(m_x_gap && m_y_gap)
-	 {
-		 
+	 {	 
 		if(_m_click)
 		 {
 			image_alpha--;
 			instance_destroy()
 		 }
-	 }	
+	 }
 }
 

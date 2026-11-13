@@ -9,7 +9,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"inimigos",
-    "path":"folders/Spaceship/inimigos.yy",
+    "path":"folders/Spaceship/Objetos/inimigos.yy",
   },
   "parentObjectId":null,
   "persistent":false,

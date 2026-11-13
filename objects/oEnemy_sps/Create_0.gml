@@ -2,27 +2,31 @@ hp = 1;
 player = obj_space_ship;
 hazzard = obj_shot;
 
-enum ENEMY_SHIP_STATES
+enum ENEMY_BASE_STATES
 {
-	ENTER,
-	SHOTING,
-	EXPLODE
+	FOLLOW,
+	EXPLODE,
 }
 
+state = ENEMY_BASE_STATES.FOLLOW
+
 move_to_ship = function()
-{	
+{
+	
 	image_angle = lerp(image_angle,
 	point_direction(x,y,player.x,player.y),.1);
 		
 	x = lerp(x,player.x,.01); 
 	y = lerp(y,player.y,.01); 
 	
-	dist_between()
+	damage();
+	
 }
 
-distroy = function()
+damage = function()
 {
-	if(position_meeting(x,y,hazzard))
+	if(position_meeting(x,y,hazzard) || 
+	place_meeting(x,y,self)) //levando tiro
 		{
 			hp--;
 			with(hazzard)
@@ -30,16 +34,19 @@ distroy = function()
 				instance_destroy();
 			 }
 		}	
+	
 	if(hp <= 0)
 	 {
-		instance_destroy();
+		state = ENEMY_BASE_STATES.EXPLODE;
+		sprite_index = spr_explosion;
 	 }
 }
 
-dist_between = function()
+explode = function()
 {
-	var _brox = oEnemy_sps.x;
-	var _broy = oEnemy_sps.y;
-	
-	x = clamp(x,10,_brox);
+		//sprite_index = spr_explosion;
+		if(image_index >= image_number-1)
+		 {
+			instance_destroy();
+		 }
 }
