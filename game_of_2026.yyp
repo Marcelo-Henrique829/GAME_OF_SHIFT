@@ -172,6 +172,8 @@
     {"id":{"name":"spr_ss_flip_left","path":"sprites/spr_ss_flip_left/spr_ss_flip_left.yy",},},
     {"id":{"name":"spr_ss_flip_right","path":"sprites/spr_ss_flip_right/spr_ss_flip_right.yy",},},
     {"id":{"name":"spr_ss_maskcol","path":"sprites/spr_ss_maskcol/spr_ss_maskcol.yy",},},
+    {"id":{"name":"spr_tec_e","path":"sprites/spr_tec_e/spr_tec_e.yy",},},
+    {"id":{"name":"spr_teclas","path":"sprites/spr_teclas/spr_teclas.yy",},},
     {"id":{"name":"spr_topdown_player_down","path":"sprites/spr_topdown_player_down/spr_topdown_player_down.yy",},},
     {"id":{"name":"spr_topdown_player_left","path":"sprites/spr_topdown_player_left/spr_topdown_player_left.yy",},},
     {"id":{"name":"spr_topdown_player_rigth","path":"sprites/spr_topdown_player_rigth/spr_topdown_player_rigth.yy",},},

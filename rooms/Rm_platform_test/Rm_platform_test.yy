@@ -11,6 +11,7 @@
     {"name":"inst_50EBBD32","path":"rooms/Rm_platform_test/Rm_platform_test.yy",},
     {"name":"inst_4A531B7E","path":"rooms/Rm_platform_test/Rm_platform_test.yy",},
     {"name":"inst_19A0B907","path":"rooms/Rm_platform_test/Rm_platform_test.yy",},
+    {"name":"inst_59FC58CD","path":"rooms/Rm_platform_test/Rm_platform_test.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -21,6 +22,7 @@
         {"$GMRInstance":"v4","%Name":"inst_4A531B7E","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_4A531B7E","objectId":{"name":"obj_ground","path":"objects/obj_ground/obj_ground.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":13.333334,"scaleY":1.6666666,"x":320.0,"y":360.0,},
         {"$GMRInstance":"v4","%Name":"inst_50EBBD32","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_50EBBD32","objectId":{"name":"obj_player_platform","path":"objects/obj_player_platform/obj_player_platform.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":202.0,"y":288.0,},
         {"$GMRInstance":"v4","%Name":"inst_19A0B907","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_19A0B907","objectId":{"name":"obj_UI_player","path":"objects/obj_UI_player/obj_UI_player.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":32.0,"y":0.0,},
+        {"$GMRInstance":"v4","%Name":"inst_59FC58CD","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_59FC58CD","objectId":{"name":"obj_npc_test_dialogo","path":"objects/obj_npc_test_dialogo/obj_npc_test_dialogo.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":142.0,"y":304.0,},
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRAssetLayer":"","%Name":"Assets_1","assets":[
         {"$GMRSpriteGraphic":"v1","%Name":"graphic_2A8B462F","animationSpeed":1.0,"colour":2969567231,"frozen":false,"headPosition":0.0,"ignore":false,"inheritedItemId":null,"inheritItemSettings":false,"name":"graphic_2A8B462F","resourceType":"GMRSpriteGraphic","resourceVersion":"2.0","rotation":0.0,"scaleX":2.677966,"scaleY":2.423729,"spriteId":{"name":"spr_lighth","path":"sprites/spr_lighth/spr_lighth.yy",},"x":0.0,"y":64.0,},
