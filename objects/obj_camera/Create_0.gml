@@ -33,6 +33,7 @@ zoom_in_scale = 3;
 zoom_in_speed = 6;
 zoom_out_speed = 4;
 menu_zoom_scale = 4;
+dialogue_zoom_scale = 2; // Aproximação durante a conversa com um NPC.
 zoom = zoom_in_scale;
 
 // Ativa o visor mesmo quando estiver desabilitado nas configurações da room.

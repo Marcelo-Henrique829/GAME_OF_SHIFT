@@ -1,7 +1,21 @@
 // Fala exibida ao interagir com este NPC.
 dialogo = {
-	texto: ["teste teste"],
-	names: ["NPC"]
+	texto: ["SEXTA FEIRA",
+            "PLAYTV. NOIS TA COMO??? ",
+            "NO RECOLHE. ",
+            "AI CARALHO",
+            "TA MÓ FRIO, NOSSA… TA GOSTOSO, NUM TA???",
+            "AI VEM COM PIX CARALHO!!! ",
+            "HOJE NOIS TA COMO?",
+            "CHAMBÃO",
+            "BOTANDO PRA POCAR",
+            "AI CARALHO, PEGA."
+
+            ],
+	names: ["NPC"],
+	// Troque noone pela sprite desejada; cada lado é opcional e independente.
+	retrato: [spr_player_portrait_ph],     // Portrait do player (esquerda).
+	retrato_npc: [spr_npc_portrait_test]  // Portrait do NPC (direita).
 };
 
 // Configuração da interação e do indicador (distâncias em pixels da sala).

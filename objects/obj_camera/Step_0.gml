@@ -1,6 +1,18 @@
 // Atualiza o alvo e o tamanho base antes de aplicar o zoom.
 update_camera_target();
 
+// Foca o jogador que iniciou a conversa enquanto o diálogo existir.
+var _dialogue = instance_find(Obj_dialogo, 0);
+var _dialogue_active = false;
+if (_dialogue != noone)
+{
+    if (instance_exists(_dialogue.player))
+    {
+        camera_target = _dialogue.player;
+        _dialogue_active = true;
+    }
+}
+
 // Aproxima durante o fade-in; ao entrar na sala, afasta até o enquadramento padrão.
 var _controller = instance_find(obj_control, 0);
 var _fade_in = false;
@@ -11,6 +23,7 @@ if (_controller != noone)
 }
 
 if (global.player_in_menu && (instance_exists(obj_player_platform) || instance_exists(obj_player_topdown))) scr_camera_zoom_in(menu_zoom_scale);
+else if (_dialogue_active) scr_camera_zoom_in(dialogue_zoom_scale);
 else if (_fade_in) scr_camera_zoom_in();
 else scr_camera_zoom_out();
 
