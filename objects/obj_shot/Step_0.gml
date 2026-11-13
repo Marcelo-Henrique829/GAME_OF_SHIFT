@@ -4,6 +4,3 @@
 		    	//_timer_destroy = 180;
 		     }
 	
-if(place_meeting(x,y,enemy_ar)){
-	instance_destroy(self);
-}
