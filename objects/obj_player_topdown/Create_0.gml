@@ -6,14 +6,15 @@ enum PlayerState
     STOP
 }
 // Movimento.
-move_speed = 5;
+move_speed = 15;
 def_spd = move_speed;
 spd = 0;
 dir = 270;
 last_key = vk_down;
 hspd = 0;
 vspd = 0;
-
+image_xscale = 0.5
+image_yscale = 0.5
 // Estado e direção visual iniciais.
 state = PlayerState.IDDLE;
 direction = dir;

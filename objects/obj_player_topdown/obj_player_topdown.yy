@@ -31,8 +31,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_topdown_player_down",
-    "path":"sprites/spr_topdown_player_down/spr_topdown_player_down.yy",
+    "name":"spr_player_tpd_ph_down",
+    "path":"sprites/spr_player_tpd_ph_down/spr_player_tpd_ph_down.yy",
   },
   "spriteMaskId":{
     "name":"spr_topdown_player_down",

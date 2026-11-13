@@ -2,9 +2,9 @@
   "$GMSprite":"v2",
   "%Name":"TX_Tileset_Grass",
   "bboxMode":0,
-  "bbox_bottom":255,
+  "bbox_bottom":1279,
   "bbox_left":0,
-  "bbox_right":255,
+  "bbox_right":1279,
   "bbox_top":0,
   "collisionKind":1,
   "collisionTolerance":0,
@@ -16,7 +16,7 @@
   ],
   "gridX":0,
   "gridY":0,
-  "height":256,
+  "height":1280,
   "HTile":false,
   "layers":[
     {"$GMImageLayer":"","%Name":"e5b38944-cc22-4e2f-8168-81f552a927d7","blendMode":0,"displayName":"default","isLocked":false,"name":"e5b38944-cc22-4e2f-8168-81f552a927d7","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
@@ -86,5 +86,5 @@
   },
   "type":0,
   "VTile":false,
-  "width":256,
+  "width":1280,
 }

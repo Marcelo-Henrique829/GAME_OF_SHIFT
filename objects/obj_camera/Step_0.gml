@@ -1,3 +1,6 @@
+// Atualiza o alvo e o tamanho base antes de aplicar o zoom.
+update_camera_target();
+
 // Aproxima durante o fade-in; ao entrar na sala, afasta até o enquadramento padrão.
 var _controller = instance_find(obj_control, 0);
 var _fade_in = false;
@@ -14,17 +17,7 @@ else scr_camera_zoom_out();
 // Redimensiona antes de centralizar para manter o player no enquadramento.
 camera_set_view_size(view_camera[0], global.camera_width / zoom, global.camera_height / zoom);
 
-var _target = noone;
-
-// Neste projeto, o personagem de plataforma se chama obj_player_platform.
-if (instance_exists(obj_player_platform)) 
-{
-    _target = instance_find(obj_player_platform, 0);
-} 
-else if (instance_exists(obj_player_topdown)) 
-{
-    _target = instance_find(obj_player_topdown, 0);
-}
+var _target = camera_target;
 
 if (_target == noone) exit;
 

@@ -1,3 +1,6 @@
+// Seleciona o tamanho do jogador após a criação das instâncias da room.
+update_camera_target();
+
 // Garante o visor ativo após as configurações de entrada da room.
 if (!view_enabled) view_enabled = true;
 if (!view_visible[0]) view_visible[0] = true;

@@ -3,8 +3,30 @@
 global.game_resolution_width = 1366;
 global.game_resolution_height = 768;
 
-global.camera_width = 384;
-global.camera_height = 216;
+// Área do mundo exibida em cada modo, antes de aplicar o zoom.
+camera_platform_width = 384;
+camera_platform_height = 216;
+
+camera_topdown_width = 1920;
+camera_topdown_height = 1080;
+
+// Mantém o tamanho base e o alvo sincronizados com o jogador presente na sala.
+update_camera_target = function()
+{
+    camera_target = instance_find(obj_player_platform, 0);
+    if (camera_target != noone)
+    {
+        global.camera_width = max(1, camera_platform_width);
+        global.camera_height = max(1, camera_platform_height);
+    }
+    else
+    {
+        camera_target = instance_find(obj_player_topdown, 0);
+        global.camera_width = max(1, camera_topdown_width);
+        global.camera_height = max(1, camera_topdown_height);
+    }
+};
+update_camera_target();
 
 // Zoom: 1 é a escala padrão; 2 mostra metade da largura e da altura.
 zoom_in_scale = 3;
