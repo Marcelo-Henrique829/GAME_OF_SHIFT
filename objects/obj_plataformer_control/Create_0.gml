@@ -27,8 +27,8 @@ parallax_foreground_sprite = GrassLand_Background_4;
 #endregion
 
 #region Velocidades das camadas
-// Fatores relativos ao movimento da câmera, aplicados nos eixos X e Y.
-// 0 = fixa na tela, 1 = acompanha o mundo, acima de 1 = passa mais rápido.
+// Fatores relativos ao movimento horizontal da câmera.
+// 0 = fixa na tela em X, 1 = acompanha o mundo, acima de 1 = passa mais rápido.
 parallax_background_speed = 0.20;
 parallax_back_middleground_speed = 0.35;
 parallax_middleground_speed = 0.55;
@@ -37,17 +37,17 @@ parallax_foreground_speed = 1.25;
 #endregion
 
 #region Posição das camadas
-// Deslocamento em pixels do mundo, somado ao movimento do parallax.
-// X positivo move para a direita. Y positivo baixa o sprite na tela.
-// Use valores negativos para mover para a esquerda ou para cima.
+// Deslocamento em pixels do mundo; a base das camadas fica no fundo da sala.
+// X positivo move para a direita. Y positivo desce além da base da sala.
+// Y negativo eleva a camada; zero alinha sua borda inferior ao fundo da sala.
 parallax_background_offset_x = 0;
 parallax_background_offset_y = 0;
 parallax_back_middleground_offset_x = 0;
-parallax_back_middleground_offset_y = 30;
+parallax_back_middleground_offset_y = -60;
 parallax_middleground_offset_x = 0;
-parallax_middleground_offset_y = -40;
+parallax_middleground_offset_y = 30;
 parallax_foreground_offset_x = 0;
-parallax_foreground_offset_y = 180;
+parallax_foreground_offset_y = -30;
 
 #endregion
 
@@ -93,17 +93,16 @@ function parallax_draw(_sprite, _speed, _offset_x, _offset_y, _repeat_x, _repeat
 
     // Usa o enquadramento padrão centrado na câmera como referência de movimento.
     // O zoom altera o canto da view mesmo sem mover seu centro; essa compensação
-    // evita que as camadas subam ou deslizem só porque a câmera se aproximou.
+    // evita que as camadas deslizem em X só porque a câmera se aproximou.
     var _parallax_x = _view_x;
-    var _parallax_y = _view_y;
     if (instance_exists(obj_camera))
     {
         _parallax_x += (_view_width - global.camera_width) * 0.5;
-        _parallax_y += (_view_height - global.camera_height) * 0.5;
     }
 
     var _left = round(_parallax_x * (1 - _speed) + _offset_x);
-    var _top = round(_parallax_y * (1 - _speed) + _offset_y);
+    // Mantém a borda inferior na base da sala, independente da câmera e do zoom.
+    var _top = round(room_height - _height + _offset_y);
 
     // Cada eixo se repete apenas quando sua variável está ativada.
     var _first_x = 0;
