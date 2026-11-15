@@ -1,19 +1,22 @@
 randomise();
 enemys = [oEnemy_sps,oEnemy_explode];
 
+ship = obj_space_ship;
+
 create_base_enemy = function()
 {
- static timer_create = 180;
+ static timer_create = 60;
 	
 	timer_create--;
 	if(timer_create <= 0)
 	 {
-		var random_posx = choose(-575,2730);
-		var random_posy = choose(-350,-200,163,398,935,1250); 
+		var random_posx = choose(-65,1430);
+		 
 		var random_num = choose(1,2,3);
 		
 		 repeat(random_num)
 		  {
+			var random_posy = choose(-350,-200,163,398,935,1250);  
 			var _enemy = instance_create_layer(random_posx,random_posy,"enemys",enemys[0]);
 		  }
 		timer_create = choose(60,120,240,300);
@@ -26,10 +29,11 @@ create_explode_enemy = function()
 	timer_create--;
 	if(timer_create <= 0)
 	 {
-		var _qtd_bomb = choose(1,2,3);			
+		var _qtd_bomb = choose(1,2,3);		
+		var random_posx = choose(-40,room_width + 40);
 	repeat(_qtd_bomb)
 		{
-			var random_posx = choose(-40,room_width + 40);
+			
 			var random_posy = choose(60,180,282,400,540,670);			
 			var _bomb = instance_create_layer(random_posx,random_posy,"enemys",enemys[1]);
 		}
