@@ -10,7 +10,7 @@ m_hspd  = 12;
 //vida e dano
 ar_enemys = [oEnemy_sps,oEnemy_explode,oWreckage];
 damage = 0
-hp = 1; 
+hp = 5; 
 
 //variaveis do tiro
 deley_shot = 3;

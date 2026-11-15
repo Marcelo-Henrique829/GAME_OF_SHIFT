@@ -46,5 +46,7 @@ divide = function()
 	 }
 }
 
+
+
 //Mn, esse inimigo aparece na room e se tu atirar nele, ele explode
 //Daí tem que esperar ele sair, ou atira nele tbm, fds
