@@ -5,6 +5,11 @@ vspd = 0;
 m_vspd  = 6;
 m_hspd  = 8;
 
+//vida e dano
+ar_enemys = [oEnemy_sps,oEnemy_explode,oWreckage];
+damage = 0
+hp = 5; 
+
 //variaveis do tiro
 deley_shot = 3;
 timer_shot = 0;
@@ -87,7 +92,26 @@ ship_control = function()
 	  {
 		shoting();
 	  }
-	
+	 
+	 //dano
+      if(place_meeting(x,y,ar_enemys) && damage = 0)
+	   {
+			hp -= 1;
+			damage = 1;
+	   }
+	  if(damage)
+	   {
+			static timer_iv = 300;
+			timer_iv--;
+			image_alpha = cos(get_timer() / 106000);				
+			  if(timer_iv <= 0)
+			   {
+				   timer_iv = 300;
+				   damage = 0;
+				   image_alpha = 1;
+			   }
+	   }
+		
   x = clamp(x,0,room_width);		
   y = clamp(y,0,room_height);		
 	
@@ -113,7 +137,7 @@ ship_flip_right = function()
 			image_xscale = -1;
 		 }
 }
-
+//atirando
 shoting = function()
 {	  
 	var _shot_spd = 20;

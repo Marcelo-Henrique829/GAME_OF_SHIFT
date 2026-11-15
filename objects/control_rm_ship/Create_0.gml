@@ -14,7 +14,7 @@ create_base_enemy = function()
 		
 		 repeat(random_num)
 		  {
-			instance_create_layer(random_posx,random_posy,"enemys",enemys[0]);
+			var _enemy = instance_create_layer(random_posx,random_posy,"enemys",enemys[0]);
 		  }
 		timer_create = choose(60,120,240,300);
 	 }
@@ -26,10 +26,9 @@ create_explode_enemy = function()
 	timer_create--;
 	if(timer_create <= 0)
 	 {
-		var _qtd_bomb = choose(1,2,3,4);			
+		var _qtd_bomb = choose(1,2,3);			
 	repeat(_qtd_bomb)
 		{
-			
 			var random_posx = choose(-40,room_width + 40);
 			var random_posy = choose(60,180,282,400,540,670);			
 			var _bomb = instance_create_layer(random_posx,random_posy,"enemys",enemys[1]);
