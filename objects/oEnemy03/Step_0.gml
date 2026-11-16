@@ -1,0 +1,1 @@
+enter_room01()

@@ -61,6 +61,14 @@ ship_control = function()
 {
  //chamando os inputs
   ipts();
+  
+    //tiro  
+	timer_shot--;
+	if(k_shot && timer_shot <= 0)
+	  {
+		shoting();
+	  }  
+  
   //controle de velocidade
   hspd = (k_right - k_left) * acel;
   vspd = (k_down - k_up) * acel;
@@ -69,11 +77,7 @@ ship_control = function()
   vspd = clamp(vspd,-m_vspd,m_vspd);
   
 	//tiro
-	timer_shot--;
-	if(k_shot && timer_shot <= 0)
-	  {
-		shoting();
-	  }  
+  
 	
 	/*if(!k_right || !k_left)
 		{hdps = lerp(hspd,0,.1);}
