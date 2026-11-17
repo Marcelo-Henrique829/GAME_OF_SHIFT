@@ -1,4 +1,4 @@
-var _plus =  0.08;
+var _plus =  0.06;
 image_alpha+=_plus;
 image_alpha = clamp(image_alpha,0,1);
 

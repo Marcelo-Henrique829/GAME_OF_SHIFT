@@ -12,8 +12,7 @@ state = ENEMY_BASE_STATES.FOLLOW
 
 move_to_ship = function()
 {	
-	image_angle = lerp(image_angle,
-	point_direction(x,y,player.x,player.y),.1);
+	image_angle = lerp(image_angle,point_direction(x,y,player.x,player.y),.1);
 		
 	x = lerp(x,player.x,.01); 
 	y = lerp(y,player.y,.01);
