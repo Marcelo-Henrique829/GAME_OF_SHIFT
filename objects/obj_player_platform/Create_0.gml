@@ -24,10 +24,22 @@ dialogo_ativo = false;
 direction = dir;
 dir_state = "down";
 
+// Usa os objetos de chão e o tilemap tlColision da sala atual como colisores.
+collision_targets = [obj_ground];
+var _collision_layer = layer_get_id("tlColision");
+if (_collision_layer != -1)
+{
+    var _collision_tilemap = layer_tilemap_get_id(_collision_layer);
+    if (_collision_tilemap != -1)
+    {
+        array_push(collision_targets, _collision_tilemap);
+    }
+}
+
 // Pula quando há chão logo abaixo e o botão de pulo está pressionado.
 check_jump = function()
 {
-    var _on_ground = place_meeting(x, y + 1, obj_ground);
+    var _on_ground = place_meeting(x, y + 1, collision_targets);
 
     if (_on_ground && global.inputs.dash)
     {

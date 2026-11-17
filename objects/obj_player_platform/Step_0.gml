@@ -47,7 +47,7 @@ switch (state)
         }
 
         // Retorna ao estado adequado quando aterrissa.
-        if (vspd >= 0 && place_meeting(x, y + 1, obj_ground))
+        if (vspd >= 0 && place_meeting(x, y + 1, collision_targets))
         {
             state = (spd > 0)
                 ? PlayerStatePlatformer.WALK
@@ -59,4 +59,4 @@ switch (state)
 direction = dir;
 hspd = lengthdir_x(spd, dir);
 if (state != PlayerStatePlatformer.STOP) vspd += grv;
-scr_colision(obj_ground);
+scr_colision(collision_targets);

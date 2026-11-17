@@ -73,7 +73,7 @@ menu_set_open = function(_open)
 
         // with executa a verificação no contexto do player: x, y, vspd e máscara
         // passam a ser os dele. A variável local _on_ground recebe o resultado.
-        // y + 1 verifica se há obj_ground um pixel abaixo. vspd >= 0 impede
+        // y + 1 verifica se há chão ou tiles de tlColision um pixel abaixo. vspd >= 0 impede
         // abrir durante a subida do pulo, mesmo se ainda estiver perto do chão.
         var _is_platform = (player.object_index == obj_player_platform);
         if (_is_platform)
@@ -81,7 +81,7 @@ menu_set_open = function(_open)
             var _on_ground = false;
             with (player)
             {
-                _on_ground = (vspd >= 0 && place_meeting(x, y + 1, obj_ground));
+                _on_ground = (vspd >= 0 && place_meeting(x, y + 1, collision_targets));
             }
             // Apenas o player de plataforma precisa estar no chão.
             if (!_on_ground) return;

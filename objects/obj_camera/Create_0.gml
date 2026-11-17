@@ -4,8 +4,8 @@ global.game_resolution_width = 1366;
 global.game_resolution_height = 768;
 
 // Área do mundo exibida em cada modo, antes de aplicar o zoom.
-camera_platform_width = 384;
-camera_platform_height = 216;
+camera_platform_width = 640;
+camera_platform_height = 360;
 
 camera_topdown_width = 1920;
 camera_topdown_height = 1080;
