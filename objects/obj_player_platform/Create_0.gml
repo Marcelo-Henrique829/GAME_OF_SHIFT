@@ -16,7 +16,7 @@ vspd = 0;
 dir = 270;
 last_key = vk_down;
 grv = 0.5;
-jump_force = 15;
+jump_force = 10;
 
 // Estado e direção visuais iniciais.
 state = PlayerStatePlatformer.IDDLE;

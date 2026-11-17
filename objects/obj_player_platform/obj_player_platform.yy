@@ -2,9 +2,9 @@
   "$GMObject":"",
   "%Name":"obj_player_platform",
   "eventList":[
-    {"$GMEvent":"v1","%Name":"","eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
   "name":"obj_player_platform",
@@ -36,8 +36,8 @@
     "path":"sprites/spr_player_plataformer_ph_iddleRight/spr_player_plataformer_ph_iddleRight.yy",
   },
   "spriteMaskId":{
-    "name":"spr_topdown_player_down",
-    "path":"sprites/spr_topdown_player_down/spr_topdown_player_down.yy",
+    "name":"spr_player_plataformer_ph_iddleRight",
+    "path":"sprites/spr_player_plataformer_ph_iddleRight/spr_player_plataformer_ph_iddleRight.yy",
   },
   "visible":true,
 }
