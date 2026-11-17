@@ -19,3 +19,13 @@ function scr_camera_zoom_out()
     var _fps = max(1, game_get_speed(gamespeed_fps));
     zoom = max(1, zoom - max(0, zoom_out_speed) / _fps);
 }
+
+//screen_shake
+global.screen_shakex = 0;
+global.screen_shakey = 0;
+
+function screen_shake(_x = 0, _y = 0)
+{
+	 global.screen_shakex = choose(random(-_x),random(_x));
+	 global.screen_shakey = choose(random(-_y),random(_y));
+}

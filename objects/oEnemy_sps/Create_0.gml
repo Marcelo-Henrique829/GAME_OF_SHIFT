@@ -39,6 +39,7 @@ damage = function()
 		
 	if(hp <= 0)
 	 {
+	    screen_shake(2,2);  
 		state = ENEMY_BASE_STATES.EXPLODE;
 		sprite_index = spr_explosion;
 	 }

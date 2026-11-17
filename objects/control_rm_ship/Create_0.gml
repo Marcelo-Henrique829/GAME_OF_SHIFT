@@ -40,3 +40,12 @@ create_explode_enemy = function()
 		game_get_speed(gamespeed_fps)*_t_max);	
 	 }			
 }
+
+screenshake = function()
+{
+   view_xport = global.screen_shakex;
+   view_yport = global.screen_shakey; 
+   
+   global.screen_shakex = lerp(global.screen_shakex,0,.1);
+   global.screen_shakey = lerp(global.screen_shakey,0,.1);
+}

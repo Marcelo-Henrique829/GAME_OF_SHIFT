@@ -1,6 +1,7 @@
 // Atualiza o alvo e o tamanho base antes de aplicar o zoom.
 update_camera_target();
-
+//tremetela
+screenshake();
 // Foca o jogador que iniciou a conversa enquanto o diálogo existir.
 var _dialogue = instance_find(Obj_dialogo, 0);
 var _dialogue_active = false;

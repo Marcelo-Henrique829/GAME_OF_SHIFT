@@ -28,6 +28,16 @@ update_camera_target = function()
 };
 update_camera_target();
 
+//função de tremer a tela
+screenshake = function()
+{
+   view_xport = global.screen_shakex;
+   view_yport = global.screen_shakey; 
+   
+   global.screen_shakex = lerp(global.screen_shakex,0,.1);
+   global.screen_shakey = lerp(global.screen_shakey,0,.1);
+}
+
 // Zoom: 1 é a escala padrão; 2 mostra metade da largura e da altura.
 zoom_in_scale = 3;
 zoom_in_speed = 6;
