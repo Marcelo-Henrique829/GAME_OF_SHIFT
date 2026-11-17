@@ -1,6 +1,7 @@
 randomise();
 enemys = [oEnemy_sps,oEnemy_explode];
-
+gba = obj_gba;
+gba_blocks = [obj_block1,obj_block2,obj_block3];
 
 ship = obj_space_ship;
 
@@ -41,6 +42,33 @@ create_explode_enemy = function()
 		game_get_speed(gamespeed_fps)*_t_max);	
 	 }			
 }
+
+gba_control = function()
+{
+   //controle do efeito	
+	if(gba.state = GBA_STATE.OPENING || gba.state = GBA_STATE.OPEN)
+	 {
+		layer_enable_fx("ef_blur",1);
+	 }
+	else
+	 {
+		layer_enable_fx("ef_blur",0);
+	 }
+	/*
+	if(instance_exists(gba))
+	 {
+		if(instance_exists(gba_blocks))
+		 {  
+			if(obj_block1.dir = true && obj_block2.dir = true && obj_block3.dir = true)
+			 {
+				ship.hp+=1;
+				gba.state = GBA_STATE.CLOSE;
+			 }
+		 }
+	 }
+	*/
+}
+
 
 screenshake = function()
 {

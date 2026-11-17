@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"scr_block_change_poss",
+  "%Name":"gba_globals",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"scr_block_change_poss",
+  "name":"gba_globals",
   "parent":{
-    "name":"Objetos",
-    "path":"folders/Spaceship/Objetos.yy",
+    "name":"gba",
+    "path":"folders/Spaceship/Objetos/gba.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",
