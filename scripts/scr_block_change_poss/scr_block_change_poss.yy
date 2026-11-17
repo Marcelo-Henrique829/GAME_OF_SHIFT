@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_block_change_poss",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_block_change_poss",
+  "parent":{
+    "name":"Objetos",
+    "path":"folders/Spaceship/Objetos.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
