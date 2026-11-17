@@ -39,7 +39,7 @@ divide = function()
 	 {
 		for(var i = 0; i <= 7;i++)
 		 {			 
-			var _wre = instance_create_layer(x,y,"enemys",wreck);
+			var _wre = instance_create_layer(x,y,"shot",wreck);
 			_wre.hspeed = lengthdir_x(_spd, 45*(i));
 			_wre.vspeed = lengthdir_y(_spd,-45*(i));
 		 }

@@ -1,15 +1,17 @@
-hp = 50;
+hp = 8;
 spd = 4; 
 shot = oWreckage;
 ship = obj_space_ship;
+s_shot = obj_shot ;
 
 enum EN03_STATES
 {
 	ENTER01,
 	ENTER02,
 	ENTER_EDGE,
+	EXPLODE
 }
-state = noone
+state = noone;
 
 //state = ;
 
@@ -24,12 +26,9 @@ enter_room01 = function()
 enter_room02 = function()
 {
 	x = lerp(x,(room_width / 2) + 280,.009);
-	y = lerp(y,room_height / 2,.009);
+	y = lerp(y,room_height / 2,.009);	
 	image_angle = point_direction(x,y,ship.x,ship.y);
-
 }
-
-
 
 if(y >= 830)
 {
@@ -40,4 +39,54 @@ else
 {
   state = EN03_STATES.ENTER01;
   
+}
+
+shoot = function()
+{
+	static _timer = 120;
+	_timer--;
+	if(_timer <= 0)
+	 {	 
+		effect(); 
+		var _shot = instance_create_layer(x,y,"shot",shot);
+		_shot.hspeed = lengthdir_x(7,image_angle);
+		_shot.vspeed = lengthdir_y(7,image_angle);
+		_timer = 120;
+	 }	
+}
+
+
+effect = function()
+{
+		image_xscale  = 1.4;
+		image_yscale  = 0.4;
+}
+
+damage = function()
+{
+	if(position_meeting(x,y,s_shot)) //levando tiro
+		{
+			hp--;
+			screen_shake(6,5); 
+			with(s_shot)
+			 {
+				instance_destroy();
+			 }
+		}	
+		
+	if(hp <= 0)
+	 {
+	    screen_shake(10,12);  
+		state = EN03_STATES.EXPLODE;
+		sprite_index = spr_explosion;
+	 }
+}
+
+explode = function()
+{
+		//sprite_index = spr_explosion;
+		if(image_index >= image_number-1)
+		 {
+			instance_destroy();
+		 }
 }
