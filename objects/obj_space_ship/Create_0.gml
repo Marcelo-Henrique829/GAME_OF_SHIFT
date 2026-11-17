@@ -154,7 +154,8 @@ ship_flip_right = function()
 }
 //atirando
 shoting = function()
-{	  
+{	
+	if(state == SHIP_STATE.DEFEAT) exit;
 	var _shot_spd = 35;
 		 shot = instance_create_layer(x,y,"shot",obj_shot);		 	 
 		 shot.image_xscale = image_xscale;
@@ -164,7 +165,9 @@ shoting = function()
 //morredo
 ship_defeat = function()
 {
-	var _acel = 2;	
+	var _acel = 5;	
 	image_angle+=3; 	
-	y += _acel;
+	vspd += _acel;
+	
+	y+= vspd;
 }

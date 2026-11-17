@@ -1,4 +1,4 @@
-hp = 8;
+hp = 5;
 spd = 4; 
 shot = oWreckage;
 ship = obj_space_ship;
@@ -13,7 +13,17 @@ enum EN03_STATES
 }
 state = noone;
 
-//state = ;
+if(y >= 830)
+{
+  state = EN03_STATES.ENTER02;
+
+}
+else
+{
+  state = EN03_STATES.ENTER01;
+}
+
+
 
 enter_room01 = function()
 {
@@ -30,17 +40,6 @@ enter_room02 = function()
 	image_angle = point_direction(x,y,ship.x,ship.y);
 }
 
-if(y >= 830)
-{
-  state = EN03_STATES.ENTER02;
-
-}
-else
-{
-  state = EN03_STATES.ENTER01;
-  
-}
-
 shoot = function()
 {
 	static _timer = 120;
@@ -54,7 +53,6 @@ shoot = function()
 		_timer = 120;
 	 }	
 }
-
 
 effect = function()
 {
