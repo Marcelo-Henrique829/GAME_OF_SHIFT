@@ -3,7 +3,7 @@ draw_self();
 draw_text(x - 20,y,x);
 draw_text(x - 20,y- 20,y);
 
-if(state = GBA_STATE.OPEN)
+if(state = GBA_STATE.OPEN || state = GBA_STATE.CORRECT )
 {
 draw_set_valign(1);
 draw_set_halign(1);

@@ -1,3 +1,7 @@
+var _plus =  0.08;
+image_alpha+=_plus;
+image_alpha = clamp(image_alpha,0,1);
+
 if(image_angle == 180)
  {
 	global.gba_block03 = 1;

@@ -174,6 +174,7 @@
     {"id":{"name":"spr_gba_closed","path":"sprites/spr_gba_closed/spr_gba_closed.yy",},},
     {"id":{"name":"spr_gba_open","path":"sprites/spr_gba_open/spr_gba_open.yy",},},
     {"id":{"name":"spr_gba_opened_anim","path":"sprites/spr_gba_opened_anim/spr_gba_opened_anim.yy",},},
+    {"id":{"name":"spr_gba_right","path":"sprites/spr_gba_right/spr_gba_right.yy",},},
     {"id":{"name":"spr_house_ph","path":"sprites/spr_house_ph/spr_house_ph.yy",},},
     {"id":{"name":"spr_house_shadow_1","path":"sprites/spr_house_shadow_1/spr_house_shadow_1.yy",},},
     {"id":{"name":"spr_house_shadow","path":"sprites/spr_house_shadow/spr_house_shadow.yy",},},

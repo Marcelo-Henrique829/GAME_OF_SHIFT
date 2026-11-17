@@ -39,7 +39,7 @@ ipts = function()
  kp_right =	    keyboard_check_pressed(vk_right) ||	keyboard_check_pressed(ord("D"));
  
  shot   = noone;
- k_shot = keyboard_check(vk_space);
+ k_shot = keyboard_check(vk_space) || mouse_check_button(mb_left);
  
 }
 
@@ -109,12 +109,12 @@ ship_control = function()
 	   }	   
 	  if(damage)
 	   {
-			static timer_iv = 300;
+			static timer_iv = 180;
 			timer_iv--;
 			image_alpha = cos(get_timer() / 106000);				
 			  if(timer_iv <= 0)
 			   {
-				   timer_iv = 300;
+				   timer_iv = 180;
 				   damage = 0;
 				   image_alpha = 1;
 			   }
