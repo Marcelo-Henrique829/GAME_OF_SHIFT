@@ -1,6 +1,7 @@
 randomise();
 enemys = [oEnemy_sps,oEnemy_explode];
 
+
 ship = obj_space_ship;
 
 create_base_enemy = function()

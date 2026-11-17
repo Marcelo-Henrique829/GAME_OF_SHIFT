@@ -96,8 +96,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"Sprites",
-    "path":"folders/Spaceship/Sprites.yy",
+    "name":"ship",
+    "path":"folders/Spaceship/Sprites/ship.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
