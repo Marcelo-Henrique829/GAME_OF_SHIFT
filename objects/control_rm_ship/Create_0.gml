@@ -1,5 +1,5 @@
 randomise();
-enemys = [oEnemy_sps,oEnemy_explode];
+enemys = [oEnemy_sps,oEnemy_explode,oEnemy03];
 gba = obj_gba;
 gba_blocks = [obj_block1,obj_block2,obj_block3];
 
@@ -33,7 +33,7 @@ create_explode_enemy = function()
 		var random_posx = choose(-40,room_width + 40);
 	repeat(_qtd_bomb)
 		{			
-			var random_posy = choose(180,282,400,540,670);			
+			var random_posy = choose(180,282,400,540,630);			
 			var _bomb = instance_create_layer(random_posx,random_posy,"enemys",enemys[1]);
 		}
 		static _t_min = 10;
@@ -41,6 +41,20 @@ create_explode_enemy = function()
 		timer_create = irandom_range(game_get_speed(gamespeed_fps)*_t_min,
 		game_get_speed(gamespeed_fps)*_t_max);	
 	 }			
+}
+
+create_enemy_shooter = function()
+{
+	static _timer = 180;
+	_timer--;
+	var _posy = choose(-151,994);
+	var _posx = room_width / 2;
+	if(_timer <= 0)
+	 {
+		var _enemy = instance_create_layer(_posx,_posy,"enemys",enemys[2]);
+		_timer = 300;
+	 }
+	
 }
 
 gba_control = function()
@@ -68,7 +82,6 @@ gba_control = function()
 	 }
 	*/
 }
-
 
 screenshake = function()
 {
