@@ -55,15 +55,8 @@ switch (state)
         }
     break;
 }
-
 // Aplica movimento horizontal, gravidade e colisões.
 direction = dir;
 hspd = lengthdir_x(spd, dir);
 if (state != PlayerStatePlatformer.STOP) vspd += grv;
 scr_colision(obj_ground);
-
-
-if(keyboard_check(ord("E")))
- {
-	screen_shake(10,10);
- }

@@ -10,7 +10,7 @@ m_hspd  = 12;
 //vida e dano
 ar_enemys = [oEnemy_sps,oEnemy_explode,oWreckage];
 damage = 0
-hp = 5; 
+hp = 1; 
 
 //variaveis do tiro
 deley_shot = 3;
@@ -46,14 +46,15 @@ ipts = function()
 //iniciando a fase
 ship_enter = function()
 {
-//calma, pera aí
-	x += lerp(x,room_width  / 2,.1);
-	y += lerp(y,room_height / 2,.1);
+	static _timer = 140;
+	_timer--;
+	x = lerp(x,room_width  / 2,.05);
+	y = lerp(y,room_height / 2,.05);
 
-if(x == room_width / 2)
- {
-	state = SHIP_STATE.FLIP_RIGHT;
- }
+if(_timer <= 0)
+	 {
+		state = SHIP_STATE.FLIP_RIGHT;
+	 }
 
 }
 //estado de controle geral
@@ -73,7 +74,7 @@ ship_control = function()
   hspd = (k_right - k_left) * acel;
   vspd = (k_down - k_up) * acel;
   
-  hspd = clamp(hspd,-m_hspd,m_hspd);
+ // hspd = clamp(hspd,-m_hspd,m_hspd);
   vspd = clamp(vspd,-m_vspd,m_vspd);
   
 	//tiro
@@ -104,6 +105,7 @@ ship_control = function()
 	   {
 			hp -= 1;
 			damage = 1;
+			screen_shake(25,22);
 	   }	   
 	  if(damage)
 	   {
@@ -125,11 +127,11 @@ ship_control = function()
 		state = SHIP_STATE.DEFEAT;
 	 }
 
-  x = clamp(x,0,room_width);		
-  y = clamp(y,0,room_height);		
-	
   x +=hspd;
   y +=vspd;
+
+  x = clamp(x,0,room_width);		
+  y = clamp(y,0,room_height);		
 }
 
 //mudando de direção

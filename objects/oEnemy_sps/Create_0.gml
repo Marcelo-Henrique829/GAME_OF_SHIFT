@@ -1,4 +1,4 @@
-hp = 1;
+hp = 3;
 player = obj_space_ship;
 s_shot = obj_shot;
 
@@ -30,16 +30,16 @@ damage = function()
 	if(position_meeting(x,y,s_shot)) //levando tiro
 		{
 			hp--;
+			screen_shake(6,5); 
 			with(s_shot)
 			 {
 				instance_destroy();
 			 }
 		}	
 		
-		
 	if(hp <= 0)
 	 {
-	    screen_shake(2,2);  
+	    screen_shake(10,12);  
 		state = ENEMY_BASE_STATES.EXPLODE;
 		sprite_index = spr_explosion;
 	 }

@@ -24,8 +24,9 @@ image_speed  = lerp(image_speed,30,_timer100);
 x += hspd;
 
 	if(place_meeting(x,y,s_shot))
-	 {
+	 { 
 		timer_divide = 0;
+		screen_shake(22,25);
 	 }
 
 }
@@ -33,7 +34,7 @@ x += hspd;
 divide = function()
 {
 	timer_divide--;	
-	var _spd = 3.4
+	var _spd = 7.4;  
 	if(timer_divide <= 0)
 	 {
 		for(var i = 0; i <= 7;i++)
