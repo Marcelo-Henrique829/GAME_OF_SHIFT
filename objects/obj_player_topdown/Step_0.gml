@@ -29,7 +29,7 @@ switch (state)
 direction = dir;
 hspd = lengthdir_x(spd, dir);
 vspd = lengthdir_y(spd, dir);
-scr_colision(obj_arvore);
+scr_colision(objetos_colisiveis);
 depth = -y;
 
 // Atualiza a sprite depois da resolução de colisões.

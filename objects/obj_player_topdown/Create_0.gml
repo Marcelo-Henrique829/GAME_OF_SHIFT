@@ -13,6 +13,10 @@ dir = 270;
 last_key = vk_down;
 hspd = 0;
 vspd = 0;
+
+// Objetos colidíveis. Os filhos dos objetos pais também entram na colisão.
+objetos_colisiveis = [obj_arvore, obj_construct_ph];
+
 image_xscale = 0.5
 image_yscale = 0.5
 // Estado e direção visual iniciais.

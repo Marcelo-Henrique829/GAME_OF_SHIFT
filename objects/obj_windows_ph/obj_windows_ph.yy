@@ -9,7 +9,10 @@
     "name":"Quarto",
     "path":"folders/TopDown/Objetos/Casas/Interiores/Quarto.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"obj_construct_ph",
+    "path":"objects/obj_construct_ph/obj_construct_ph.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
