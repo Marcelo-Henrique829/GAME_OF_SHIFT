@@ -1,4 +1,5 @@
-spd = 4.6;
+randomise();
+spd = choose(7,5);
 hspd = 0;
 
 timer_divide = choose(170,200,250);
@@ -33,9 +34,6 @@ x += hspd;
 
 divide = function()
 {
-			sprite_index = spr_explosion;
-		image_xscale = 0.4;
-		image_yscale = 0.4;
 	timer_divide--;	
 	var _spd = 7.4;  
 	if(timer_divide <= 0)

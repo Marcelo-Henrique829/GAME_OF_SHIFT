@@ -4,7 +4,6 @@ gba_spr = [spr_gba_closed,spr_gba_opened_anim,spr_gba_open,spr_gba_right];
 block = [obj_block1,obj_block2,obj_block3];
 ship = obj_space_ship;
 
-
 enum GBA_STATE
 {
 	CLOSE,
@@ -108,11 +107,9 @@ instance_block = function()
 	 {
 		var _blc = instance_create_layer((x+90) + (_marg * i),_y,"gba_blocks",block[0]);
 		_blc.direction = choose(180,90,270);
-	 }
-	
+	 }	
 	instance_create_layer((x+92),_y,"gba_blocks",block[1]);
 	instance_create_layer((x+92) + 225,_y,"gba_blocks",block[2]);
-	
 }
 
 destroy_block = function()

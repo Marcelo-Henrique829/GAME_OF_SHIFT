@@ -1,16 +1,15 @@
-var _plus =  0.06;
+var _plus =  0.04;
 image_alpha+=_plus;
 image_alpha = clamp(image_alpha,0,1);
 
-if(image_angle == 180 || image_angle == 0)
+if(image_angle == 180 or image_angle == 0)
  {
-	global.gba_block01 = 1;
+  global.gba_block01 = 1;
  }
 else
  {
- global.gba_block01 = 0;
+  global.gba_block01 = 0;
  }
-
 
 if(position_meeting(mouse_x,mouse_y,self))
 {

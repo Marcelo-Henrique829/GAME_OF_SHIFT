@@ -17,7 +17,6 @@ state = noone;
 if(y >= 830)
 {
   state = EN03_STATES.ENTER02;
-
 }
 else
 {
@@ -47,8 +46,8 @@ shoot = function()
 	 {	 
 		effect(); 
 		var _shot = instance_create_layer(x,y,"shot",shot);
-		_shot.hspeed = lengthdir_x(7,image_angle);
-		_shot.vspeed = lengthdir_y(7,image_angle);
+		_shot.hspeed = lengthdir_x(13,image_angle);
+		_shot.vspeed = lengthdir_y(13,image_angle);
 		_timer = 120;
 	 }	
 }

@@ -30,10 +30,10 @@ create_explode_enemy = function()
 	if(timer_create <= 0)
 	 {
 		var _qtd_bomb = choose(1,2,3);		
-		var random_posx = choose(-40,room_width + 40);
+		var random_posx = choose(-40,room_width + 40);			
 	repeat(_qtd_bomb)
 		{			
-			var random_posy = choose(180,282,400,540,630);			
+		var random_posy = choose(180,282,400,540,630);		
 			var _bomb = instance_create_layer(random_posx,random_posy,"enemys",enemys[1]);
 		}
 		static _t_min = 10;
@@ -53,7 +53,7 @@ create_enemy_shooter = function()
 	 {
 		var _enemy = instance_create_layer(_posx,_posy,"enemys",enemys[2]);
 		static _t_min = 8;
-		static _t_max = 16;
+		static _t_max = 20;
 		_timer =irandom_range(game_get_speed(gamespeed_fps)*_t_min,
 		game_get_speed(gamespeed_fps)*_t_max);
 	 }
