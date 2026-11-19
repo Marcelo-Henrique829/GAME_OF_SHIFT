@@ -1,2 +1,4 @@
-draw_self();
+//draw_self();
 draw_text(x,y- 90,hp);
+
+shake_effect()
