@@ -91,7 +91,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2026.0.0.16",
+    "IDEVersion":"2026.1.0.27",
   },
   "name":"game_of_2026",
   "resources":[
@@ -297,6 +297,7 @@
     {"id":{"name":"spr_player_tpd_ph_walk_up","path":"sprites/spr_player_tpd_ph_walk_up/spr_player_tpd_ph_walk_up.yy",},},
     {"id":{"name":"spr_player","path":"sprites/spr_player/spr_player.yy",},},
     {"id":{"name":"spr_shelf_ph","path":"sprites/spr_shelf_ph/spr_shelf_ph.yy",},},
+    {"id":{"name":"spr_ship_geardust","path":"sprites/spr_ship_geardust/spr_ship_geardust.yy",},},
     {"id":{"name":"spr_shot","path":"sprites/spr_shot/spr_shot.yy",},},
     {"id":{"name":"spr_side_sofa_ph","path":"sprites/spr_side_sofa_ph/spr_side_sofa_ph.yy",},},
     {"id":{"name":"spr_single_bed_ph","path":"sprites/spr_single_bed_ph/spr_single_bed_ph.yy",},},
@@ -387,8 +388,8 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
-    {"roomId":{"name":"Rm_space_ship_test","path":"rooms/Rm_space_ship_test/Rm_space_ship_test.yy",},},
     {"roomId":{"name":"rm_main_menu","path":"rooms/rm_main_menu/rm_main_menu.yy",},},
+    {"roomId":{"name":"Rm_space_ship_test","path":"rooms/Rm_space_ship_test/Rm_space_ship_test.yy",},},
     {"roomId":{"name":"Rm_platform_test","path":"rooms/Rm_platform_test/Rm_platform_test.yy",},},
     {"roomId":{"name":"rm_window_test","path":"rooms/rm_window_test/rm_window_test.yy",},},
     {"roomId":{"name":"Rm_TopDownTest","path":"rooms/Rm_TopDownTest/Rm_TopDownTest.yy",},},

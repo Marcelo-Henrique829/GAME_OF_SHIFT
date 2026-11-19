@@ -1,3 +1,4 @@
+
 switch(state)
 {
 	case GBA_STATE.CLOSE    : gba_close();   break;

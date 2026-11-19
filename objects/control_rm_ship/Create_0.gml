@@ -45,43 +45,20 @@ create_explode_enemy = function()
 
 create_enemy_shooter = function()
 {
-	static _timer = 180;
+	static _timer = 300;
 	_timer--;
 	var _posy = choose(-151,994);
 	var _posx = room_width / 2;
 	if(_timer <= 0)
 	 {
 		var _enemy = instance_create_layer(_posx,_posy,"enemys",enemys[2]);
-		_timer = 300;
+		static _t_min = 8;
+		static _t_max = 16;
+		_timer =irandom_range(game_get_speed(gamespeed_fps)*_t_min,
+		game_get_speed(gamespeed_fps)*_t_max);
 	 }
-	
 }
 
-gba_control = function()
-{
-   //controle do efeito	
-	if(gba.state = GBA_STATE.OPENING || gba.state = GBA_STATE.OPEN)
-	 {
-		layer_enable_fx("ef_blur",1);
-	 }
-	else
-	 {
-		layer_enable_fx("ef_blur",0);
-	 }
-	/*
-	if(instance_exists(gba))
-	 {
-		if(instance_exists(gba_blocks))
-		 {  
-			if(obj_block1.dir = true && obj_block2.dir = true && obj_block3.dir = true)
-			 {
-				ship.hp+=1;
-				gba.state = GBA_STATE.CLOSE;
-			 }
-		 }
-	 }
-	*/
-}
 
 screenshake = function()
 {

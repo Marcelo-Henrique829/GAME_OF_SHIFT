@@ -10,7 +10,7 @@ m_hspd  = 12;
 //vida e dano
 ar_enemys = [oEnemy_sps,oEnemy_explode,oWreckage];
 damage = 0
-hp = 1; 
+hp = 5; 
 
 //variaveis do tiro
 deley_shot = 3;
@@ -76,10 +76,7 @@ ship_control = function()
   
  // hspd = clamp(hspd,-m_hspd,m_hspd);
   vspd = clamp(vspd,-m_vspd,m_vspd);
-  
-	//tiro
-  
-	
+ 	
 	/*if(!k_right || !k_left)
 		{hdps = lerp(hspd,0,.1);}
 
@@ -87,13 +84,13 @@ ship_control = function()
 		{vspd = lerp(vspd,0,.1);}*/
 		
 	//mudando de direção (esquerda)
-	if(k_left && state != SHIP_STATE.FLIP_LEFT)
+	if(kp_left && state != SHIP_STATE.FLIP_LEFT)
 	 {		
 		sprite_index = spr_ss_flip_left; 
 		state = SHIP_STATE.FLIP_LEFT;
 	 }
 	//mudando de direção (direita)
-  	if(k_right && state != SHIP_STATE.FLIP_RIGHT)
+  	if(kp_right && state != SHIP_STATE.FLIP_RIGHT)
 	 {
 		 sprite_index = spr_ss_flip_right;
 		 state = SHIP_STATE.FLIP_RIGHT;
@@ -111,7 +108,7 @@ ship_control = function()
 	   {
 			static timer_iv = 180;
 			timer_iv--;
-			image_alpha = cos(get_timer() / 106000);				
+			image_alpha = cos(get_timer() / 100040);				
 			  if(timer_iv <= 0)
 			   {
 				   timer_iv = 180;
@@ -158,7 +155,7 @@ shoting = function()
 	if(state == SHIP_STATE.DEFEAT) exit;
 	var _shot_spd = 35;
 		 shot = instance_create_layer(x,y,"shot",obj_shot);		 	 
-		 shot.image_xscale = image_xscale;
+		 shot.image_xscale = sign(image_xscale * (hspd + -1));
 		 shot.hspeed = _shot_spd * image_xscale;
 		 timer_shot = deley_shot;
 }
@@ -167,7 +164,7 @@ ship_defeat = function()
 {
 	var _acel = 5;	
 	image_angle+=3; 	
-	vspd += _acel;
+	y += _acel;
 	
-	y+= vspd;
+//	y+= vspd;
 }

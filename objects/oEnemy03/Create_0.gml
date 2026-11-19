@@ -3,6 +3,7 @@ spd = 4;
 shot = oWreckage;
 ship = obj_space_ship;
 s_shot = obj_shot ;
+enemys = [oEnemy_sps,oEnemy03];
 
 enum EN03_STATES
 {
@@ -24,13 +25,11 @@ else
 }
 
 
-
 enter_room01 = function()
 {
 	x = lerp(x,room_width  / 4,.009);
 	y = lerp(y,room_height / 2,.009);
 	image_angle = point_direction(x,y,ship.x,ship.y);
-
 }
 
 enter_room02 = function()
@@ -57,7 +56,7 @@ shoot = function()
 effect = function()
 {
 		image_xscale  = 1.4;
-		image_yscale  = 0.4;
+		image_yscale  = 0.04;
 }
 
 damage = function()

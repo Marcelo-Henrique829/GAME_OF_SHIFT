@@ -1,6 +1,7 @@
 hp = 3;
 player = obj_space_ship;
 s_shot = obj_shot;
+enemys = [oEnemy_sps,oEnemy03];
 
 enum ENEMY_BASE_STATES
 {
@@ -17,7 +18,7 @@ move_to_ship = function()
 	x = lerp(x,player.x,.01); 
 	y = lerp(y,player.y,.01);
 	
-	if(place_meeting(x,y,oEnemy_sps))
+	if(place_meeting(x,y,enemys))
 	 {
 		hp = 0;	
 	 }

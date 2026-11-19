@@ -17,6 +17,7 @@ state = GBA_STATE.CLOSE;
 
 gba_close = function()
 {
+	layer_enable_fx("ef_blur",0);
 	x = lerp(x,939,.06);
 	y = lerp(y,670,.06);	
 	sprite_index = gba_spr[0];
@@ -37,6 +38,7 @@ gba_close = function()
 
 gba_opening = function()
 {
+layer_enable_fx("ef_blur",1);	
 x = lerp(x,939,.1);
 y = lerp(y,463.9,.1);
 		var _defeat = ship.state = SHIP_STATE.DEFEAT;
@@ -55,6 +57,7 @@ y = lerp(y,463.9,.1);
 
 gba_open = function()
 {	
+layer_enable_fx("ef_blur",1);	
 x = lerp(x,939,.1);
 y = lerp(y,464,.1);	
 	sprite_index = gba_spr[2];
@@ -87,6 +90,7 @@ y = lerp(y,464,.1);
 
 gba_correct = function()
 {
+layer_enable_fx("ef_blur",0);	
 y = lerp(y,590,.1);	
 	
 	 if((image_index >= image_number -1))
@@ -110,6 +114,7 @@ instance_block = function()
 	instance_create_layer((x+92) + 225,_y,"gba_blocks",block[2]);
 	
 }
+
 destroy_block = function()
 {
 if(instance_exists(block[0]) || instance_exists(block[1]) || instance_exists(block[2]))
@@ -136,4 +141,3 @@ valid = function()
 				state = GBA_STATE.CORRECT;
 			 }
 }
-
