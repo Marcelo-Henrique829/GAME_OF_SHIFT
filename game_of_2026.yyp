@@ -91,7 +91,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2026.1.0.27",
+    "IDEVersion":"2026.0.0.16",
   },
   "name":"game_of_2026",
   "resources":[
@@ -377,6 +377,7 @@
     {"id":{"name":"UI_Theme","path":"sprites/UI_Theme/UI_Theme.yy",},},
     {"id":{"name":"Yellow","path":"sprites/Yellow/Yellow.yy",},},
     {"id":{"name":"tile_colision","path":"tilesets/tile_colision/tile_colision.yy",},},
+    {"id":{"name":"tile_grass","path":"tilesets/tile_grass/tile_grass.yy",},},
     {"id":{"name":"tl_house_decor_all_ph","path":"tilesets/tl_house_decor_all_ph/tl_house_decor_all_ph.yy",},},
     {"id":{"name":"tl_house_floor_1_ph","path":"tilesets/tl_house_floor_1_ph/tl_house_floor_1_ph.yy",},},
     {"id":{"name":"tl_house_floor_2_ph","path":"tilesets/tl_house_floor_2_ph/tl_house_floor_2_ph.yy",},},

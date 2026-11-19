@@ -10,13 +10,43 @@ enum PlayerStatePlatformer
 // Parâmetros e velocidades do movimento.
 move_speed = 5;
 def_spd = move_speed;
+// Resposta do movimento horizontal (0 a 1): valores maiores respondem mais rápido.
+acceleration_lerp = 0.18;
+deceleration_lerp = 0.25;
+movement_epsilon = 0.05; // Encerra a interpolação para evitar deslize residual.
+idle_speed_deadzone = 0.5; // Usa o sprite parado abaixo desta velocidade, sem cortar o movimento.
 spd = 0;
 hspd = 0;
 vspd = 0;
 dir = 270;
 last_key = vk_down;
 grv = 0.5;
-jump_force = 10;
+jump_force = 12;
+
+// Rastro de silhuetas durante a queda. Intervalo e duração são medidos em frames.
+fall_trail_enabled = true;
+fall_trail_interval = 2;
+fall_trail_timer = 0;
+fall_trail_alpha = 0.5;
+fall_trail_fade = 0.035;
+fall_trail_growth = 0.012;
+fall_trail_colour = make_colour_rgb(110, 205, 255);
+
+// Guarda o quadro atual em uma cópia independente, atrás do personagem.
+create_fall_trail = function(_x, _xscale, _angle)
+{
+    var _trail = instance_create_depth(_x, y, depth + 1, obj_disapear);
+    _trail.sprite_index = sprite_index;
+    _trail.image_index = floor(image_index);
+    _trail.image_speed = 0;
+    _trail.image_xscale = _xscale;
+    _trail.image_yscale = image_yscale;
+    _trail.image_angle = _angle;
+    _trail.image_blend = merge_colour(image_blend, fall_trail_colour, 0.7);
+    _trail.image_alpha = image_alpha * clamp(fall_trail_alpha, 0, 1);
+    _trail.disapear_spd = max(0.001, fall_trail_fade);
+    _trail.disapear_scale_spd = fall_trail_growth;
+};
 
 // Estado e direção visuais iniciais.
 state = PlayerStatePlatformer.IDDLE;
