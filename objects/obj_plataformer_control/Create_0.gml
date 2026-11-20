@@ -1,4 +1,7 @@
 #region Efeito subaquático na metade direita
+// Defina como false para desativar o filtro de água. Pode mudar durante o jogo.
+agua_filtro_ativo = false;
+
 // Coordenada do mundo onde começa a água; acompanha a câmera e o zoom.
 agua_inicio_x = room_width * 0.5;
 agua_superficie_seca = -1;
@@ -27,7 +30,7 @@ for (var _i = 0; _i < array_length(_camadas); _i++)
 }
 agua_camada_captura = layer_create(_frente - 1, "layer_underwater_capture");
 layer_depth(agua_camada_fx, _frente - 2);
-layer_enable_fx(agua_camada_fx, true);
+layer_enable_fx(agua_camada_fx, agua_filtro_ativo);
 fx_set_single_layer(layer_get_fx(agua_camada_fx), false);
 agua_camada_restaura = layer_create(_frente - 3, "layer_underwater_restore");
 
@@ -35,7 +38,9 @@ agua_camada_restaura = layer_create(_frente - 3, "layer_underwater_restore");
 layer_script_begin(agua_camada_captura, method(id, function()
 {
     if (event_type != ev_draw || event_number != ev_draw_normal) return;
+    layer_enable_fx(agua_camada_fx, agua_filtro_ativo);
     agua_largura_seca = 0;
+    if (!agua_filtro_ativo) return;
     var _alvo = surface_get_target();
     if (!surface_exists(_alvo)) return;
 
@@ -83,6 +88,7 @@ layer_script_begin(agua_camada_captura, method(id, function()
 layer_script_begin(agua_camada_restaura, method(id, function()
 {
     if (event_type != ev_draw || event_number != ev_draw_normal) return;
+    if (!agua_filtro_ativo) return;
     if (agua_largura_seca <= 0 || !surface_exists(agua_superficie_seca)) return;
     var _alvo = surface_get_target();
     if (!surface_exists(_alvo)) return;

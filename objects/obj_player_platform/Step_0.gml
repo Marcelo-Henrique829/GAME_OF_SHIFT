@@ -47,7 +47,7 @@ switch (state)
         }
 
         // Retorna ao estado adequado quando aterrissa.
-        if (vspd >= 0 && place_meeting(x, y + 1, collision_targets))
+        if (is_on_ground())
         {
             state = _show_walk
                 ? PlayerStatePlatformer.WALK
@@ -59,7 +59,23 @@ switch (state)
 direction = dir;
 if (state != PlayerStatePlatformer.STOP) vspd += grv;
 var _descending_before_collision = vspd > 0;
+
+// Mantém toda a máscara dentro dos limites externos da sala.
+var _min_x = x - bbox_left;
+var _max_x = x + room_width - 1 - bbox_right;
+var _min_y = y - bbox_top;
+var _max_y = y + room_height - 1 - bbox_bottom;
+x = clamp(x, _min_x, _max_x);
+y = clamp(y, _min_y, _max_y);
+
+// Limita o deslocamento antes das colisões, para nunca movimentar fora da sala.
+var _requested_hspd = hspd;
+var _requested_vspd = vspd;
+hspd = clamp(hspd, _min_x - x, _max_x - x);
+vspd = clamp(vspd, _min_y - y, _max_y - y);
 scr_colision(collision_targets);
+if (hspd != _requested_hspd) hspd = 0;
+if (vspd != _requested_vspd) vspd = 0;
 
 // Acumula a queda no ar e só dispara quando uma colisão para a descida sobre o chão.
 if (state != PlayerStatePlatformer.STOP && !global.player_in_menu)
@@ -72,7 +88,7 @@ if (state != PlayerStatePlatformer.STOP && !global.player_in_menu)
     {
         // Exige queda anterior e apoio abaixo: paredes, tetos e repouso não disparam.
         var _landed = _descending_before_collision && fall_shake_elapsed > 0
-            && place_meeting(x, y + 1, collision_targets);
+            && is_on_ground();
         if (_landed)
         {
             fall_shake_elapsed += 1 / max(1, game_get_speed(gamespeed_fps));
@@ -99,7 +115,7 @@ if (fall_trail_enabled && visible && sprite_index != -1
 
         // Acompanha a mesma cópia espelhada desenhada no Draw do jogador.
         var _mirror_x = room_width - x;
-        if (_mirror_x > room_width * 0.5)
+        if (espelhamento_ativo && _mirror_x > room_width * 0.5)
         {
             create_fall_trail(_mirror_x, -image_xscale, -image_angle);
         }

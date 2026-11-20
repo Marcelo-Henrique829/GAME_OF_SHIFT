@@ -3,7 +3,7 @@ draw_self();
 
 // Reflete a posição pelo centro da sala e desenha a cópia apenas à direita.
 var _mirror_x = room_width - x;
-if (_mirror_x > room_width * 0.5)
+if (espelhamento_ativo && _mirror_x > room_width * 0.5)
 {
     draw_sprite_ext(
         sprite_index,

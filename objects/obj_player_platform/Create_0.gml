@@ -7,6 +7,9 @@ enum PlayerStatePlatformer
     STOP
 }
 
+// Defina como false para ocultar o reflexo do jogador e o rastro espelhado.
+espelhamento_ativo = false;
+
 // Parâmetros e velocidades do movimento.
 move_speed = 5;
 def_spd = move_speed;
@@ -29,14 +32,14 @@ coyote_timer = 0;
 
 // Tempo mínimo de queda para tremer ao aterrissar; a força cresce com a duração da queda.
 fall_shake_delay = 0.35;
-fall_shake_strength = 6; // Intensidade inicial em pixels de tela.
-fall_shake_growth = 8; // Intensidade adicional por segundo além do tempo mínimo.
-fall_shake_max_strength = 24; // Limite de intensidade, de 0 a 60.
+fall_shake_strength = 5; // Intensidade inicial em pixels de tela.
+fall_shake_growth = 15; // Intensidade adicional por segundo além do tempo mínimo.
+fall_shake_max_strength = 60; // Limite de intensidade, de 0 a 60.
 fall_shake_elapsed = 0;
 
 // Rastro de silhuetas durante a queda. Intervalo e duração são medidos em frames.
 fall_trail_enabled = true;
-fall_trail_interval = 2;
+fall_trail_interval = 1;
 fall_trail_timer = 0;
 fall_trail_alpha = 0.5;
 fall_trail_fade = 0.035;
@@ -77,10 +80,17 @@ if (_collision_layer != -1)
     }
 }
 
+// O fundo da sala também serve de chão, mesmo sem um objeto ou tile de colisão.
+is_on_ground = function()
+{
+    return vspd >= 0 && (bbox_bottom >= room_height - 1
+        || place_meeting(x, y + 1, collision_targets));
+};
+
 // Pula no chão ou dentro da pequena tolerância após sair da borda.
 check_jump = function()
 {
-    var _on_ground = vspd >= 0 && place_meeting(x, y + 1, collision_targets);
+    var _on_ground = is_on_ground();
     var _can_jump = _on_ground || coyote_timer > 0;
 
     if (_on_ground)
