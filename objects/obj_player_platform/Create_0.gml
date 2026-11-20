@@ -23,6 +23,17 @@ last_key = vk_down;
 grv = 0.5;
 jump_force = 12;
 
+// Coyote time: permite pular por mais 6 frames após sair da borda (0,1 s a 60 FPS).
+coyote_frames = 6;
+coyote_timer = 0;
+
+// Tempo mínimo de queda para tremer ao aterrissar; a força cresce com a duração da queda.
+fall_shake_delay = 0.35;
+fall_shake_strength = 6; // Intensidade inicial em pixels de tela.
+fall_shake_growth = 8; // Intensidade adicional por segundo além do tempo mínimo.
+fall_shake_max_strength = 24; // Limite de intensidade, de 0 a 60.
+fall_shake_elapsed = 0;
+
 // Rastro de silhuetas durante a queda. Intervalo e duração são medidos em frames.
 fall_trail_enabled = true;
 fall_trail_interval = 2;
@@ -66,14 +77,26 @@ if (_collision_layer != -1)
     }
 }
 
-// Pula quando há chão logo abaixo e o botão de pulo está pressionado.
+// Pula no chão ou dentro da pequena tolerância após sair da borda.
 check_jump = function()
 {
-    var _on_ground = place_meeting(x, y + 1, collision_targets);
+    var _on_ground = vspd >= 0 && place_meeting(x, y + 1, collision_targets);
+    var _can_jump = _on_ground || coyote_timer > 0;
 
-    if (_on_ground && global.inputs.dash)
+    if (_on_ground)
     {
-        vspd -= jump_force;
+        coyote_timer = max(0, coyote_frames);
+    }
+    else
+    {
+        coyote_timer = max(0, coyote_timer - 1);
+    }
+
+    if (_can_jump && global.inputs.dash)
+    {
+        // Mantém a força completa mesmo se já começou a cair e consome a tolerância.
+        vspd = -jump_force;
+        coyote_timer = 0;
         state = PlayerStatePlatformer.JUMP;
     }
 

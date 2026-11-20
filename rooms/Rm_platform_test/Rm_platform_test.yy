@@ -18,8 +18,8 @@
           51,51,52,-32,-2147483648,4,50,51,51,52,-252,-2147483648,-4,7,-36,-2147483648,4,50,51,51,52,-218,-2147483648,
           -4,7,-36,-2147483648,4,50,51,51,52,-186,-2147483648,-4,7,-36,-2147483648,4,50,51,51,52,-260,-2147483648,
           -4,7,-36,-2147483648,4,50,51,51,52,-224,-2147483648,-4,7,-36,-2147483648,4,50,51,51,52,-88,-2147483648,
-          -4,7,-36,-2147483648,4,50,51,51,52,-132,-2147483648,2,6,8,-38,-2147483648,2,50,52,-94,-2147483648,-40,
-          7,
+          4,6,7,7,8,-36,-2147483648,4,50,51,51,52,-132,-2147483648,2,6,8,-38,-2147483648,2,50,52,-94,-2147483648,
+          -40,7,
         ],"TileDataFormat":1,},"tilesetId":{"name":"tile_grass","path":"tilesets/tile_grass/tile_grass.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
     {"$GMRTileLayer":"","%Name":"tlColision","depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"tlColision","properties":[],"resourceType":"GMRTileLayer","resourceVersion":"2.0","tiles":{"SerialiseHeight":38,"SerialiseWidth":20,"TileCompressedData":[
           -9,0,-2,1,-18,0,-2,1,-18,0,-2,1,-18,0,-2,1,-18,0,-2,1,-18,0,-2,1,-18,0,-2,1,-15,0,-2,1,6,0,1,1,0,268435457,

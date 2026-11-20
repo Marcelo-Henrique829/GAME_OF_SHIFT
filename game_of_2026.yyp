@@ -199,6 +199,7 @@
     {"id":{"name":"scr_fade","path":"scripts/scr_fade/scr_fade.yy",},},
     {"id":{"name":"scr_inputs","path":"scripts/scr_inputs/scr_inputs.yy",},},
     {"id":{"name":"scr_inventory","path":"scripts/scr_inventory/scr_inventory.yy",},},
+    {"id":{"name":"scr_screen_shake","path":"scripts/scr_screen_shake/scr_screen_shake.yy",},},
     {"id":{"name":"simple_colision","path":"scripts/simple_colision/simple_colision.yy",},},
     {"id":{"name":"Som","path":"scripts/Som/Som.yy",},},
     {"id":{"name":"bg_space_ship","path":"sprites/bg_space_ship/bg_space_ship.yy",},},

@@ -58,7 +58,35 @@ switch (state)
 // Aplica a velocidade interpolada, gravidade e colisões.
 direction = dir;
 if (state != PlayerStatePlatformer.STOP) vspd += grv;
+var _descending_before_collision = vspd > 0;
 scr_colision(collision_targets);
+
+// Acumula a queda no ar e só dispara quando uma colisão para a descida sobre o chão.
+if (state != PlayerStatePlatformer.STOP && !global.player_in_menu)
+{
+    if (vspd > 0)
+    {
+        fall_shake_elapsed += 1 / max(1, game_get_speed(gamespeed_fps));
+    }
+    else
+    {
+        // Exige queda anterior e apoio abaixo: paredes, tetos e repouso não disparam.
+        var _landed = _descending_before_collision && fall_shake_elapsed > 0
+            && place_meeting(x, y + 1, collision_targets);
+        if (_landed)
+        {
+            fall_shake_elapsed += 1 / max(1, game_get_speed(gamespeed_fps));
+            if (fall_shake_elapsed >= max(0, fall_shake_delay))
+            {
+                var _shake_time = fall_shake_elapsed - max(0, fall_shake_delay);
+                var _strength = max(0, fall_shake_strength) + _shake_time * max(0, fall_shake_growth);
+                var _limit = clamp(fall_shake_max_strength, 0, 60);
+                global.shake = max(global.shake, clamp(_strength, 0, _limit));
+            }
+        }
+        fall_shake_elapsed = 0;
+    }
+}
 
 // Só emite depois das colisões: aterrissar, subir ou pausar interrompe o rastro.
 if (fall_trail_enabled && visible && sprite_index != -1

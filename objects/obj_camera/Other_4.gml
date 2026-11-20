@@ -1,5 +1,7 @@
 // Seleciona o tamanho do jogador após a criação das instâncias da room.
 update_camera_target();
+// A tremida da sala anterior não acompanha a transição.
+global.shake = 0;
 
 // Garante o visor ativo após as configurações de entrada da room.
 if (!view_enabled) view_enabled = true;
