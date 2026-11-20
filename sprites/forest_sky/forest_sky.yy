@@ -2,9 +2,9 @@
   "$GMSprite":"v2",
   "%Name":"forest_sky",
   "bboxMode":0,
-  "bbox_bottom":595,
+  "bbox_bottom":297,
   "bbox_left":0,
-  "bbox_right":1899,
+  "bbox_right":949,
   "bbox_top":0,
   "collisionKind":1,
   "collisionTolerance":0,
@@ -16,7 +16,7 @@
   ],
   "gridX":0,
   "gridY":0,
-  "height":596,
+  "height":298,
   "HTile":false,
   "layers":[
     {"$GMImageLayer":"","%Name":"2c14805e-f365-45d7-8385-b497e4a4f36d","blendMode":0,"displayName":"default","isLocked":false,"name":"2c14805e-f365-45d7-8385-b497e4a4f36d","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
@@ -86,5 +86,5 @@
   },
   "type":0,
   "VTile":false,
-  "width":1900,
+  "width":950,
 }
