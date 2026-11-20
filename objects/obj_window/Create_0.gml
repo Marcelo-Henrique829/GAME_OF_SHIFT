@@ -2,6 +2,9 @@
 janela_ativa = true;
 janela_camada = -1;
 janela_dados = undefined;
+janela_arrastando = false;
+arraste_offset_x = 0;
+arraste_offset_y = 0;
 
 // Captura após os dois backgrounds visíveis mais profundos atrás da janela.
 var _camadas = layer_get_all();
