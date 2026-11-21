@@ -91,22 +91,8 @@ direction = dir;
 if (state != PlayerStatePlatformer.STOP) vspd += grv;
 var _descending_before_collision = vspd > 0;
 
-// Mantém toda a máscara dentro dos limites externos da sala.
-var _min_x = x - bbox_left;
-var _max_x = x + room_width - 1 - bbox_right;
-var _min_y = y - bbox_top;
-var _max_y = y + room_height - 1 - bbox_bottom;
-x = clamp(x, _min_x, _max_x);
-y = clamp(y, _min_y, _max_y);
 
-// Limita o deslocamento antes das colisões, para nunca movimentar fora da sala.
-var _requested_hspd = hspd;
-var _requested_vspd = vspd;
-hspd = clamp(hspd, _min_x - x, _max_x - x);
-vspd = clamp(vspd, _min_y - y, _max_y - y);
 scr_colision(collision_targets);
-if (hspd != _requested_hspd) hspd = 0;
-if (vspd != _requested_vspd) vspd = 0;
 
 // Acumula a queda no ar e só dispara quando uma colisão para a descida sobre o chão.
 if (state != PlayerStatePlatformer.STOP && !global.player_in_menu)
