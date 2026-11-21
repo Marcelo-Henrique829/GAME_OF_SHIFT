@@ -48,6 +48,7 @@
     {"$GMFolder":"","%Name":"Scripts","folderPath":"folders/Point and Click/Scripts.yy","name":"Scripts","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Sprites","folderPath":"folders/Point and Click/Sprites.yy","name":"Sprites","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Spaceship","folderPath":"folders/Spaceship.yy","name":"Spaceship","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"sq_sps","folderPath":"folders/Spaceship/sq_sps.yy","name":"sq_sps","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Objetos","folderPath":"folders/Spaceship/Objetos.yy","name":"Objetos","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"gba","folderPath":"folders/Spaceship/Objetos/gba.yy","name":"gba","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"inimigos","folderPath":"folders/Spaceship/Objetos/inimigos.yy","name":"inimigos","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -427,8 +428,8 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
-    {"roomId":{"name":"rm_pointclick_test","path":"rooms/rm_pointclick_test/rm_pointclick_test.yy",},},
     {"roomId":{"name":"Rm_space_ship_test","path":"rooms/Rm_space_ship_test/Rm_space_ship_test.yy",},},
+    {"roomId":{"name":"rm_pointclick_test","path":"rooms/rm_pointclick_test/rm_pointclick_test.yy",},},
     {"roomId":{"name":"Rm_platform_test","path":"rooms/Rm_platform_test/Rm_platform_test.yy",},},
     {"roomId":{"name":"rm_main_menu","path":"rooms/rm_main_menu/rm_main_menu.yy",},},
     {"roomId":{"name":"rm_window_test","path":"rooms/rm_window_test/rm_window_test.yy",},},

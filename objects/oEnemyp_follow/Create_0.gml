@@ -1,7 +1,7 @@
 randomise();
- //x = choose(-60,room_width + 50);
- //y = irandom_range(570,1440);
-
+ x = choose(-10,room_width);
+ y = irandom_range(200,room_width - 500);
+    hspd = 0;
 
 _timer = game_get_speed(gamespeed_fps) * 1;
 enum ENEY5_STATES
@@ -11,7 +11,7 @@ enum ENEY5_STATES
 	IN_POSS,
 	P_CAUGHT
 }
-state = ENEY5_STATES.RNG_POSS;
+state = ENEY5_STATES.RM_IN;
 
 rng_poss = function()
 {
@@ -76,4 +76,24 @@ image_speed = 0.2;
 		global.black_screen = 1; 
 		instance_destroy();
 	 }
+}
+
+hop_room = function()
+{
+image_angle+=2.3;
+    if(x <= 0)
+     {
+        hspd = 7;
+     }
+    if(x >= room_width)
+     {
+        hspd = -7;
+     }   
+    x += hspd;
+    
+    var _gap = x clamp(x,500,room_width -500);
+        if(_gap)
+        {
+            state = ENEY5_STATES.RNG_POSS;
+        }    
 }
