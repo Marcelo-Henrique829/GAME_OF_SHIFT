@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_obj_ptcl",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_obj_ptcl",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Point and Click/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
