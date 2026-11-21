@@ -1,7 +1,9 @@
 randomise();
- x = choose(-10,room_width);
+ x = choose(-20,room_width + 20);
  y = irandom_range(200,room_width - 500);
     hspd = 0;
+
+timer_distroy = game_get_speed(gamespeed_fps) * 10.5;
 
 _timer = game_get_speed(gamespeed_fps) * 1;
 enum ENEY5_STATES
@@ -32,12 +34,9 @@ image_angle+=2.3;
 	
 	if(place_meeting(x,y,obj_space_ship))
 	 {
-	//	image_speed = 0;
 		sprite_index = spr_inimigo_follow_caugth;
 		state = ENEY5_STATES.P_CAUGHT;
 	 }
-
- 
 }
 
 vel_poss_in = function()
@@ -51,14 +50,12 @@ image_angle+=2.3;
 		_timer_o = game_get_speed(gamespeed_fps) * 1.5;
 		state = ENEY5_STATES.RNG_POSS;
 	 }
-	 
 	 if(place_meeting(x,y,obj_space_ship))
 	 {
 	//	image_speed = 0;
 		sprite_index = spr_inimigo_follow_caugth;
 		state = ENEY5_STATES.P_CAUGHT;
 	 }
-	 
 }
 
 p_caught = function()
@@ -83,17 +80,17 @@ hop_room = function()
 image_angle+=2.3;
     if(x <= 0)
      {
-        hspd = 7;
+        hspd = 4;
      }
     if(x >= room_width)
      {
-        hspd = -7;
+        hspd = -4;
      }   
     x += hspd;
     
-    var _gap = x clamp(x,500,room_width -500);
+    var _gap = x = clamp(x,160,room_width -160);
         if(_gap)
         {
-            state = ENEY5_STATES.RNG_POSS;
+            state = ENEY5_STATES.IN_POSS;
         }    
 }
