@@ -18,6 +18,14 @@ with (obj_window)
         _selected = true;
     }
 }
+with (obj_box)
+{
+    if (caixa_ativa && visible && image_alpha > 0 && sprite_index != -1
+        && (caixa_arrastando || collision_point(mouse_x, mouse_y, id, true, false) != noone))
+    {
+        _selected = true;
+    }
+}
 with (obj_shortcut)
 {
     if (visible && image_alpha > 0 && sprite_index != -1 && is_hovered) _selected = true;
