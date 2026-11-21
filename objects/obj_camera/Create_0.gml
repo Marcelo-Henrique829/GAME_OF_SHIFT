@@ -45,6 +45,8 @@ zoom_out_speed = 4;
 menu_zoom_scale = 4;
 dialogue_zoom_scale = 2; // Aproximação durante a conversa com um NPC.
 zoom = zoom_in_scale;
+death_zoom_scale = 5;
+death_zoom_speed = 45; // Atinge a aproximação de morte em poucos frames.
 
 // Ativa o visor mesmo quando estiver desabilitado nas configurações da room.
 if (!view_enabled) view_enabled = true;

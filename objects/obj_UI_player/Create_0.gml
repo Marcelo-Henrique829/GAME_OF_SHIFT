@@ -76,6 +76,7 @@ menu_set_open = function(_open)
         // y + 1 verifica se há chão ou tiles de tlColision um pixel abaixo. vspd >= 0 impede
         // abrir durante a subida do pulo, mesmo se ainda estiver perto do chão.
         var _is_platform = (player.object_index == obj_player_platform);
+        if (_is_platform && (player.player_dead || player.state == PlayerStatePlatformer.DEAD)) return;
         if (_is_platform)
         {
             var _on_ground = false;

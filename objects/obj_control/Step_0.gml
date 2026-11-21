@@ -2,6 +2,9 @@
 if (room != fade_current_room)
 {
 	fade_current_room = room;
+	fade_restart_room = false;
+	player_dead_active = false;
+	player_dead_target = noone;
 	fade_in_active = false;
 	fade_in_progress = 0;
 	fade_out_active = true;
@@ -9,7 +12,7 @@ if (room != fade_current_room)
 }
 
 // Ao pressionar K, escolhe a outra sala de teste e começa a cobrir a tela.
-if (keyboard_check_pressed(ord("K")) && !fade_in_active && !global.player_in_menu)
+if (keyboard_check_pressed(ord("K")) && !fade_in_active && !player_dead_active && !global.player_in_menu)
 {
 	fade_target_room = (room == Rm_TopDownTest) ? Rm_platform_test : Rm_TopDownTest;
 	fade_in_active = true;
@@ -18,6 +21,6 @@ if (keyboard_check_pressed(ord("K")) && !fade_in_active && !global.player_in_men
 }
 
 // Atualiza os dois efeitos; o script inativo retorna sem alterar seu estado.
-global.fade_active = fade_in_active || fade_out_active;
+global.fade_active = player_dead_active || fade_in_active || fade_out_active;
 scr_fade_in();
 scr_fade_out();

@@ -1,7 +1,11 @@
 // Atualiza os controles e a direção do jogador.
-scr_inputs(true);
-if (dialogo_ativo && !global.player_in_menu) exit;
-if (state != PlayerStatePlatformer.STOP)
+if (player_dead) state = PlayerStatePlatformer.DEAD;
+if (state != PlayerStatePlatformer.DEAD)
+{
+    scr_inputs(true);
+    if (dialogo_ativo && !global.player_in_menu) exit;
+}
+if (state != PlayerStatePlatformer.STOP && state != PlayerStatePlatformer.DEAD)
 {
     scr_direction();
 
@@ -21,6 +25,13 @@ var _show_walk = abs(hspd) > max(0, idle_speed_deadzone);
 // Executa o comportamento do estado atual.
 switch (state)
 {
+    case PlayerStatePlatformer.DEAD:
+        // Bloqueia o controle horizontal e o pulo, mantendo a gravidade abaixo.
+        spd = 0;
+        hspd = 0;
+        sprite_index = spr_player_plataformer_ph_iddleLeft
+    break;
+
     case PlayerStatePlatformer.STOP:
         sprite_index = spr_player_plataformer_ph_iddleRight;
         spd = 0;
@@ -55,6 +66,26 @@ switch (state)
         }
     break;
 }
+// Alterna os alvos do lerp para crescer e encolher suavemente enquanto está morto.
+if (state == PlayerStatePlatformer.DEAD && dead_pulse_enabled)
+{
+    var _pulse_min = max(0.01, min(dead_pulse_min, dead_pulse_max));
+    var _pulse_max = max(_pulse_min, max(dead_pulse_min, dead_pulse_max));
+    var _pulse_target = dead_pulse_growing ? _pulse_max : _pulse_min;
+    var _pulse_response = 1 - power(1 - clamp(dead_pulse_lerp, 0, 1),
+        60 / max(1, game_get_speed(gamespeed_fps)));
+    dead_pulse_scale = lerp(dead_pulse_scale, _pulse_target, _pulse_response);
+    if (abs(dead_pulse_scale - _pulse_target) <= 0.005)
+    {
+        dead_pulse_growing = !dead_pulse_growing;
+    }
+}
+else
+{
+    dead_pulse_scale = 1;
+    dead_pulse_growing = true;
+}
+
 // Aplica a velocidade interpolada, gravidade e colisões.
 direction = dir;
 if (state != PlayerStatePlatformer.STOP) vspd += grv;
@@ -105,7 +136,7 @@ if (state != PlayerStatePlatformer.STOP && !global.player_in_menu)
 }
 
 // Só emite depois das colisões: aterrissar, subir ou pausar interrompe o rastro.
-if (fall_trail_enabled && visible && sprite_index != -1
+if (fall_trail_enabled && visible && sprite_index != -1 && state != PlayerStatePlatformer.DEAD
     && state != PlayerStatePlatformer.STOP && !global.player_in_menu && vspd > 0)
 {
     fall_trail_timer--;
@@ -126,4 +157,21 @@ if (fall_trail_enabled && visible && sprite_index != -1
 else
 {
     fall_trail_timer = 0;
+}
+
+// Emite mesmo parado no chão; o obj_disapear move e apaga cada silhueta.
+if (state == PlayerStatePlatformer.DEAD && dead_trail_enabled && visible && sprite_index != -1)
+{
+    dead_trail_timer--;
+    if (dead_trail_timer <= 0)
+    {
+        for (var _i = 0; _i < max(0, floor(dead_trail_count)); _i++)
+        {
+            var _trail = create_fall_trail(x, image_xscale, image_angle);
+            _trail.direction = random(360);
+            _trail.speed = random_range(max(0, min(dead_trail_speed_min, dead_trail_speed_max)),
+                max(0, max(dead_trail_speed_min, dead_trail_speed_max)));
+        }
+        dead_trail_timer = max(1, dead_trail_interval);
+    }
 }

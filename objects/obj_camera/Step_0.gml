@@ -23,7 +23,18 @@ if (_controller != noone)
     _fade_in = (_controller.fade_current_room == room && _controller.fade_in_active);
 }
 
-if (global.player_in_menu && (instance_exists(obj_player_platform) || instance_exists(obj_player_topdown))) scr_camera_zoom_in(menu_zoom_scale);
+if (_controller != noone && _controller.player_dead_active)
+{
+    if (instance_exists(_controller.player_dead_target)) camera_target = _controller.player_dead_target;
+    var _death_step = max(0, death_zoom_speed) / max(1, game_get_speed(gamespeed_fps));
+    zoom += clamp(max(1, death_zoom_scale) - zoom, -_death_step, _death_step);
+    if (zoom == max(1, death_zoom_scale) && !_controller.fade_in_active)
+    {
+        _controller.fade_in_progress = 0;
+        _controller.fade_in_active = true;
+    }
+}
+else if (global.player_in_menu && (instance_exists(obj_player_platform) || instance_exists(obj_player_topdown))) scr_camera_zoom_in(menu_zoom_scale);
 else if (_dialogue_active) scr_camera_zoom_in(dialogue_zoom_scale);
 else if (_fade_in) scr_camera_zoom_in();
 else scr_camera_zoom_out();

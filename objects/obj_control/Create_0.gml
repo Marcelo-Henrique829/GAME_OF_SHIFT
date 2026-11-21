@@ -13,6 +13,9 @@ cursor_sprite = -1;
 // Sala atual e destino da próxima transição.
 fade_current_room = room;
 fade_target_room = noone;
+fade_restart_room = false;
+player_dead_active = false;
+player_dead_target = noone;
 
 // Estado e velocidade do fade-in: fecha a tela antes de trocar de sala.
 fade_in_active = false;

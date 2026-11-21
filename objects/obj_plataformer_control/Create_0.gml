@@ -100,7 +100,7 @@ layer_script_begin(agua_camada_restaura, method(id, function()
 
 #region Geração de bolhas
 // Limite de obj_buble na sala e intervalo entre novas bolhas, em Steps.
-bolhas_maximo = 10;
+bolhas_maximo = 30;
 bolhas_intervalo = 15;
 
 // Tamanho relativo ao sprite: 1 = tamanho original, 0.5 = metade.

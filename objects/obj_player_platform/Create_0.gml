@@ -1,10 +1,13 @@
 // Estados usados pelo jogador de plataforma.
+player_dead = false;
+
 enum PlayerStatePlatformer
 {
     IDDLE,
     WALK,
     JUMP,
-    STOP
+    STOP,
+    DEAD
 }
 
 // Defina como false para ocultar o reflexo do jogador e o rastro espelhado.
@@ -46,6 +49,22 @@ fall_trail_fade = 0.035;
 fall_trail_growth = 0.012;
 fall_trail_colour = make_colour_rgb(110, 205, 255);
 
+// Silhuetas que se afastam do personagem enquanto ele está morto.
+dead_trail_enabled = true;
+dead_trail_interval = 2;
+dead_trail_timer = 0;
+dead_trail_count = 2;
+dead_trail_speed_min = 1;
+dead_trail_speed_max = 4;
+
+// Pulso visual no estado DEAD. O tamanho da máscara de colisão não muda.
+dead_pulse_enabled = true;
+dead_pulse_min = 0.5;
+dead_pulse_max = 1.5;
+dead_pulse_lerp = 0.2; // Maior = pulsa mais rápido; valor entre 0 e 1.
+dead_pulse_scale = 1;
+dead_pulse_growing = true;
+
 // Guarda o quadro atual em uma cópia independente, atrás do personagem.
 create_fall_trail = function(_x, _xscale, _angle)
 {
@@ -53,13 +72,15 @@ create_fall_trail = function(_x, _xscale, _angle)
     _trail.sprite_index = sprite_index;
     _trail.image_index = floor(image_index);
     _trail.image_speed = 0;
-    _trail.image_xscale = _xscale;
-    _trail.image_yscale = image_yscale;
+    var _pulse = (state == PlayerStatePlatformer.DEAD && dead_pulse_enabled) ? dead_pulse_scale : 1;
+    _trail.image_xscale = _xscale * _pulse;
+    _trail.image_yscale = image_yscale * _pulse;
     _trail.image_angle = _angle;
     _trail.image_blend = merge_colour(image_blend, fall_trail_colour, 0.7);
     _trail.image_alpha = image_alpha * clamp(fall_trail_alpha, 0, 1);
     _trail.disapear_spd = max(0.001, fall_trail_fade);
     _trail.disapear_scale_spd = fall_trail_growth;
+    return _trail;
 };
 
 // Estado e direção visuais iniciais.

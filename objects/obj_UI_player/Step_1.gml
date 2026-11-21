@@ -14,6 +14,13 @@ if (!instance_exists(player))
     exit;
 }
 
+// A morte bloqueia o menu durante o zoom e durante o fade.
+if (player.object_index == obj_player_platform && player.player_dead)
+{
+    menu_set_open(false);
+    exit;
+}
+
 // esc representa uma nova pressão; segurar a tecla não alterna a UI todo frame.
 if (global.inputs.esc)
 {

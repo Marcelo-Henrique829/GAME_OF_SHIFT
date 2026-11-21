@@ -22,7 +22,20 @@ function scr_fade_in(_draw_overlay = false)
 		else
 		{
 			// A tela está coberta: troca para a sala escolhida pelo controller.
-			room_goto(fade_target_room);
+			if (fade_restart_room)
+			{
+				// Reiniciar a mesma room não altera seu ID; prepara a reabertura aqui.
+				fade_restart_room = false;
+				player_dead_active = false;
+				player_dead_target = noone;
+				fade_target_room = noone;
+				fade_in_progress = 0;
+				fade_out_active = true;
+				fade_out_progress = 1;
+				global.fade_active = true;
+				room_restart();
+			}
+			else room_goto(fade_target_room);
 			fade_in_active = false;
 			exit;
 		}
