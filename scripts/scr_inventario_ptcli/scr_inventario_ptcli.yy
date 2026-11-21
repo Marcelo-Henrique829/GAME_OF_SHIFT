@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_inventario_ptcli",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_inventario_ptcli",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Point and Click/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

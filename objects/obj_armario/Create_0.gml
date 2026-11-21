@@ -1,6 +1,8 @@
 interact_function = function()
 {
 
-visible = false
+	item = "Armario"
+
+	add_item(item)
 
 }

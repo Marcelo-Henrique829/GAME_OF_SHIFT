@@ -9,7 +9,10 @@
     "name":"Objetos",
     "path":"folders/Point and Click/Objetos.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"obj_armario",
+    "path":"objects/obj_armario/obj_armario.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
