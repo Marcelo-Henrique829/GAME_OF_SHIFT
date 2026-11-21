@@ -68,8 +68,8 @@ dialogo_ativo = false;
 direction = dir;
 dir_state = "down";
 
-// Usa os objetos de chão e o tilemap tlColision da sala atual como colisores.
-collision_targets = [obj_ground];
+// Usa o chão, as caixas e o tilemap tlColision da sala atual como colisores.
+collision_targets = [obj_ground, obj_box];
 var _collision_layer = layer_get_id("tlColision");
 if (_collision_layer != -1)
 {
