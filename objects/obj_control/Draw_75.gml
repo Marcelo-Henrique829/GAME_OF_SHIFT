@@ -3,7 +3,7 @@
 if (global.fade_active) exit;
 var _show_cursor = (room == rm_main_menu)
     || instance_exists(obj_plataformer_control) || instance_exists(obj_player_platform);
-if (instance_exists(obj_UI_player) && global.player_in_menu) _show_cursor = true;
+if (instance_exists(obj_UI_player) && global.player_in_menu ) _show_cursor = true;
 if (!_show_cursor) exit;
 
 // Começa sempre no cursor padrão para não manter uma seleção do frame anterior.

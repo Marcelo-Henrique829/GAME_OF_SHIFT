@@ -141,6 +141,7 @@
     {"id":{"name":"obj_estante_4_ph","path":"objects/obj_estante_4_ph/obj_estante_4_ph.yy",},},
     {"id":{"name":"obj_estante_5_ph","path":"objects/obj_estante_5_ph/obj_estante_5_ph.yy",},},
     {"id":{"name":"obj_estante_ph","path":"objects/obj_estante_ph/obj_estante_ph.yy",},},
+    {"id":{"name":"obj_fall","path":"objects/obj_fall/obj_fall.yy",},},
     {"id":{"name":"obj_folder","path":"objects/obj_folder/obj_folder.yy",},},
     {"id":{"name":"obj_fridge_ph","path":"objects/obj_fridge_ph/obj_fridge_ph.yy",},},
     {"id":{"name":"obj_gba","path":"objects/obj_gba/obj_gba.yy",},},
