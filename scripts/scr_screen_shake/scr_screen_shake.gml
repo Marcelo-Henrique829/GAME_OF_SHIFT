@@ -14,6 +14,5 @@ function scr_screen_shake()
         _offset[1] = random_range(-global.shake, global.shake);
         global.shake = max(0, global.shake - 0.5);
     }
-
     return _offset;
 }

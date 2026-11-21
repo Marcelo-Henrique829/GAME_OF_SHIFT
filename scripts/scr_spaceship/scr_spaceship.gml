@@ -1,0 +1,1 @@
+global.black_screen = 0;

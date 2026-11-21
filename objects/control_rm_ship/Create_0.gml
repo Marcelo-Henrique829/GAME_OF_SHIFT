@@ -59,7 +59,6 @@ create_enemy_shooter = function()
 	 }
 }
 
-
 screenshake = function()
 {
    view_xport = global.screen_shakex;
@@ -67,4 +66,20 @@ screenshake = function()
    
    global.screen_shakex = lerp(global.screen_shakex,0,.1);
    global.screen_shakey = lerp(global.screen_shakey,0,.1);
+}
+
+black_screen = function()
+{
+	if(global.black_screen == 0) exit;
+	var _c = c_black;
+	static _time = game_get_speed(gamespeed_fps) * 5;
+	var _t = get_timer() / 100000;
+	var _alpha = cos(_t) * 5;
+	_time--;
+	draw_sprite_ext(spr_black_screen,0,0,0,21,20,1,c_black,_alpha);
+	 if(_time <= 0)
+	  {  
+		_time = game_get_speed(gamespeed_fps) * 10;  
+		global.black_screen = 0;		
+	  }
 }

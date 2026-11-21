@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_spaceship",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_spaceship",
+  "parent":{
+    "name":"Objetos",
+    "path":"folders/Spaceship/Objetos.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
