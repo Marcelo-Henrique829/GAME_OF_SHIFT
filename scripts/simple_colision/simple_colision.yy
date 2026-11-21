@@ -6,7 +6,7 @@
   "name":"simple_colision",
   "parent":{
     "name":"Scripts",
-    "path":"folders/Compartilhado/Scripts.yy",
+    "path":"folders/Plataforma/Objetos/Scripts.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",
