@@ -11,6 +11,13 @@ arraste_raio = 250;
 arraste_origem_x = x;
 arraste_origem_y = y;
 
+// Espessura da borda vermelha em pixels do mundo; 0 oculta a borda.
+arraste_borda_espessura = 4;
+
+// Suavização do alpha por Step: 0.15 aproxima gradualmente do alvo (máximo 0.7).
+arraste_borda_lerp = 0.15;
+arraste_borda_alpha = 0;
+
 // Captura após os dois backgrounds visíveis mais profundos atrás da janela.
 var _camadas = layer_get_all();
 var _profundidade = depth;

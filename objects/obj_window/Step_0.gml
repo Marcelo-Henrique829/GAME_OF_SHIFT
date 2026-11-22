@@ -1,3 +1,13 @@
+// Atualiza uma vez por Step, inclusive quando o arraste termina.
+var _borda_no_limite = abs(point_distance(arraste_origem_x, arraste_origem_y, x, y)
+    - max(0, arraste_raio)) <= 0.5;
+var _borda_alvo = (janela_arrastando && mouse_check_button(mb_left)
+    && janela_ativa && visible && image_alpha > 0
+    && sprite_index != -1 && arraste_borda_espessura > 0 && _borda_no_limite) ? 0.7 : 0;
+arraste_borda_alpha = clamp(lerp(arraste_borda_alpha, _borda_alvo,
+    clamp(arraste_borda_lerp, 0, 1)), 0, 0.7);
+if (_borda_alvo == 0 && arraste_borda_alpha < 0.001) arraste_borda_alpha = 0;
+
 // Soltar o botão ou ocultar/desativar a janela encerra o arraste.
 if (!mouse_check_button(mb_left) || !janela_ativa || !visible
     || image_alpha <= 0 || sprite_index == -1)
