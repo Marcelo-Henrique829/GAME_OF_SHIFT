@@ -11,6 +11,17 @@ draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 draw_set_alpha(clamp(memoria_alpha * image_alpha, 0, 1));
 
+// Centraliza o título no topo, acompanhando o alpha de aparição da imagem.
+var _margem_titulo = max(0, memoria_titulo_margem);
+var _largura_titulo = max(1, display_get_gui_width() - _margem_titulo * 2);
+var _escala_titulo = min(menu_text_scale, _largura_titulo / max(1, string_width(memoria_titulo)));
+var _titulo_x = display_get_gui_width() * 0.5;
+var _titulo_y = _margem_titulo + string_height("Mg") * _escala_titulo * 0.5;
+draw_set_colour(c_black);
+draw_text_transformed(_titulo_x + 2, _titulo_y + 2, memoria_titulo, _escala_titulo, _escala_titulo, 0);
+draw_set_colour(memoria_titulo_cor);
+draw_text_transformed(_titulo_x, _titulo_y, memoria_titulo, _escala_titulo, _escala_titulo, 0);
+
 var _escala = menu_text_scale * menu_scale;
 draw_set_colour(c_black);
 draw_text_transformed(menu_gui_x + 2, menu_gui_y + 2, "menu", _escala, _escala, 0);

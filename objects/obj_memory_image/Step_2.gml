@@ -23,6 +23,11 @@ memoria_escala = lerp(memoria_escala, _escala_final, _resposta);
 if (1 - memoria_alpha < 0.001) memoria_alpha = 1;
 if (abs(_escala_final - memoria_escala) < 0.001) memoria_escala = _escala_final;
 
+// Anima a cor uma vez por frame, com a mesma velocidade em qualquer FPS.
+memoria_titulo_hue = (memoria_titulo_hue + max(0, memoria_titulo_cor_velocidade)
+    / max(1, game_get_speed(gamespeed_fps))) mod 256;
+memoria_titulo_cor = make_colour_hsv(memoria_titulo_hue, 200, 255);
+
 // Botão fixo na parte inferior da GUI, independente do zoom da imagem.
 if (!visible || image_alpha <= 0 || global.fade_active) exit;
 var _fonte_anterior = draw_get_font();

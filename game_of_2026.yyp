@@ -330,6 +330,7 @@
     {"id":{"name":"spr_lighth","path":"sprites/spr_lighth/spr_lighth.yy",},},
     {"id":{"name":"spr_livros","path":"sprites/spr_livros/spr_livros.yy",},},
     {"id":{"name":"spr_memory_fragment","path":"sprites/spr_memory_fragment/spr_memory_fragment.yy",},},
+    {"id":{"name":"spr_memory_ph_2","path":"sprites/spr_memory_ph_2/spr_memory_ph_2.yy",},},
     {"id":{"name":"spr_memory_ph","path":"sprites/spr_memory_ph/spr_memory_ph.yy",},},
     {"id":{"name":"spr_mini_mesa_ph","path":"sprites/spr_mini_mesa_ph/spr_mini_mesa_ph.yy",},},
     {"id":{"name":"spr_npc_portrait_test","path":"sprites/spr_npc_portrait_test/spr_npc_portrait_test.yy",},},
@@ -463,9 +464,9 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
+    {"roomId":{"name":"Rm_platform_test","path":"rooms/Rm_platform_test/Rm_platform_test.yy",},},
     {"roomId":{"name":"Rm_space_ship_test","path":"rooms/Rm_space_ship_test/Rm_space_ship_test.yy",},},
     {"roomId":{"name":"rm_pointclick_test","path":"rooms/rm_pointclick_test/rm_pointclick_test.yy",},},
-    {"roomId":{"name":"Rm_platform_test","path":"rooms/Rm_platform_test/Rm_platform_test.yy",},},
     {"roomId":{"name":"rm_main_menu","path":"rooms/rm_main_menu/rm_main_menu.yy",},},
     {"roomId":{"name":"rm_window_test","path":"rooms/rm_window_test/rm_window_test.yy",},},
     {"roomId":{"name":"Rm_TopDownTest","path":"rooms/Rm_TopDownTest/Rm_TopDownTest.yy",},},

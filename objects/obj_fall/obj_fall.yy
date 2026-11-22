@@ -35,5 +35,5 @@
     "path":"sprites/spr_blue/spr_blue.yy",
   },
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }
