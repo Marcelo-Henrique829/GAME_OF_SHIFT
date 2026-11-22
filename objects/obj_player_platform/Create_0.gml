@@ -1,6 +1,10 @@
 // Estados usados pelo jogador de plataforma.
 player_dead = false;
 
+// Frações da animação de morte: inicia o fade em 35% e reinicia em 85%.
+dead_fade_start_progress = 0.35;
+dead_restart_progress = 0.85;
+
 enum PlayerStatePlatformer
 {
     IDDLE,

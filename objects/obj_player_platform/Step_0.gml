@@ -29,7 +29,12 @@ switch (state)
         // Bloqueia o controle horizontal e o pulo, mantendo a gravidade abaixo.
         spd = 0;
         hspd = 0;
-        sprite_index = spr_player_plataformer_ph_iddleLeft
+        if (sprite_index != spr_player_plataformer_ph_destroy)
+        {
+            sprite_index = spr_player_plataformer_ph_destroy;
+            image_index = 0;
+            image_speed = 1;
+        }
     break;
 
     case PlayerStatePlatformer.STOP:

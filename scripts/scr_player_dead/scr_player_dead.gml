@@ -32,6 +32,9 @@ function scr_player_dead(_player = noone)
     _player.hspd = 0;
     _player.spd = 0;
     _player.state = PlayerStatePlatformer.DEAD;
+    _player.sprite_index = spr_player_plataformer_ph_destroy;
+    _player.image_index = 0;
+    _player.image_speed = 1;
     _player.dead_trail_timer = 0;
     _controller.player_dead_active = true;
     _controller.player_dead_target = _player;
@@ -39,7 +42,7 @@ function scr_player_dead(_player = noone)
     _controller.fade_target_room = room;
     _controller.fade_in_progress = 0;
     _controller.fade_out_active = false;
-    // A câmera iniciará o fade apenas ao alcançar a aproximação máxima.
+    // O controller sincroniza o fade com a animação, sem esperar o zoom máximo.
     _controller.fade_in_active = false;
     global.fade_active = true;
     return true;
