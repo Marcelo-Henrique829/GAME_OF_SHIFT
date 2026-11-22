@@ -8,6 +8,8 @@ popup_sprite_morrer = spr_popup_destroy;
 popup_distancia_reposicionar = 500;
 popup_deslocamento_min = 50;
 popup_deslocamento_max = 200;
+// Variação vertical em torno do Y do jogador, em pixels; 0 mantém o mesmo Y.
+popup_variacao_y = 16;
 popup_tremida = 2;
 
 // Troca de estado reiniciando a animação, inclusive ao receber outro golpe.

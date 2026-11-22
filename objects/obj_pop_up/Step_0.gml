@@ -10,6 +10,14 @@ if (state == "apear" || state == "hit")
     if (image_index >= image_number - 1) popup_set_state("iddle");
 }
 
+// O contato com um popup ativo aciona a mesma morte usada pelos espinhos.
+// Os filhos herdam esta verificação; popups em destruição não causam dano.
+if (popup_ativo && visible && image_alpha > 0)
+{
+    var _contato_player = instance_place(x, y, obj_player_platform);
+    if (_contato_player != noone) scr_player_dead(_contato_player);
+}
+
 // Um clique atinge somente o popup mais à frente, incluindo os filhos.
 if (popup_ativo && visible && image_alpha > 0 && !global.player_in_menu
     && (state == "iddle" || state == "hit") && mouse_check_button_pressed(mb_left))
@@ -40,11 +48,14 @@ if (point_distance(x, y, _player.x, _player.y) > max(0, popup_distancia_reposici
     var _minimo = max(0, min(popup_deslocamento_min, popup_deslocamento_max));
     var _maximo = max(_minimo, max(popup_deslocamento_min, popup_deslocamento_max));
     var _deslocamento = random_range(_minimo, _maximo);
-    var _direcao = sign(_player.hspd);
-    if (_direcao == 0) _direcao = sign(_player.image_xscale);
+    // Usa o componente horizontal de dir, inclusive nas direções diagonais.
+    // Em uma direção só vertical, mantém o lado para o qual o jogador olha.
+    var _direcao_x = lengthdir_x(1, _player.dir);
+    var _direcao = (abs(_direcao_x) > 0.001) ? sign(_direcao_x) : sign(_player.image_xscale);
     if (_direcao == 0) _direcao = 1;
-    x = _player.x - _direcao * _deslocamento;
-    y = _player.y - sign(_player.vspd) * _deslocamento;
+    x = _player.x + _direcao * _deslocamento;
+    var _variacao_y = max(0, popup_variacao_y);
+    y = _player.y + random_range(-_variacao_y, _variacao_y);
     popup_set_state("apear");
 
     // Mantém a arte da aparição dentro da sala, respeitando a origem do sprite.
