@@ -59,7 +59,6 @@
     {"$GMFolder":"","%Name":"gba","folderPath":"folders/Spaceship/Sprites/gba.yy","name":"gba","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"inimigos","folderPath":"folders/Spaceship/Sprites/inimigos.yy","name":"inimigos","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"ship","folderPath":"folders/Spaceship/Sprites/ship.yy","name":"ship","resourceType":"GMFolder","resourceVersion":"2.0",},
-    {"$GMFolder":"","%Name":"sq_sps","folderPath":"folders/Spaceship/sq_sps.yy","name":"sq_sps","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"TopDown","folderPath":"folders/TopDown.yy","name":"TopDown","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Objetos","folderPath":"folders/TopDown/Objetos.yy","name":"Objetos","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Casas","folderPath":"folders/TopDown/Objetos/Casas.yy","name":"Casas","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -99,7 +98,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.14.4.222",
+    "IDEVersion":"2026.1.0.27",
   },
   "name":"game_of_2026",
   "resources":[

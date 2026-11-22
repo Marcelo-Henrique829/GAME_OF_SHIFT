@@ -60,6 +60,7 @@ image_angle+=2.3;
 
 p_caught = function()
 {
+timer_distroy = 180;	
 screen_shake(4,8);	
 x = lerp(x,obj_space_ship.x,.2);		
 y = lerp(y,obj_space_ship.y,.2);		
