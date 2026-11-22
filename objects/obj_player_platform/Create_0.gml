@@ -14,7 +14,7 @@ enum PlayerStatePlatformer
 espelhamento_ativo = false;
 
 // Parâmetros e velocidades do movimento.
-move_speed = 5;
+move_speed = 4;
 def_spd = move_speed;
 // Resposta do movimento horizontal (0 a 1): valores maiores respondem mais rápido.
 acceleration_lerp = 0.18;
@@ -27,7 +27,7 @@ vspd = 0;
 dir = 270;
 last_key = vk_down;
 grv = 0.5;
-jump_force = 12;
+jump_force = 8;
 
 // Coyote time: permite pular por mais 6 frames após sair da borda (0,1 s a 60 FPS).
 coyote_frames = 6;

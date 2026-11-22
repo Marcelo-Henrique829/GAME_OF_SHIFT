@@ -41,8 +41,22 @@ if (caixa_arrastando)
 {
     // Coordenadas do mundo acompanham a câmera e o zoom da sala.
     // Move com colisão também durante o arraste, sem atravessar chão ou jogador.
-    hspd = mouse_x - arraste_offset_x - x;
-    vspd = mouse_y - arraste_offset_y - y;
+    var _raio = max(0, arraste_raio);
+    var _alvo_x = mouse_x - arraste_offset_x;
+    var _alvo_y = mouse_y - arraste_offset_y;
+    var _distancia = point_distance(arraste_origem_x, arraste_origem_y, _alvo_x, _alvo_y);
+    if (_distancia > _raio)
+    {
+        var _fator = _raio / _distancia;
+        _alvo_x = arraste_origem_x + (_alvo_x - arraste_origem_x) * _fator;
+        _alvo_y = arraste_origem_y + (_alvo_y - arraste_origem_y) * _fator;
+    }
+
+    // Limita também o movimento por eixo para respeitar o raio nas colisões.
+    var _dy = y - arraste_origem_y;
+    var _alcance_x = sqrt(max(0, _raio * _raio - _dy * _dy));
+    hspd = clamp(_alvo_x, arraste_origem_x - _alcance_x, arraste_origem_x + _alcance_x) - x;
+    vspd = _alvo_y - y;
 }
 else
 {
@@ -61,7 +75,27 @@ var _requested_hspd = hspd;
 var _requested_vspd = vspd;
 hspd = clamp(hspd, _min_x - x, _max_x - x);
 vspd = clamp(vspd, _min_y - y, _max_y - y);
-scr_colision(collision_targets);
+if (caixa_arrastando)
+{
+    // Resolve X primeiro e calcula o limite vertical a partir do X alcançado.
+    // Assim uma colisão horizontal não permite ultrapassar o círculo em Y.
+    var _movimento_y = vspd;
+    vspd = 0;
+    scr_colision(collision_targets);
+    var _dx = x - arraste_origem_x;
+    var _alcance_y = sqrt(max(0, _raio * _raio - _dx * _dx));
+    vspd = clamp(y + _movimento_y, arraste_origem_y - _alcance_y,
+        arraste_origem_y + _alcance_y) - y;
+    vspd = clamp(vspd, _min_y - y, _max_y - y);
+    var _movimento_x = hspd;
+    hspd = 0;
+    scr_colision(collision_targets);
+    hspd = _movimento_x;
+}
+else
+{
+    scr_colision(collision_targets);
+}
 if (hspd != _requested_hspd) hspd = 0;
 if (vspd != _requested_vspd) vspd = 0;
 

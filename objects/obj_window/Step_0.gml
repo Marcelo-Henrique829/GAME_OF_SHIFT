@@ -36,6 +36,17 @@ if (mouse_check_button_pressed(mb_left))
 if (janela_arrastando)
 {
     // Coordenadas do mundo acompanham a câmera e o zoom da sala.
-    x = mouse_x - arraste_offset_x;
-    y = mouse_y - arraste_offset_y;
+    var _raio = max(0, arraste_raio);
+    var _alvo_x = mouse_x - arraste_offset_x;
+    var _alvo_y = mouse_y - arraste_offset_y;
+    var _distancia = point_distance(arraste_origem_x, arraste_origem_y, _alvo_x, _alvo_y);
+    if (_distancia > _raio)
+    {
+        var _fator = _raio / _distancia;
+        _alvo_x = arraste_origem_x + (_alvo_x - arraste_origem_x) * _fator;
+        _alvo_y = arraste_origem_y + (_alvo_y - arraste_origem_y) * _fator;
+    }
+
+    x = _alvo_x;
+    y = _alvo_y;
 }

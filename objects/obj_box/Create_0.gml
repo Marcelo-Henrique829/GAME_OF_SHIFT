@@ -4,6 +4,11 @@ caixa_arrastando = false;
 arraste_offset_x = 0;
 arraste_offset_y = 0;
 
+// Raio de arraste em pixels, medido a partir da posição inicial da instância.
+arraste_raio = 100;
+arraste_origem_x = x;
+arraste_origem_y = y;
+
 // Mesma gravidade e resolução de colisões do jogador de plataforma.
 grv = 0.5;
 hspd = 0;
