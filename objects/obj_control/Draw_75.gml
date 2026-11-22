@@ -2,7 +2,8 @@
 // Mostra o cursor no menu principal e nas salas de plataforma, mesmo com a UI fechada.
 if (global.fade_active) exit;
 var _show_cursor = (room == rm_main_menu)
-    || instance_exists(obj_plataformer_control) || instance_exists(obj_player_platform);
+    || instance_exists(obj_plataformer_control) || instance_exists(obj_player_platform)
+    || instance_exists(obj_memory_image);
 if (instance_exists(obj_UI_player) && global.player_in_menu ) _show_cursor = true;
 if (!_show_cursor) exit;
 
@@ -29,6 +30,15 @@ with (obj_box)
 with (obj_shortcut)
 {
     if (visible && image_alpha > 0 && sprite_index != -1 && is_hovered) _selected = true;
+}
+with (obj_memory_fragment)
+{
+    if (visible && image_alpha > 0 && sprite_index != -1 && is_hovered) _selected = true;
+}
+with (obj_memory_image)
+{
+    if (visible && image_alpha > 0 && memoria_revelando && memoria_alpha > 0
+        && menu_hovered) _selected = true;
 }
 if (global.player_in_menu)
 {

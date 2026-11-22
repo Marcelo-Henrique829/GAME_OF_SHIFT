@@ -37,7 +37,29 @@ if (_controller != noone && _controller.player_dead_active)
 else if (global.player_in_menu && (instance_exists(obj_player_platform) || instance_exists(obj_player_topdown))) scr_camera_zoom_in(menu_zoom_scale);
 else if (_dialogue_active) scr_camera_zoom_in(dialogue_zoom_scale);
 else if (_fade_in) scr_camera_zoom_in();
-else scr_camera_zoom_out();
+else
+{
+    // Durante o jogo, aproxima conforme a distância do jogador aos fragmentos.
+    var _zoom_memoria = 1;
+    var _player = instance_find(obj_player_platform, 0);
+    if (_player != noone)
+    {
+        for (var _i = 0; _i < instance_number(obj_memory_fragment); _i++)
+        {
+            var _fragmento = instance_find(obj_memory_fragment, _i);
+            if (!_fragmento.zoom_proximidade_ativo || _fragmento.zoom_proximidade_raio <= 0
+                || !_fragmento.visible || _fragmento.image_alpha <= 0) continue;
+
+            var _distancia = point_distance(_player.x, _player.y, _fragmento.x, _fragmento.y);
+            var _proximidade = clamp(1 - _distancia / _fragmento.zoom_proximidade_raio, 0, 1);
+            var _escala = lerp(1, max(1, _fragmento.zoom_proximidade_max), _proximidade);
+            // Vários fragmentos usam a maior aproximação, sem somar seus efeitos.
+            _zoom_memoria = max(_zoom_memoria, _escala);
+        }
+    }
+    if (_zoom_memoria > 1) scr_camera_zoom_in(_zoom_memoria);
+    else scr_camera_zoom_out();
+}
 
 // Redimensiona antes de centralizar para manter o player no enquadramento.
 camera_set_view_size(view_camera[0], global.camera_width / zoom, global.camera_height / zoom);
