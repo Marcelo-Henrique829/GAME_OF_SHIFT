@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_desenhar_painel_imagem",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_desenhar_painel_imagem",
+  "parent":{
+    "name":"Interface",
+    "path":"folders/Compartilhado/Interface.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
