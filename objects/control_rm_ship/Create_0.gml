@@ -25,7 +25,6 @@ create_surface = function()
 #endregion
 
 
-
 create_base_enemy = function()
 {
  static timer_create = 240;
@@ -80,8 +79,6 @@ create_enemy_shooter = function()
 	 }
 }
 
-
-
 screenshake = function()
 {
    view_xport = global.screen_shakex;
@@ -93,16 +90,18 @@ screenshake = function()
 
 black_screen = function()
 {
-	if(global.black_screen == 0) exit;
-	var _c = c_black;
-	static _time = game_get_speed(gamespeed_fps) * 5;
-	var _t = get_timer() / 100000;
-	var _alpha = cos(_t) * 5;
-	_time--;
-	draw_sprite_ext(spr_black_screen,0,0,0,21,20,1,c_black,_alpha);
-	 if(_time <= 0)
-	  {  
-		_time = game_get_speed(gamespeed_fps) * 10;  
-		global.black_screen = 0;		
-	  }
+		if(global.black_screen == 0) exit;
+		var _c = c_black;
+		static _time = game_get_speed(gamespeed_fps) * 10;
+		var _t = get_timer() / 190500;
+		var _alpha = cos(_t) * 3;
+		_time--;
+	
+		draw_sprite_ext(spr_black_screen,0,0,0,21,20,1,c_black,_alpha);
+		 if(_time <= 0)
+		  {  
+			_time = game_get_speed(gamespeed_fps) * 10;  
+			global.black_screen = 0;		
+		  }
+
 }

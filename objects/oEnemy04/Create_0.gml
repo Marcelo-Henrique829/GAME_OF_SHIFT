@@ -74,10 +74,11 @@ damage = function()
 	if(position_meeting(x,y,obj_shot)) //levando tiro
 		{
 			hp--;
-			dust_effect(x,y)
+			screen_shake(18,15); 
+			hitstop(2,40);
+			dust_effect(x,y);
 			_x += random_range(6,10);
 			_y += random_range(8,12);
-			screen_shake(2,3); 
 			with(obj_shot)
 			 {
 				instance_destroy();
@@ -86,6 +87,7 @@ damage = function()
 	
 	if(hp <= 0)
 	 {
+		screen_shake(20,30); 
 		sprite_index = spr_explosion; 
 		state = ENEMY4.DEATH;
 	 }

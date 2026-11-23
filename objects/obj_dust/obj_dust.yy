@@ -9,8 +9,8 @@
   "name":"obj_dust",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objetos",
-    "path":"folders/Spaceship/Objetos.yy",
+    "name":"effects",
+    "path":"folders/Spaceship/Objetos/effects.yy",
   },
   "parentObjectId":null,
   "persistent":false,

@@ -67,10 +67,10 @@ y = lerp(y,obj_space_ship.y,.2);
 	
 image_angle += 15;	
 image_speed = 0.2;
-	
-	
+		
 	if(image_index >= image_number -1)
 	 {
+		hitstop(2,20); 
 		global.black_screen = 1; 
 		instance_destroy();
 	 }

@@ -26,22 +26,23 @@ x += hspd;
 
 	if(place_meeting(x,y,s_shot))
 	 { 
+		hitstop(2,40) 
+	    screen_shake(22,25);  
 		dust_effect(x,y) 
 		timer_divide = 0;
-		screen_shake(22,25);
 	 }
 
 }
 
 divide = function()
 {
-	dust_effect(x,y);
 	timer_divide--;	
 	var _spd = 7.4;  
 	if(timer_divide <= 0)
 	 {
 		for(var i = 0; i <= 7;i++)
-		 {			 
+		 {	
+			dust_effect(x,y); 
 			var _wre = instance_create_layer(x,y,"shot",wreck);
 			_wre.hspeed = lengthdir_x(_spd, 45*(i));
 			_wre.vspeed = lengthdir_y(_spd,-45*(i));

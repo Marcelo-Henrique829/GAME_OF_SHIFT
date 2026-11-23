@@ -64,8 +64,9 @@ damage = function()
 	if(position_meeting(x,y,s_shot)) //levando tiro
 		{
 			dust_effect(x,y);
+			screen_shake(12,15); 
+			hitstop(2,40);
 			hp--;
-			screen_shake(6,5); 
 			with(s_shot)
 			 {
 				instance_destroy();

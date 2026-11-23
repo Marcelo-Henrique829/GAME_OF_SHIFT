@@ -1,5 +1,5 @@
 screenshake();
-
+show_debug_overlay(1);
 
 if(ship.state = SHIP_STATE.DEFEAT) exit
 
