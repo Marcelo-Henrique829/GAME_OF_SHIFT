@@ -26,6 +26,7 @@ x += hspd;
 
 	if(place_meeting(x,y,s_shot))
 	 { 
+		dust_effect(x,y) 
 		timer_divide = 0;
 		screen_shake(22,25);
 	 }
@@ -34,6 +35,7 @@ x += hspd;
 
 divide = function()
 {
+	dust_effect(x,y);
 	timer_divide--;	
 	var _spd = 7.4;  
 	if(timer_divide <= 0)

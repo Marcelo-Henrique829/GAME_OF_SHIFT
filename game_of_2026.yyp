@@ -147,6 +147,7 @@
     {"id":{"name":"obj_desk_ph","path":"objects/obj_desk_ph/obj_desk_ph.yy",},},
     {"id":{"name":"Obj_dialogo","path":"objects/Obj_dialogo/Obj_dialogo.yy",},},
     {"id":{"name":"obj_disapear","path":"objects/obj_disapear/obj_disapear.yy",},},
+    {"id":{"name":"obj_dust","path":"objects/obj_dust/obj_dust.yy",},},
     {"id":{"name":"obj_estante_1_ph","path":"objects/obj_estante_1_ph/obj_estante_1_ph.yy",},},
     {"id":{"name":"obj_estante_3_ph","path":"objects/obj_estante_3_ph/obj_estante_3_ph.yy",},},
     {"id":{"name":"obj_estante_4_ph","path":"objects/obj_estante_4_ph/obj_estante_4_ph.yy",},},
@@ -464,8 +465,8 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
-    {"roomId":{"name":"Rm_platform_test","path":"rooms/Rm_platform_test/Rm_platform_test.yy",},},
     {"roomId":{"name":"Rm_space_ship_test","path":"rooms/Rm_space_ship_test/Rm_space_ship_test.yy",},},
+    {"roomId":{"name":"Rm_platform_test","path":"rooms/Rm_platform_test/Rm_platform_test.yy",},},
     {"roomId":{"name":"rm_pointclick_test","path":"rooms/rm_pointclick_test/rm_pointclick_test.yy",},},
     {"roomId":{"name":"rm_main_menu","path":"rooms/rm_main_menu/rm_main_menu.yy",},},
     {"roomId":{"name":"rm_window_test","path":"rooms/rm_window_test/rm_window_test.yy",},},

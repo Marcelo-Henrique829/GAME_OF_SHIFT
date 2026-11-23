@@ -74,6 +74,7 @@ damage = function()
 	if(position_meeting(x,y,obj_shot)) //levando tiro
 		{
 			hp--;
+			dust_effect(x,y)
 			_x += random_range(6,10);
 			_y += random_range(8,12);
 			screen_shake(2,3); 

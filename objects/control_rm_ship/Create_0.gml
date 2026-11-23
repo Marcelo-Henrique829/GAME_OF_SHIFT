@@ -2,8 +2,29 @@ randomise();
 enemys = [oEnemy_sps,oEnemy_explode,oEnemy03];
 gba = obj_gba;
 gba_blocks = [obj_block1,obj_block2,obj_block3];
-
 ship = obj_space_ship;
+
+#region surface
+global.surface = surface_create(room_width,room_height);
+
+create_surface = function()
+{
+	if(!surface_exists(global.surface))
+	 {
+		global.surface = surface_create(room_width,room_height);		
+		surface_set_target(surface);
+		draw_clear_alpha(c_black,0);	 
+		surface_reset_target();
+	 }
+	else
+	 {
+		draw_surface(global.surface,0,0);
+	 }
+}
+
+#endregion
+
+
 
 create_base_enemy = function()
 {
@@ -58,6 +79,8 @@ create_enemy_shooter = function()
 		game_get_speed(gamespeed_fps)*_t_max);
 	 }
 }
+
+
 
 screenshake = function()
 {

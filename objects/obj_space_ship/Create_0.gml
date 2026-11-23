@@ -102,6 +102,7 @@ ship_control = function()
 	   {
 			hp -= 1;
 			damage = 1;
+			dust_effect(x,y);
 			screen_shake(25,22);
 	   }	   
 	  if(damage)
