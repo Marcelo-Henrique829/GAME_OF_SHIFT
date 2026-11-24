@@ -26,9 +26,8 @@ x += hspd;
 
 	if(place_meeting(x,y,s_shot))
 	 { 
+		screen_shake(22,25);   
 		hitstop(2,40) 
-	    screen_shake(22,25);  
-		dust_effect(x,y) 
 		timer_divide = 0;
 	 }
 

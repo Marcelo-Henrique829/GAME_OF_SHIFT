@@ -1,6 +1,6 @@
-	if((x >= room_width) || (x <= 0))
-			 {
+if(position_meeting(x,y,enemy_ar))
+ {
+				dust_effect(x,y);  
 		 	    instance_destroy();
-		    	//_timer_destroy = 180;
-		     }
+ }
 	

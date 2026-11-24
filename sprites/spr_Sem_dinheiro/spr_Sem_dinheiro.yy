@@ -29,7 +29,7 @@
   "origin":4,
   "parent":{
     "name":"inimigos",
-    "path":"folders/Plataforma/Sprites/inimigos.yy",
+    "path":"folders/Spaceship/Plataforma/Sprites/inimigos.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

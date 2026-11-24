@@ -9,7 +9,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"inimigos",
-    "path":"folders/Plataforma/Objetos/inimigos.yy",
+    "path":"folders/Spaceship/Plataforma/Objetos/inimigos.yy",
   },
   "parentObjectId":{
     "name":"obj_pop_up",

@@ -63,7 +63,7 @@
   "origin":4,
   "parent":{
     "name":"Jogador",
-    "path":"folders/Plataforma/Sprites/Jogador.yy",
+    "path":"folders/Spaceship/Plataforma/Sprites/Jogador.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

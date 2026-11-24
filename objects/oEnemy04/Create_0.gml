@@ -1,4 +1,4 @@
-hp = 50;
+hp = 300;
 x = room_width / 2;
 y = -110;
 
@@ -45,12 +45,12 @@ search = function()
 shot = function()
 {
 	damage();
-	image_angle += (hp / 8) + 0.4;	
+	image_angle += (hp / 24) + 0.4;	
 	static _t_shot = 20;
 	_t_shot--;
 	if(_t_shot <= 0)
 	 {
-		screen_shake(3,3);
+		screen_shake(2,2);
 		var _s = instance_create_layer(x,y,"shot",oWreckage);
 		_s.hspeed = lengthdir_x(50,image_angle);
 		_s.vspeed = lengthdir_y(50,image_angle);
@@ -62,7 +62,7 @@ shot = function()
 
 explode = function()
 {
-		
+		screen_shake(12,12);
 		if(image_index >= image_number-1)
 		 {
 			instance_destroy();
@@ -71,18 +71,13 @@ explode = function()
 
 damage = function()
 {
-	if(position_meeting(x,y,obj_shot)) //levando tiro
+	if(place_meeting(x,y,obj_shot)) //levando tiro
 		{
 			hp--;
-			screen_shake(18,15); 
-			hitstop(2,40);
-			dust_effect(x,y);
+			screen_shake(2,2); 
+			hitstop(2,70);			
 			_x += random_range(6,10);
 			_y += random_range(8,12);
-			with(obj_shot)
-			 {
-				instance_destroy();
-			 }
 		}
 	
 	if(hp <= 0)
@@ -98,7 +93,7 @@ shake_effect = function()
 
 draw_sprite_ext(sprite_index,image_speed,_x,_y,1,1,image_angle,c_white,1);
 
-	_x = lerp(_x,x,.1);
-	_y = lerp(_y,y,.1);
+	_x = lerp(_x,x,.8);
+	_y = lerp(_y,y,.8);
 
 }

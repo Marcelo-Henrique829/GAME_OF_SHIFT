@@ -1,4 +1,4 @@
-hp = 3;
+hp = 5;
 player = obj_space_ship;
 s_shot = obj_shot;
 enemys = [oEnemy_sps,oEnemy03];
@@ -28,16 +28,11 @@ move_to_ship = function()
 damage = function()
 {
 	
-	if(position_meeting(x,y,s_shot)) //levando tiro
-		{
-			dust_effect(x,y);
+	if(place_meeting(x,y,s_shot)) //levando tiro
+		{			
 			hitstop(2,40);
 			hp--;
-			screen_shake(10,15); 
-			with(s_shot)
-			 {
-				instance_destroy();
-			 }
+			screen_shake(8,8); 
 		}	
 		
 	if(hp <= 0)

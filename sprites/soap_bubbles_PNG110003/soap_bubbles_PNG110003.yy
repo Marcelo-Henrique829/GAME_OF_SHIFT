@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Efeitos",
-    "path":"folders/Plataforma/Sprites/Efeitos.yy",
+    "path":"folders/Spaceship/Plataforma/Sprites/Efeitos.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

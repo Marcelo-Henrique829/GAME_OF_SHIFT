@@ -60,7 +60,7 @@
   "origin":4,
   "parent":{
     "name":"popup",
-    "path":"folders/Plataforma/Sprites/misc/popup.yy",
+    "path":"folders/Spaceship/Plataforma/Sprites/misc/popup.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

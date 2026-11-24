@@ -135,7 +135,7 @@
   "name":"Rm_platform_test",
   "parent":{
     "name":"Salas",
-    "path":"folders/Plataforma/Salas.yy",
+    "path":"folders/Spaceship/Plataforma/Salas.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

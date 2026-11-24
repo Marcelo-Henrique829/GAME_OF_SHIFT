@@ -9,7 +9,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"icones",
-    "path":"folders/Plataforma/Objetos/colisores/icones.yy",
+    "path":"folders/Spaceship/Plataforma/Objetos/colisores/icones.yy",
   },
   "parentObjectId":null,
   "persistent":false,

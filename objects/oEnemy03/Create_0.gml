@@ -1,4 +1,4 @@
-hp = 5;
+hp = 10;
 spd = 4; 
 shot = oWreckage;
 ship = obj_space_ship;
@@ -22,7 +22,6 @@ else
 {
   state = EN03_STATES.ENTER01;
 }
-
 
 enter_room01 = function()
 {
@@ -61,17 +60,12 @@ effect = function()
 damage = function()
 {
 	
-	if(position_meeting(x,y,s_shot)) //levando tiro
-		{
-			dust_effect(x,y);
-			screen_shake(12,15); 
+	if(place_meeting(x,y,s_shot)) //levando tiro
+		{			
+			screen_shake(8,12); 
 			hitstop(2,40);
 			hp--;
-			with(s_shot)
-			 {
-				instance_destroy();
-			 }
-		}	
+		}
 		
 	if(hp <= 0)
 	 {

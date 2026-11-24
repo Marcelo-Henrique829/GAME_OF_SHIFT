@@ -6,7 +6,7 @@
   "name":"simple_colision",
   "parent":{
     "name":"Scripts",
-    "path":"folders/Plataforma/Objetos/Scripts.yy",
+    "path":"folders/Spaceship/Plataforma/Objetos/Scripts.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",
