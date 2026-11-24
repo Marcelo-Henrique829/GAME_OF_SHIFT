@@ -1,7 +1,7 @@
 // DRAW GUI END — mantém o cursor acima da interface e independente do zoom.
-// Mostra o cursor no menu principal e nas salas de plataforma, mesmo com a UI fechada.
+// Mostra o cursor no menu, no Palácio da Memória e nas salas de plataforma.
 if (global.fade_active) exit;
-var _show_cursor = (room == rm_main_menu)
+var _show_cursor = (room == rm_main_menu || room == rm_memory_palace)
     || instance_exists(obj_plataformer_control) || instance_exists(obj_player_platform)
     || instance_exists(obj_memory_image);
 if (instance_exists(obj_UI_player) && global.player_in_menu ) _show_cursor = true;
@@ -39,6 +39,13 @@ with (obj_memory_image)
 {
     if (visible && image_alpha > 0 && memoria_revelando && memoria_alpha > 0
         && menu_hovered) _selected = true;
+}
+if (room == rm_memory_palace)
+{
+    with (obj_panel)
+    {
+        if (visible && image_alpha > 0 && painel_hover) _selected = true;
+    }
 }
 if (global.player_in_menu)
 {

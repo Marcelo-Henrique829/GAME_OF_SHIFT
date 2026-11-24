@@ -14,12 +14,19 @@ painel_clique_processado = false;
 for (var _i = 0; _i < _total_paineis; ++_i)
 {
     var _painel = instance_find(obj_panel, _i);
+    if (painel_atualizar) _painel.painel_hover = false;
     switch (_painel.index)
     {
         case 0:
-            scr_desenhar_painel_imagem(_painel, spr_memory_ph_2, "Memória");
-            
-        break;
+            if (global.memory_fragment.total > 0)
+            {
+                scr_desenhar_painel_imagem(_painel, spr_memory_ph_2, "Memória");
+            }
+            else
+            {
+                scr_desenhar_painel_bloqueado(_painel, spr_memory_fragment, "memory blocked");
+            }
+            break;
 
         case 1:
             scr_desenhar_painel_texto(_painel, "Menu", fn_UI_1, rm_main_menu, painel_atualizar);

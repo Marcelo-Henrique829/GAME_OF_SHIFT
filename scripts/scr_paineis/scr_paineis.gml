@@ -37,10 +37,11 @@ function scr_desenhar_painel_imagem(_painel, _imagem, _texto = "",
     // Aplica o lerp só na primeira viewport. O hover volta a atuar ao chegar à origem.
     if (painel_atualizar)
     {
+        _painel.painel_hover = scr_mouse_sobre_painel_imagem(_painel);
         var _escala = _escala_base;
         var _na_origem = point_distance(_painel.x, _painel.y, _painel.xstart, _painel.ystart) < 1;
         if (_selecionado) _escala *= _multiplicador_selecao;
-        else if (_na_origem && scr_mouse_sobre_painel_imagem(_painel)) _escala *= _multiplicador_hover;
+        else if (_na_origem && _painel.painel_hover) _escala *= _multiplicador_hover;
 
         _painel.x = lerp(_painel.x, _selecionado ? room_width * 0.5 : _painel.xstart, _velocidade_lerp);
         _painel.y = lerp(_painel.y, _selecionado ? room_height * 0.5 : _painel.ystart, _velocidade_lerp);
@@ -74,6 +75,71 @@ function scr_desenhar_painel_imagem(_painel, _imagem, _texto = "",
     draw_set_font(_fonte_anterior);
     draw_set_halign(_halign);
     draw_set_valign(_valign);
+}
+
+/// Desenha o fragmento bloqueado na origem do painel. O hover revela o aviso e o clique inicia o boing.
+/// @param _painel Instância de obj_panel que representa a memória.
+/// @param _imagem Sprite usado enquanto a memória está bloqueada.
+/// @param _texto Aviso exibido acima do fragmento durante o hover.
+function scr_desenhar_painel_bloqueado(_painel, _imagem, _texto)
+{
+    // Ao bloquear de novo, encerra a seleção e prepara a escala do fragmento.
+    if (_painel.painel_imagem_ativo || _painel.sprite_index != _imagem)
+    {
+        _painel.painel_imagem_ativo = false;
+        _painel.sprite_index = _imagem;
+        _painel.image_xscale = 1;
+        _painel.image_yscale = 1;
+        _painel.boing_frames = 0;
+        _painel.boing_escala = 0;
+        _painel.escala_texto_bloqueio = 0;
+
+        if (global.selected.index == _painel.index)
+        {
+            global.selected.is_selected = false;
+            global.selected.index = -1;
+        }
+    }
+
+    if (painel_atualizar)
+    {
+        var _hover = scr_mouse_sobre_painel_imagem(_painel);
+        _painel.painel_hover = _hover;
+        var _duracao_boing = 24;
+        if (_hover && mouse_check_button_pressed(mb_left)) _painel.boing_frames = _duracao_boing;
+        scr_atualizar_boing_painel(_painel, _duracao_boing, 0.22, 2.5);
+
+        var _escala = _hover ? 1.5 : 1;
+        _painel.x = lerp(_painel.x, _painel.xstart, 0.15);
+        _painel.y = lerp(_painel.y, _painel.ystart, 0.15);
+        _painel.image_xscale = lerp(_painel.image_xscale, _escala, 0.15);
+        _painel.image_yscale = lerp(_painel.image_yscale, _escala, 0.15);
+        _painel.escala_texto_bloqueio = lerp(_painel.escala_texto_bloqueio, _hover ? 0.4 : 0, 0.15);
+    }
+
+    if (!_painel.visible) return;
+
+    draw_sprite_ext(_imagem, _painel.image_index, _painel.x, _painel.y,
+        _painel.image_xscale * (1 - _painel.boing_escala),
+        _painel.image_yscale * (1 + _painel.boing_escala),
+        _painel.image_angle, _painel.image_blend, _painel.image_alpha);
+
+    if (_painel.escala_texto_bloqueio <= 0.005) return;
+
+    // A legenda acompanha a borda superior do fragmento enquanto sua escala muda.
+    var _fonte_anterior = draw_get_font();
+    var _halign_anterior = draw_get_halign();
+    var _valign_anterior = draw_get_valign();
+    draw_set_font(fn_UI_2);
+    draw_set_halign(fa_center);
+    draw_set_valign(fa_bottom);
+    draw_text_transformed_color((_painel.bbox_left + _painel.bbox_right) * 0.5,
+        _painel.bbox_top - 8, _texto,
+        _painel.escala_texto_bloqueio, _painel.escala_texto_bloqueio, 0,
+        c_black, c_black, c_black, c_black, _painel.image_alpha);
+    draw_set_font(_fonte_anterior);
+    draw_set_halign(_halign_anterior);
+    draw_set_valign(_valign_anterior);
 }
 
 /// Seleciona o painel sob o mouse. Um segundo clique nele limpa global.selected.
@@ -166,6 +232,7 @@ function scr_desenhar_painel_texto(_painel, _texto, _fonte, _destino, _atualizar
         var _hover = point_in_rectangle(mouse_x, mouse_y,
             _painel.x - _meia_largura, _painel.y - _meia_altura,
             _painel.x + _meia_largura, _painel.y + _meia_altura);
+        _painel.painel_hover = _hover;
 
         var _duracao = max(0, round(_frames_boing));
         if (_hover && mouse_check_button_pressed(mb_left))
@@ -197,12 +264,7 @@ function scr_desenhar_painel_texto(_painel, _texto, _fonte, _destino, _atualizar
         _painel.image_xscale = lerp(_painel.image_xscale, _escala, _resposta);
         _painel.image_yscale = lerp(_painel.image_yscale, _escala, _resposta);
 
-        // O seno alterna a deformação e o lerp reduz sua amplitude até zero.
-        _painel.boing_frames = min(_painel.boing_frames, _duracao);
-        var _progresso = 1 - _painel.boing_frames / max(1, _duracao);
-        var _amplitude = lerp(clamp(_intensidade_boing, 0, 0.99), 0, _progresso);
-        _painel.boing_escala = sin(_progresso * 2 * pi * _oscilacoes_boing) * _amplitude;
-        _painel.boing_frames = max(0, _painel.boing_frames - 1);
+        scr_atualizar_boing_painel(_painel, _duracao, _intensidade_boing, _oscilacoes_boing);
     }
 
     // Comprime um eixo enquanto estica o outro. A posição do centro fica fixa.
@@ -214,4 +276,15 @@ function scr_desenhar_painel_texto(_painel, _texto, _fonte, _destino, _atualizar
     draw_set_font(_fonte_anterior);
     draw_set_halign(_halign_anterior);
     draw_set_valign(_valign_anterior);
+}
+
+/// Avança a deformação do painel em um quadro. Para iniciar, atribua a duração a boing_frames.
+function scr_atualizar_boing_painel(_painel, _duracao, _intensidade, _oscilacoes)
+{
+    // O seno alterna a deformação e o lerp reduz sua amplitude até zero.
+    _painel.boing_frames = min(_painel.boing_frames, _duracao);
+    var _progresso = 1 - _painel.boing_frames / max(1, _duracao);
+    var _amplitude = lerp(clamp(_intensidade, 0, 0.99), 0, _progresso);
+    _painel.boing_escala = sin(_progresso * 2 * pi * _oscilacoes) * _amplitude;
+    _painel.boing_frames = max(0, _painel.boing_frames - 1);
 }
