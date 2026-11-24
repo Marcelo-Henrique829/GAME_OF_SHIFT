@@ -1,7 +1,23 @@
-function scr_desenhar_painel_imagem(_painel, _imagem, _texto,
-    _escala_base, _multiplicador_hover, _multiplicador_selecao, _velocidade_lerp,
-    _moldura, _fonte_texto, _escala_texto, _cor_texto, _distancia_texto)
+/// Desenha um painel de imagem que vai ao centro da sala ao ser selecionado.
+/// Chame no Draw do obj_panel_control. O controlador fornece a seleção e o estado da passagem atual.
+/// @param _painel Instância de obj_panel. Seu index identifica a seleção e xstart/ystart marcam a origem.
+/// @param _imagem Sprite exibido no painel e usado para calcular sua área de hover e clique.
+/// @param _texto Legenda exibida abaixo da imagem selecionada. Use "" para ocultar a legenda.
+/// @param _escala_base Tamanho em repouso. Use 1 para o tamanho original do sprite.
+/// @param _multiplicador_hover Fator aplicado à escala base ao passar o mouse. Use 1 para manter o tamanho.
+/// @param _multiplicador_selecao Fator aplicado à escala base quando selecionado.
+/// @param _velocidade_lerp Fração percorrida por quadro até a posição e escala alvo, entre 0 e 1.
+/// @param _moldura Sprite ajustado às dimensões da imagem. Use -1 para exibir só a imagem.
+/// @param _fonte_texto Fonte da legenda.
+/// @param _escala_texto Tamanho da legenda. Use 1 para o tamanho original da fonte.
+/// @param _cor_texto Cor da legenda.
+/// @param _distancia_texto Espaço em pixels entre a borda inferior da imagem e a legenda.
+function scr_desenhar_painel_imagem(_painel, _imagem, _texto = "",
+    _escala_base = 0.1, _multiplicador_hover = 1.08, _multiplicador_selecao = 4.8, _velocidade_lerp = 0.15,
+    _moldura = spr_window_template_ph, _fonte_texto = fn_UI_2, _escala_texto = 1,
+    _cor_texto = c_black, _distancia_texto = 5)
 {
+    // Aplica a escala inicial na primeira chamada ou quando a imagem troca.
     if (!_painel.painel_imagem_ativo || _painel.sprite_index != _imagem)
     {
         _painel.sprite_index = _imagem;
@@ -10,6 +26,7 @@ function scr_desenhar_painel_imagem(_painel, _imagem, _texto,
         _painel.painel_imagem_ativo = true;
     }
 
+    // Todos os painéis usam a mesma seleção. O primeiro painel da passagem processa o clique.
     if (painel_atualizar && !painel_clique_processado)
     {
         painel_clique_processado = true;
@@ -17,6 +34,7 @@ function scr_desenhar_painel_imagem(_painel, _imagem, _texto,
     }
 
     var _selecionado = global.selected.is_selected && global.selected.index == _painel.index;
+    // Aplica o lerp só na primeira viewport. O hover volta a atuar ao chegar à origem.
     if (painel_atualizar)
     {
         var _escala = _escala_base;
@@ -32,6 +50,7 @@ function scr_desenhar_painel_imagem(_painel, _imagem, _texto,
 
     if (!_painel.visible || _painel.sprite_index == -1) return;
 
+    // Desenha a imagem na escala atual e sobrepõe a moldura.
     draw_sprite_ext(_imagem, _painel.image_index, _painel.x, _painel.y,
         _painel.image_xscale, _painel.image_yscale, _painel.image_angle,
         _painel.image_blend, _painel.image_alpha);
@@ -39,6 +58,7 @@ function scr_desenhar_painel_imagem(_painel, _imagem, _texto,
 
     if (_texto == "" || !_selecionado) return;
 
+    // Centraliza a legenda abaixo da imagem e restaura o estado de desenho ao terminar.
     var _fonte_anterior = draw_get_font();
     var _halign = draw_get_halign();
     var _valign = draw_get_valign();
@@ -56,6 +76,7 @@ function scr_desenhar_painel_imagem(_painel, _imagem, _texto,
     draw_set_valign(_valign);
 }
 
+/// Seleciona o painel sob o mouse. Um segundo clique nele limpa global.selected.
 function scr_processar_clique_painel_imagem()
 {
     if (!mouse_check_button_pressed(mb_left)) return;
@@ -82,6 +103,7 @@ function scr_processar_clique_painel_imagem()
     global.selected.index = _ja_selecionado ? -1 : _index_clicado;
 }
 
+/// Testa os limites da instância e ignora imagens invisíveis ou totalmente transparentes.
 function scr_mouse_sobre_painel_imagem(_painel)
 {
     return _painel.visible && _painel.image_alpha > 0 && _painel.sprite_index != -1
@@ -89,6 +111,7 @@ function scr_mouse_sobre_painel_imagem(_painel)
             _painel.bbox_right, _painel.bbox_bottom);
 }
 
+/// Alinha a moldura ao canto superior esquerdo do sprite, compensando sua origem e escala.
 function scr_desenhar_moldura_painel(_painel, _moldura)
 {
     if (!sprite_exists(_moldura)) return;

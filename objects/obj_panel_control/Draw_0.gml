@@ -17,17 +17,21 @@ for (var _i = 0; _i < _total_paineis; ++_i)
     switch (_painel.index)
     {
         case 0:
-            desenhar_painel_imagem(_painel, spr_memory_ph_2, "Memória",
-                0.1, 1.08, 4.8, 0.15, // Escala base, hover, seleção e lerp.
-                spr_window_template_ph,
-                fnt_shortcut, 4, c_black, 5); // Fonte, escala, cor e distância do texto.
-            break;
+            scr_desenhar_painel_imagem(_painel, spr_memory_ph_2, "Memória");
+            
+        break;
+
+        case 1:
+            
+            scr_desenhar_painel_texto(_painel, "Menu", fn_UI_1, rm_main_menu, painel_atualizar);
+            
+        break;
 
         default:
-            with (_painel)
-            {
-                if (visible) draw_self();
-            }
-            break;
+        with (_painel)
+        {
+            if (visible) draw_self();
+        }
+        break;
     }
 }

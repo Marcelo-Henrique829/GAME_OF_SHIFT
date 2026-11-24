@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_desenhar_painel_texto",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_desenhar_painel_texto",
+  "parent":{
+    "name":"Interface",
+    "path":"folders/Compartilhado/Interface.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
