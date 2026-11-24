@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"scr_direction",
+  "%Name":"scr_paineis",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"scr_direction",
+  "name":"scr_paineis",
   "parent":{
     "name":"Scripts",
-    "path":"folders/Spaceship/Plataforma/Objetos/Scripts.yy",
+    "path":"folders/Scripts.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

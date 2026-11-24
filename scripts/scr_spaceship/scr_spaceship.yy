@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scr_spaceship",
   "parent":{
-    "name":"Objetos",
-    "path":"folders/Spaceship/Objetos.yy",
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

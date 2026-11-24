@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"scr_dir_state_4_directions",
+  "%Name":"scr_camera",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"scr_dir_state_4_directions",
+  "name":"scr_camera",
   "parent":{
     "name":"Scripts",
-    "path":"folders/TopDown/Scripts.yy",
+    "path":"folders/Scripts.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

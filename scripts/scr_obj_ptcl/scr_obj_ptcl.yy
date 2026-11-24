@@ -6,7 +6,7 @@
   "name":"scr_obj_ptcl",
   "parent":{
     "name":"Scripts",
-    "path":"folders/Point and Click/Scripts.yy",
+    "path":"folders/Scripts.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

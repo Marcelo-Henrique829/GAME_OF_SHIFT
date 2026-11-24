@@ -6,7 +6,7 @@
   "name":"scr_fade",
   "parent":{
     "name":"Scripts",
-    "path":"folders/Spaceship/Plataforma/Objetos/Scripts.yy",
+    "path":"folders/Scripts.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

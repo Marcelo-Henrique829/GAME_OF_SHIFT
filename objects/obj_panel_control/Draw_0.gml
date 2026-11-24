@@ -22,10 +22,8 @@ for (var _i = 0; _i < _total_paineis; ++_i)
         break;
 
         case 1:
-            
             scr_desenhar_painel_texto(_painel, "Menu", fn_UI_1, rm_main_menu, painel_atualizar);
-            
-        break;
+            break;
 
         default:
         with (_painel)

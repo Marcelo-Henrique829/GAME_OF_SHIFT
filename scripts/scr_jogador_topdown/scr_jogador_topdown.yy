@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"scr_screen_shake",
+  "%Name":"scr_jogador_topdown",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"scr_screen_shake",
+  "name":"scr_jogador_topdown",
   "parent":{
     "name":"Scripts",
-    "path":"folders/Spaceship/Plataforma/Objetos/Scripts.yy",
+    "path":"folders/Scripts.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",
