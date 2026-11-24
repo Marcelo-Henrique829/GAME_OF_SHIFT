@@ -26,13 +26,6 @@ function scr_desenhar_painel_imagem(_painel, _imagem, _texto = "",
         _painel.painel_imagem_ativo = true;
     }
 
-    // Todos os painéis usam a mesma seleção. O primeiro painel da passagem processa o clique.
-    if (painel_atualizar && !painel_clique_processado)
-    {
-        painel_clique_processado = true;
-        scr_processar_clique_painel_imagem();
-    }
-
     var _selecionado = global.selected.is_selected && global.selected.index == _painel.index;
     // Aplica o lerp só na primeira viewport. O hover volta a atuar ao chegar à origem.
     if (painel_atualizar)
@@ -51,11 +44,13 @@ function scr_desenhar_painel_imagem(_painel, _imagem, _texto = "",
 
     if (!_painel.visible || _painel.sprite_index == -1) return;
 
+    var _alpha = scr_opacidade_painel(_painel);
+
     // Desenha a imagem na escala atual e sobrepõe a moldura.
     draw_sprite_ext(_imagem, _painel.image_index, _painel.x, _painel.y,
         _painel.image_xscale, _painel.image_yscale, _painel.image_angle,
-        _painel.image_blend, _painel.image_alpha);
-    scr_desenhar_moldura_painel(_painel, _moldura);
+        _painel.image_blend, _alpha);
+    scr_desenhar_moldura_painel(_painel, _moldura, _alpha);
 
     if (_texto == "" || !_selecionado) return;
 
@@ -70,7 +65,7 @@ function scr_desenhar_painel_imagem(_painel, _imagem, _texto = "",
     var _texto_x = (_painel.bbox_left + _painel.bbox_right) * 0.5;
     var _texto_y = _painel.bbox_bottom + _distancia_texto;
     draw_text_transformed_color(_texto_x, _texto_y, _texto, _escala_texto, _escala_texto,
-        0, _cor_texto, _cor_texto, _cor_texto, _cor_texto, _painel.image_alpha);
+        0, _cor_texto, _cor_texto, _cor_texto, _cor_texto, _alpha);
 
     draw_set_font(_fonte_anterior);
     draw_set_halign(_halign);
@@ -119,10 +114,11 @@ function scr_desenhar_painel_bloqueado(_painel, _imagem, _texto)
 
     if (!_painel.visible) return;
 
+    var _alpha = scr_opacidade_painel(_painel);
     draw_sprite_ext(_imagem, _painel.image_index, _painel.x, _painel.y,
         _painel.image_xscale * (1 - _painel.boing_escala),
         _painel.image_yscale * (1 + _painel.boing_escala),
-        _painel.image_angle, _painel.image_blend, _painel.image_alpha);
+        _painel.image_angle, _painel.image_blend, _alpha);
 
     if (_painel.escala_texto_bloqueio <= 0.005) return;
 
@@ -136,10 +132,17 @@ function scr_desenhar_painel_bloqueado(_painel, _imagem, _texto)
     draw_text_transformed_color((_painel.bbox_left + _painel.bbox_right) * 0.5,
         _painel.bbox_top - 8, _texto,
         _painel.escala_texto_bloqueio, _painel.escala_texto_bloqueio, 0,
-        c_black, c_black, c_black, c_black, _painel.image_alpha);
+        c_black, c_black, c_black, c_black, _alpha);
     draw_set_font(_fonte_anterior);
     draw_set_halign(_halign_anterior);
     draw_set_valign(_valign_anterior);
+}
+
+/// Calcula a opacidade visual sem alterar image_alpha nem a área de clique.
+function scr_opacidade_painel(_painel)
+{
+    var _ao_fundo = global.selected.is_selected && global.selected.index != _painel.index;
+    return _painel.image_alpha * (_ao_fundo ? 0.4 : 1);
 }
 
 /// Seleciona o painel sob o mouse. Um segundo clique nele limpa global.selected.
@@ -178,7 +181,7 @@ function scr_mouse_sobre_painel_imagem(_painel)
 }
 
 /// Alinha a moldura ao canto superior esquerdo do sprite, compensando sua origem e escala.
-function scr_desenhar_moldura_painel(_painel, _moldura)
+function scr_desenhar_moldura_painel(_painel, _moldura, _alpha)
 {
     if (!sprite_exists(_moldura)) return;
 
@@ -192,7 +195,7 @@ function scr_desenhar_moldura_painel(_painel, _moldura)
     var _nine_slice = sprite_get_nineslice(_moldura);
     var _nine_slice_enabled = _nine_slice.enabled;
     _nine_slice.enabled = false;
-    draw_sprite_stretched_ext(_moldura, 0, _left, _top, _width, _height, c_white, _painel.image_alpha);
+    draw_sprite_stretched_ext(_moldura, 0, _left, _top, _width, _height, c_white, _alpha);
     _nine_slice.enabled = _nine_slice_enabled;
 }
 
@@ -210,9 +213,11 @@ function scr_desenhar_moldura_painel(_painel, _moldura)
 /// @param _intensidade_boing Deformação máxima proporcional, entre 0 e 0.99.
 /// @param _oscilacoes_boing Número de ciclos completos de esticar e comprimir.
 /// @param _margem_clique Pixels extras em cada lado da área de hover e clique.
+/// @param _contorno Pixels de espessura do contorno preto. Use 0 para desativá-lo.
 function scr_desenhar_painel_texto(_painel, _texto, _fonte, _destino, _atualizar,
     _cor = c_black, _escala_base = 1, _multiplicador_hover = 1.08, _velocidade_lerp = 0.15,
-    _frames_boing = 24, _intensidade_boing = 0.22, _oscilacoes_boing = 2.5, _margem_clique = 0)
+    _frames_boing = 24, _intensidade_boing = 0.22, _oscilacoes_boing = 2.5, _margem_clique = 0,
+    _contorno = 0)
 {
     if (!_painel.visible || _painel.image_alpha <= 0) return;
 
@@ -268,10 +273,21 @@ function scr_desenhar_painel_texto(_painel, _texto, _fonte, _destino, _atualizar
     }
 
     // Comprime um eixo enquanto estica o outro. A posição do centro fica fixa.
+    var _escala_x = _painel.image_xscale * (1 - _painel.boing_escala);
+    var _escala_y = _painel.image_yscale * (1 + _painel.boing_escala);
+    var _alpha = scr_opacidade_painel(_painel);
+
+    if (_contorno > 0)
+    {
+        for (var _angulo = 0; _angulo < 360; _angulo += 45)
+        {
+            draw_text_transformed_color(_painel.x + lengthdir_x(_contorno, _angulo),
+                _painel.y + lengthdir_y(_contorno, _angulo), _texto,
+                _escala_x, _escala_y, _painel.image_angle, c_black, c_black, c_black, c_black, _alpha);
+        }
+    }
     draw_text_transformed_color(_painel.x, _painel.y, _texto,
-        _painel.image_xscale * (1 - _painel.boing_escala),
-        _painel.image_yscale * (1 + _painel.boing_escala), _painel.image_angle,
-        _cor, _cor, _cor, _cor, _painel.image_alpha);
+        _escala_x, _escala_y, _painel.image_angle, _cor, _cor, _cor, _cor, _alpha);
 
     draw_set_font(_fonte_anterior);
     draw_set_halign(_halign_anterior);
