@@ -3,6 +3,7 @@ if (room != fade_current_room)
 {
 	fade_current_room = room;
 	fade_restart_room = false;
+	shortcut_zoom_target = noone;
 	player_dead_active = false;
 	player_dead_target = noone;
 	fade_in_active = false;
@@ -40,5 +41,5 @@ if (player_dead_active && fade_restart_room && instance_exists(player_dead_targe
 
 // Atualiza os dois efeitos; o script inativo retorna sem alterar seu estado.
 global.fade_active = player_dead_active || fade_in_active || fade_out_active;
-scr_fade_in();
+if (!instance_exists(shortcut_zoom_target)) scr_fade_in();
 scr_fade_out();

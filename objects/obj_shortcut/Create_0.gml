@@ -17,6 +17,7 @@ is_hovered = false;
 
 // Destino do clique. O controller troca de sala somente após cobrir a tela.
 target_room = noone;
+shortcut_zoom = undefined;
 
 // Compartilha a mesma área entre o clique e o desenho, sem depender do Draw
 // do frame anterior. Medir o texto não deve mudar a fonte dos outros objetos.
@@ -48,6 +49,8 @@ get_shortcut_bounds = function()
         right: _center_x + _half_side,
         top: _hover_y - _half_side,
         bottom: _hover_y + _half_side,
+        icon_x: _center_x,
+        icon_y: _center_y,
         text_x: _center_x,
         text_y: _text_y
     };
