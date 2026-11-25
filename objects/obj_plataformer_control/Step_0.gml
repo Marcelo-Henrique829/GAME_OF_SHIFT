@@ -1,3 +1,7 @@
+// P abre um balão de teste na fase de plataforma.
+scr_inputs();
+if (global.inputs.tec_p) scr_create_dialogue("teste");
+
 // Conta todas as bolhas da sala, inclusive as colocadas pelo editor.
 var _maximo = max(0, floor(bolhas_maximo));
 if (instance_number(obj_buble) >= _maximo)

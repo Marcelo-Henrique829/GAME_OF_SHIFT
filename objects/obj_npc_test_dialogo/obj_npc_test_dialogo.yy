@@ -36,9 +36,6 @@
     "name":"spr_player_plataformer_ph_iddleRight",
     "path":"sprites/spr_player_plataformer_ph_iddleRight/spr_player_plataformer_ph_iddleRight.yy",
   },
-  "spriteMaskId":{
-    "name":"spr_topdown_player_down",
-    "path":"sprites/spr_topdown_player_down/spr_topdown_player_down.yy",
-  },
+  "spriteMaskId":null,
   "visible":true,
 }

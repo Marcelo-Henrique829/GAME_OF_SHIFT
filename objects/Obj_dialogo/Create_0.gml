@@ -56,44 +56,13 @@ libera_player = function()
 	instance_destroy();
 };
 
-// Atualiza a página, recebe a entrada do jogador e desenha a interface.
-cria_dialogo = function(_dados)
+// Desenha a página atual na interface.
+desenhar_dialogo = function(_dados)
 {
-	// Verifica se existe pelo menos uma página de texto.
-	if (is_undefined(_dados) || _dados == noone) return;
-	if (!variable_struct_exists(_dados, "texto")) return;
-	if (array_length(_dados.texto) <= 0) return;
+	if (!is_struct(_dados) || !variable_struct_exists(_dados, "texto")) return;
+	if (array_length(_dados.texto) == 0) return;
 
-	// Lê o texto para decidir se Enter revela, avança ou encerra a conversa.
-	var _ultima_pagina = array_length(_dados.texto) - 1;
-	pag = clamp(pag, 0, _ultima_pagina);
 	var _texto_pagina = _dados.texto[pag];
-	var _tamanho_texto = string_length(_texto_pagina);
-
-	// Enter revela o restante do texto, avança de página ou fecha a conversa.
-	if (global.inputs.enter)
-	{
-		if (indice < _tamanho_texto)
-		{
-			indice = _tamanho_texto;
-		}
-		else if (pag < _ultima_pagina)
-		{
-			pag++;
-			indice = 0;
-			// Desenha a nova página neste frame para não piscar a interface.
-			_texto_pagina = _dados.texto[pag];
-			_tamanho_texto = string_length(_texto_pagina);
-		}
-		else
-		{
-			libera_player();
-			return;
-		}
-	}
-
-	// Lê os dados opcionais depois do avanço para usar a página correta.
-	var _velocidade = variable_struct_exists(_dados, "txt_vel") ? _dados.txt_vel : 1;
 	var _nome = "";
 	if (variable_struct_exists(_dados, "names") && array_length(_dados.names) > 0)
 		_nome = _dados.names[min(pag, array_length(_dados.names) - 1)];
@@ -104,10 +73,6 @@ cria_dialogo = function(_dados)
 	var _caixa = Spr_caixadialogo;
 	if (variable_struct_exists(_dados, "d_box") && array_length(_dados.d_box) > 0)
 		_caixa = _dados.d_box[min(pag, array_length(_dados.d_box) - 1)];
-
-	// C ou ataque acelera a exibição dos caracteres.
-	if (global.inputs.attack || global.inputs.fast_dialog) _velocidade = 0.8;
-	indice = min(indice + _velocidade, _tamanho_texto);
 
 	// Usa as porcentagens definidas no começo deste Create.
 	var _gui_largura = display_get_gui_width();
@@ -144,17 +109,31 @@ cria_dialogo = function(_dados)
 	var _texto_y = _caixa_y + _margem_y;
 	var _texto_largura = max(1, _caixa_largura * _escala_x - _margem_x * 2);
 	var _texto_altura = max(1, _caixa_altura * _escala_y - _margem_y * 2);
-	var _texto_visivel = _nome + ": " + string_copy(_texto_pagina, 1, floor(indice));
+	var _prefixo = _nome == "" ? "" : _nome + ": ";
+	var _texto_visivel = _prefixo + string_copy(_texto_pagina, 1, floor(indice));
 	var _fonte_anterior = draw_get_font();
+	var _cor_anterior = draw_get_color();
+	var _alpha_anterior = draw_get_alpha();
+	var _halign_anterior = draw_get_halign();
+	var _valign_anterior = draw_get_valign();
 	draw_set_font(fonte_dialogo);
 	var _espaco_linha = string_height("A");
 
-	// Se houver muitas linhas, reduz o texto para caber na altura disponível.
-	var _altura_texto = string_height_ext(_texto_visivel, _espaco_linha, _texto_largura);
-	var _escala_texto = min(1, _texto_altura / max(1, _altura_texto));
+	// Mede a página completa para manter a escala enquanto o texto aparece.
+	var _texto_completo = _prefixo + _texto_pagina;
+	var _altura_texto = string_height_ext(_texto_completo, _espaco_linha, _texto_largura);
+	var _largura_texto = string_width_ext(_texto_completo, _espaco_linha, _texto_largura);
+	var _escala_texto = min(1, _texto_altura / max(1, _altura_texto),
+		_texto_largura / max(1, _largura_texto));
 	draw_set_color(c_purple);
+	draw_set_alpha(1);
+	draw_set_halign(fa_left);
+	draw_set_valign(fa_top);
 	draw_text_ext_transformed(_texto_x, _texto_y, _texto_visivel, _espaco_linha,
 		_texto_largura, _escala_texto, _escala_texto, 0);
+	draw_set_valign(_valign_anterior);
+	draw_set_halign(_halign_anterior);
+	draw_set_alpha(_alpha_anterior);
+	draw_set_color(_cor_anterior);
 	draw_set_font(_fonte_anterior);
-	draw_set_color(c_white);
 };
