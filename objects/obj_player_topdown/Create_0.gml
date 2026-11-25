@@ -23,6 +23,7 @@ image_yscale = 0.5
 state = PlayerState.IDDLE;
 direction = dir;
 dir_state = "down";
+image_speed = 0;
 
 // Cria a câmera caso ela ainda não exista na sala.
 if (!instance_exists(obj_camera))

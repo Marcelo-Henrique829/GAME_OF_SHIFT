@@ -32,8 +32,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_memory_fragment",
-    "path":"sprites/spr_memory_fragment/spr_memory_fragment.yy",
+    "name":"spr_memory_fragment_2",
+    "path":"sprites/spr_memory_fragment_2/spr_memory_fragment_2.yy",
   },
   "spriteMaskId":null,
   "visible":true,

@@ -7,7 +7,7 @@ arraste_offset_x = 0;
 arraste_offset_y = 0;
 
 // Raio de arraste em pixels, medido a partir da posição inicial da instância.
-arraste_raio = 250;
+arraste_raio = 100000;
 arraste_origem_x = x;
 arraste_origem_y = y;
 

@@ -8,6 +8,6 @@ zoom_proximidade_ativo = true;
 zoom_proximidade_raio = 300;
 zoom_proximidade_max = 4;
 
-// O clique direito abre este destino quando o jogador está sobre o fragmento.
+// O clique direito sobre o fragmento abre este destino.
 target_room = rm_memory_room;
 is_hovered = false;

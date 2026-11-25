@@ -26,7 +26,7 @@
   "origin":4,
   "parent":{
     "name":"Cenario",
-    "path":"folders/Spaceship/Plataforma/Sprites/Cenario.yy",
+    "path":"folders/Plataforma/Sprites/Cenario.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -1,32 +1,32 @@
 /// @function scr_anim_topdown_player()
-/// @description Alterna entre as poses paradas e a caminhada nas quatro direções.
+/// @description Usa as animações de tpd_finished e congela o primeiro quadro ao parar.
 function scr_anim_topdown_player()
 {
     scr_dir_state_4_directions();
 
     var _walking = (state == PlayerState.WALK && spd > 0);
-    var _next_sprite = spr_player_tpd_ph_down;
+    var _next_sprite = spr_player_walk_down;
 
     switch (dir_state)
     {
         case "up":
-            _next_sprite = _walking ? spr_player_tpd_ph_walk_up : spr_player_tpd_ph_up;
+            _next_sprite = spr_player_finished;
         break;
 
         case "down":
-            _next_sprite = _walking ? spr_player_tpd_ph_walk_down : spr_player_tpd_ph_down;
+            _next_sprite = spr_player_walk_down;
         break;
 
         case "right":
-            _next_sprite = _walking ? spr_player_tpd_ph_walk_right : spr_player_tpd_ph_rigth;
+            _next_sprite = spr_player_walk_rigth;
         break;
 
         case "left":
-            _next_sprite = _walking ? spr_player_tpd_ph_walk_left : spr_player_tpd_ph_left;
+            _next_sprite = spr_player_walk_left;
         break;
     }
 
-    // Só reinicia a animação quando a sprite realmente muda.
+    // Começa pelo primeiro quadro ao mudar de direção.
     if (sprite_index != _next_sprite)
     {
         sprite_index = _next_sprite;
@@ -35,6 +35,7 @@ function scr_anim_topdown_player()
 
     // 1 respeita os 10 FPS definidos nas sprites de caminhada.
     // IDDLE e STOP mantêm a pose na última direção escolhida.
+    if (!_walking) image_index = 0;
     image_speed = _walking ? 1 : 0;
 }
 

@@ -13,7 +13,7 @@
   "out_tilevborder":2,
   "parent":{
     "name":"tile",
-    "path":"folders/Spaceship/Plataforma/tile.yy",
+    "path":"folders/Plataforma/tile.yy",
   },
   "resourceType":"GMTileSet",
   "resourceVersion":"2.0",

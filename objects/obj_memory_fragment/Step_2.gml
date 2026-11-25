@@ -6,8 +6,8 @@ if (!visible || image_alpha <= 0 || sprite_index == -1 || global.fade_active
 is_hovered = collision_point(mouse_x, mouse_y, id, true, false) != noone;
 if (!is_hovered || !mouse_check_button_pressed(mb_right)) exit;
 
-// Exige contato real do jogador com o fragmento para entrar na memória.
-var _player = instance_place(x, y, obj_player_platform);
+// Confirma que há um jogador vivo na sala, a qualquer distância do fragmento.
+var _player = instance_find(obj_player_platform, 0);
 if (_player == noone || _player.player_dead || !room_exists(target_room)) exit;
 
 var _controller = instance_find(obj_control, 0);

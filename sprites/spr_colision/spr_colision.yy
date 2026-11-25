@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Sprites",
-    "path":"folders/Spaceship/Plataforma/Sprites.yy",
+    "path":"folders/Plataforma/Sprites.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -2,8 +2,8 @@
   "$GMObject":"",
   "%Name":"obj_player_topdown",
   "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
   "name":"obj_player_topdown",
@@ -31,8 +31,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_player_tpd_ph_down",
-    "path":"sprites/spr_player_tpd_ph_down/spr_player_tpd_ph_down.yy",
+    "name":"spr_player_walk_down",
+    "path":"sprites/spr_player_walk_down/spr_player_walk_down.yy",
   },
   "spriteMaskId":{
     "name":"spr_topdown_player_down",

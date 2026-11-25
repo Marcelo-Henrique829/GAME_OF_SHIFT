@@ -12,7 +12,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Objetos",
-    "path":"folders/Spaceship/Plataforma/Objetos.yy",
+    "path":"folders/Plataforma/Objetos.yy",
   },
   "parentObjectId":null,
   "persistent":false,
