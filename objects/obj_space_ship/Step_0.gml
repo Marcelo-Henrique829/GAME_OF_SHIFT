@@ -1,4 +1,4 @@
-if(state != SHIP_STATE.DEFEAT or state != SHIP_STATE.ENTER )
+if(state != SHIP_STATE.DEFEAT || state != SHIP_STATE.ENTER )
 {
 	ship_control();
 }
