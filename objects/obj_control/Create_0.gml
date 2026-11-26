@@ -53,36 +53,54 @@ if (!instance_exists(obj_audio_manager))
 }
 #endregion
 
-#region Trilha da sala inicial
-room_music_room = rm_main_menu;
-room_music_sound = snd_dorfic_without_drum_music;
+#region Trilhas das salas
+menu_music_sound = snd_dorfic_without_drum_music;
 room_music_fade_in_ms = 750;
 room_music_fade_out_ms = 450;
 room_music_exit_at = -1;
-room_music_resume_position = 0;
+room_music_playing_room = noone;
+room_music_positions = {};
 
-// Retorna false enquanto a trilha baixa de volume e a troca precisa aguardar.
-update_room_music = function(_fade_out)
+// Recebe a faixa desejada ou -1 para silêncio. Retorna false enquanto a
+// faixa anterior baixa de volume e a troca de sala ainda precisa aguardar.
+update_room_music = function(_requested_sound)
 {
     var _audio = global.audio;
     var _music_id = _audio.music_id;
-    var _playing = _music_id != -1 && audio_is_playing(_music_id);
-
-    if (_fade_out && _playing)
+    var _playing = false;
+    if (_music_id != -1)
     {
-        // Inicia a rampa uma vez para que ela chegue ao silêncio mesmo durante o fade visual.
+        _playing = audio_is_playing(_music_id);
+    }
+
+    // Mesmo se duas salas usarem a mesma faixa, cada uma guarda sua própria posição.
+    if (_playing && (_requested_sound != _audio.current_music || room != room_music_playing_room))
+    {
+        // Inicia a rampa uma vez. O fade visual pode avançar enquanto o áudio baixa.
         if (room_music_exit_at == -1)
         {
             audio_sound_gain(_music_id, 0, room_music_fade_out_ms);
             room_music_exit_at = current_time + room_music_fade_out_ms;
         }
-        if (current_time < room_music_exit_at) return false;
+        if (current_time < room_music_exit_at)
+        {
+            return false;
+        }
 
-        // Guarda a posição da instância em segundos no último instante antes de pará-la.
-        // Reiniciar a própria sala começa a faixa do zero.
-        var _position = fade_restart_room ? 0 : audio_sound_get_track_position(_music_id);
-        room_music_resume_position = (_position > 0 && _position < audio_sound_length(room_music_sound))
-            ? _position : 0;
+        // Salva a posição imediatamente antes de parar. Reiniciar a própria sala
+        // zera a posição dela, sem alterar a trilha salva em outras salas.
+        var _saved_position = 0;
+        if (!fade_restart_room || room != room_music_playing_room)
+        {
+            var _track_position = audio_sound_get_track_position(_music_id);
+            var _track_length = audio_sound_length(_audio.current_music);
+            if (_track_position > 0 && _track_position < _track_length)
+            {
+                _saved_position = _track_position;
+            }
+        }
+        var _previous_room_name = room_get_name(room_music_playing_room);
+        room_music_positions[$ _previous_room_name] = _saved_position;
         audio_stop_sound(_music_id);
         _playing = false;
     }
@@ -91,23 +109,42 @@ update_room_music = function(_fade_out)
     {
         room_music_exit_at = -1;
         // Se a saída foi cancelada, recupera o volume da mesma instância.
-        if (_playing) audio_sound_gain(_music_id, 1, room_music_fade_in_ms);
+        if (_playing)
+        {
+            audio_sound_gain(_music_id, 1, room_music_fade_in_ms);
+        }
     }
 
-    if (_playing) return true;
+    if (_playing)
+    {
+        return true;
+    }
     _audio.music_id = -1;
     _audio.current_music = -1;
-    if (_fade_out || !audio_group_is_loaded(ag_music)) return true;
+    room_music_playing_room = noone;
 
-    // A posição é consumida quando a faixa volta a tocar. A próxima repetição
-    // natural começa do zero, também em silêncio para fazer o fade de entrada.
+    if (_requested_sound == -1 || !audio_group_is_loaded(ag_music))
+    {
+        return true;
+    }
+
+    var _room_name = room_get_name(room);
+    var _resume_position = 0;
+    if (variable_struct_exists(room_music_positions, _room_name))
+    {
+        _resume_position = room_music_positions[$ _room_name];
+    }
+
+    // A faixa entra em silêncio no ponto salvo e sobe até o volume configurado.
+    // Depois de retomar, uma repetição natural começa novamente do zero.
     aud_set_volume(AUDIO_TYPE.MUSIC, _audio.volume_music);
-    _music_id = aud_play_sound(room_music_sound, AUDIO_PRIORITY.MUSIC, false, 0, room_music_resume_position);
+    _music_id = aud_play_sound(_requested_sound, AUDIO_PRIORITY.MUSIC, false, 0, _resume_position);
     if (_music_id != -1)
     {
-        room_music_resume_position = 0;
+        room_music_positions[$ _room_name] = 0;
+        room_music_playing_room = room;
         _audio.music_id = _music_id;
-        _audio.current_music = room_music_sound;
+        _audio.current_music = _requested_sound;
         audio_sound_gain(_music_id, 1, room_music_fade_in_ms);
     }
     return true;

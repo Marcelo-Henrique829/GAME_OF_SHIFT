@@ -1,3 +1,8 @@
+#region Trilha da nave
+// O obj_control toca esta faixa e sincroniza os fades com a troca de sala.
+room_music_sound = snd_space_ship_music;
+#endregion
+
 randomise();
 enemys = [oEnemy_sps,oEnemy_explode,oEnemy03];
 gba = obj_gba;

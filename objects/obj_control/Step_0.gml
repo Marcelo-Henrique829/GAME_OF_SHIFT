@@ -67,10 +67,43 @@ var _fade_in_ready = !instance_exists(shortcut_zoom_target);
 #endregion
 
 #region Fade da trilha
-// Começa a baixar a música junto da cobertura ou já na aproximação da morte.
-var _fade_music_out = room != room_music_room || (_fade_in_ready && fade_in_active)
-    || (player_dead_active && fade_restart_room);
-var _music_ready_to_leave = update_room_music(_fade_music_out);
+// O menu tem faixa própria. Na nave e na plataforma, o controlador local escolhe a trilha.
+var _room_track = -1;
+var _platform_control = instance_find(obj_plataformer_control, 0);
+if (room == rm_main_menu)
+{
+    _room_track = menu_music_sound;
+}
+else if (room == Rm_space_ship_test)
+{
+    var _ship_control = instance_find(control_rm_ship, 0);
+    if (_ship_control != noone)
+    {
+        _room_track = _ship_control.room_music_sound;
+    }
+}
+else
+{
+    if (_platform_control != noone)
+    {
+        _room_track = _platform_control.room_music_sound;
+    }
+}
+
+// Reiniciar a fase mantém a mesma reprodução. Ao sair para outra sala, o fade
+// da trilha acompanha a tela normalmente.
+if (!fade_restart_room || _platform_control == noone)
+{
+    if (_fade_in_ready && fade_in_active)
+    {
+        _room_track = -1;
+    }
+    if (player_dead_active && fade_restart_room)
+    {
+        _room_track = -1;
+    }
+}
+var _music_ready_to_leave = update_room_music(_room_track);
 #endregion
 
 #region Atualização dos fades
