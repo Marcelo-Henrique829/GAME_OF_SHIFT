@@ -1,5 +1,18 @@
+function scr_fade_animation_frame(_sprite, _steps)
+{
+	var _frames_per_step = sprite_get_speed(_sprite);
+	if (sprite_get_speed_type(_sprite) == spritespeed_framespersecond)
+	{
+		_frames_per_step /= max(1, game_get_speed(gamespeed_fps));
+	}
+
+	var _frame_count = sprite_get_number(_sprite);
+	var _frame = floor(max(0, _steps) * _frames_per_step) mod _frame_count;
+	return (_frame + _frame_count) mod _frame_count;
+}
+
 /// @function scr_fade_in(_draw_overlay)
-/// @description Executa e desenha a transição de entrada, cobrindo a tela com triângulos.
+/// @description Executa e desenha a transição de entrada, cobrindo a tela com sprites animados.
 /// @param {bool} _draw_overlay false atualiza o progresso e troca de sala ao cobrir a tela;
 ///                            true desenha a camada visual no evento Draw GUI.
 /// @returns {void}
@@ -57,18 +70,19 @@ function scr_fade_in(_draw_overlay = false)
 	var _start_y = -_max_triangle_size;
 	var _end_x = _gui_width + _max_triangle_size;
 	var _end_y = _gui_height + _max_triangle_size;
+	var _frame = scr_fade_animation_frame(_sprite, fade_animation_steps);
 
-	// Desenha cada triângulo na escala correspondente ao progresso atual.
+	// Desenha o quadro atual na escala correspondente ao progresso do fade.
 	for (var _draw_y = _start_y; _draw_y <= _end_y; _draw_y += _spacing)
 	{
 		for (var _draw_x = _start_x; _draw_x <= _end_x; _draw_x += _spacing)
 		{
-			draw_sprite_ext(_sprite, 0, _draw_x, _draw_y, _scale, _scale, 0, c_white, 1);
+			draw_sprite_ext(_sprite, _frame, _draw_x, _draw_y, _scale, _scale, 0, c_white, 1);
 		}
 	}
 }
 /// @function scr_fade_out(_draw_overlay)
-/// @description Executa e desenha a transição de saída, revelando a sala por redução dos triângulos.
+/// @description Executa e desenha a transição de saída, revelando a sala conforme os sprites encolhem.
 /// @param {bool} _draw_overlay false atualiza o progresso até a tela ficar visível;
 ///                            true desenha a camada visual no evento Draw GUI.
 /// @returns {void}
@@ -85,7 +99,7 @@ function scr_fade_out(_draw_overlay = false)
 		// Reduz a cobertura por segundo, sem depender da taxa de quadros.
 		var _fps = max(1, game_get_speed(gamespeed_fps));
 		fade_out_progress = max(0, fade_out_progress - max(0, fade_out_speed) / _fps);
-		// Encerra o efeito quando os triângulos desaparecem.
+		// Encerra o efeito quando os sprites desaparecem.
 		if (fade_out_progress <= 0)
 		{
 			fade_out_active = false;
@@ -108,13 +122,14 @@ function scr_fade_out(_draw_overlay = false)
 	var _start_y = -_max_triangle_size;
 	var _end_x = _gui_width + _max_triangle_size;
 	var _end_y = _gui_height + _max_triangle_size;
+	var _frame = scr_fade_animation_frame(_sprite, fade_animation_steps);
 
-	// Desenha os triângulos encolhendo conforme o progresso diminui.
+	// Desenha o quadro atual enquanto a escala diminui.
 	for (var _draw_y = _start_y; _draw_y <= _end_y; _draw_y += _spacing)
 	{
 		for (var _draw_x = _start_x; _draw_x <= _end_x; _draw_x += _spacing)
 		{
-			draw_sprite_ext(_sprite, 0, _draw_x, _draw_y, _scale, _scale, 0, c_white, 1);
+			draw_sprite_ext(_sprite, _frame, _draw_x, _draw_y, _scale, _scale, 0, c_white, 1);
 		}
 	}
 }

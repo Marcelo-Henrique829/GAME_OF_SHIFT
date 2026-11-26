@@ -41,5 +41,11 @@ if (player_dead_active && fade_restart_room && instance_exists(player_dead_targe
 
 // Atualiza os dois efeitos; o script inativo retorna sem alterar seu estado.
 global.fade_active = player_dead_active || fade_in_active || fade_out_active;
-if (!instance_exists(shortcut_zoom_target)) scr_fade_in();
+var _fade_in_ready = !instance_exists(shortcut_zoom_target);
+
+// O contador compartilhado mantém a animação contínua na troca de sala.
+if ((_fade_in_ready && fade_in_active) || fade_out_active) fade_animation_steps++;
+else fade_animation_steps = -1;
+
+if (_fade_in_ready) scr_fade_in();
 scr_fade_out();

@@ -14,6 +14,7 @@ cursor_sprite = -1;
 fade_current_room = room;
 fade_target_room = noone;
 fade_restart_room = false;
+fade_animation_steps = -1;
 shortcut_zoom_target = noone;
 player_dead_active = false;
 player_dead_target = noone;

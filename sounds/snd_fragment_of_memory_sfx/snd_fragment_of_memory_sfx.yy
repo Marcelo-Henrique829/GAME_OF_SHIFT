@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"snd_fragment_of_memory_sfx",
+  "audioGroupId":{
+    "name":"ag_SoundEffect",
+    "path":"audiogroups/ag_SoundEffect",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":4.375034,
+  "exportDir":"",
+  "name":"snd_fragment_of_memory_sfx",
+  "parent":{
+    "name":"sfx",
+    "path":"folders/sound/sfx.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_fragment_of_memory_sfx.wav",
+  "volume":1.0,
+}
