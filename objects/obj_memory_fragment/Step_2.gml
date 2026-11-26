@@ -21,6 +21,10 @@ if (!variable_struct_exists(_coletados, _sala_origem))
 {
     _coletados[$ _sala_origem] = true;
     global.memory_fragment.total += 1;
+    if (audio_group_is_loaded(ag_SoundEffect))
+    {
+        aud_play_sound(snd_fragment_of_memory_sfx, AUDIO_PRIORITY.IMPORTANT);
+    }
 }
 
 // O controller cobre a tela, troca de sala e revela a memória na chegada.

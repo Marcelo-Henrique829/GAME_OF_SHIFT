@@ -3,7 +3,11 @@ if (player_dead) state = PlayerStatePlatformer.DEAD;
 if (state != PlayerStatePlatformer.DEAD)
 {
     scr_inputs(true);
-    if (dialogo_ativo && !global.player_in_menu) exit;
+    if (dialogo_ativo && !global.player_in_menu)
+    {
+        aud_update_footsteps();
+        exit;
+    }
 }
 if (state != PlayerStatePlatformer.STOP && state != PlayerStatePlatformer.DEAD)
 {
@@ -96,8 +100,16 @@ direction = dir;
 if (state != PlayerStatePlatformer.STOP) vspd += grv;
 var _descending_before_collision = vspd > 0;
 
-
+var _previous_x = x;
 scr_colision(collision_targets);
+
+var _footstep_sound = -1;
+if (state == PlayerStatePlatformer.WALK && abs(x - _previous_x) > idle_speed_deadzone
+    && !global.player_in_menu && !global.fade_active && is_on_ground())
+{
+    _footstep_sound = place_meeting(x, y + 1, obj_box) ? snd_walk_wood_sfx : snd_walk_grass_sfx;
+}
+aud_update_footsteps(_footstep_sound);
 
 // Acumula a queda no ar e só dispara quando uma colisão para a descida sobre o chão.
 if (state != PlayerStatePlatformer.STOP && !global.player_in_menu)

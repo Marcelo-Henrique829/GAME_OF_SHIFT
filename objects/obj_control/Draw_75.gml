@@ -1,16 +1,17 @@
-// DRAW GUI END — mantém o cursor acima da interface e independente do zoom.
-// Mostra o cursor no menu, no Palácio da Memória e nas salas de plataforma.
+#region Visibilidade do cursor
+// A transição oculta o cursor. Fora dela, as salas e interfaces abaixo o habilitam.
 if (global.fade_active) exit;
 var _show_cursor = (room == rm_main_menu || room == rm_memory_palace)
     || instance_exists(obj_plataformer_control) || instance_exists(obj_player_platform)
     || instance_exists(obj_memory_image);
-if (instance_exists(obj_UI_player) && global.player_in_menu ) _show_cursor = true;
+if (instance_exists(obj_UI_player) && global.player_in_menu) _show_cursor = true;
 if (!_show_cursor) exit;
+#endregion
 
-// Começa sempre no cursor padrão para não manter uma seleção do frame anterior.
-// O Draw normal dos atalhos e o End Step da UI já atualizaram seus hovers.
+#region Objetos arrastáveis
+// A seleção é recalculada a cada frame. Janelas e caixas usam as coordenadas
+// da sala e mantêm o cursor selecionado durante todo o arraste.
 var _selected = false;
-// As janelas estão no mundo da sala; usa o mouse em coordenadas da câmera.
 with (obj_window)
 {
     if (janela_ativa && visible && image_alpha > 0 && sprite_index != -1
@@ -27,6 +28,10 @@ with (obj_box)
         _selected = true;
     }
 }
+#endregion
+
+#region Atalhos, fragmentos e memória
+// Reaproveita as áreas de interação calculadas no End Step pelos próprios objetos.
 with (obj_shortcut)
 {
     if (visible && image_alpha > 0 && sprite_index != -1 && is_hovered) _selected = true;
@@ -40,6 +45,11 @@ with (obj_memory_image)
     if (visible && image_alpha > 0 && memoria_revelando && memoria_alpha > 0
         && menu_hovered) _selected = true;
 }
+#endregion
+
+#region Painéis e menu do jogador
+// Os painéis atualizam o hover no fluxo de desenho. O menu do jogador também
+// mantém a seleção enquanto a animação de clique da opção está em andamento.
 if (room == rm_memory_palace)
 {
     with (obj_panel)
@@ -51,10 +61,16 @@ if (global.player_in_menu)
 {
     with (obj_UI_player)
     {
-        if (visible && instance_exists(player) && (hovered_option != -1 || clicked_option != -1)) _selected = true;
+        if (visible && instance_exists(player)
+            && (hovered_option != -1 || clicked_option != -1)) _selected = true;
     }
 }
+#endregion
+
+#region Desenho na GUI
+// As coordenadas da GUI mantêm o cursor alinhado ao mouse durante o zoom da câmera.
 var _cursor = _selected ? spr_cursor_selected_ph : spr_cursor_iddle_ph;
 draw_sprite_ext(_cursor, 0,
     device_mouse_x_to_gui(0), device_mouse_y_to_gui(0),
     1, 1, 0, c_white, 1);
+#endregion

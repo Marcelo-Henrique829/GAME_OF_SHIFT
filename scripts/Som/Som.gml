@@ -163,7 +163,7 @@ function sound_effects()
 		{
 			if (!audio_is_playing(Snd_walk_placeholder))
 			{
-				audio_play_sound(Snd_walk_placeholder,2,true,1,0,1,1)	
+				aud_play_sound(Snd_walk_placeholder, 2, true, 1, 0, 1, 1);
 			}
 		}
 		else

@@ -10,8 +10,8 @@
   "name":"obj_camera",
   "overriddenProperties":[],
   "parent":{
-    "name":"Controles",
-    "path":"folders/Compartilhado/Objetos/Controles.yy",
+    "name":"Objetos",
+    "path":"folders/Compartilhado/Objetos.yy",
   },
   "parentObjectId":null,
   "persistent":false,

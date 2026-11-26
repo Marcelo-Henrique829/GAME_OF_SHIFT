@@ -29,6 +29,11 @@ function scr_player_dead(_player = noone)
     }
     global.player_in_menu = false;
     _player.player_dead = true;
+    with (_player) aud_update_footsteps();
+    if (audio_group_is_loaded(ag_SoundEffect))
+    {
+        aud_play_sound(snd_death_sfx, AUDIO_PRIORITY.IMPORTANT);
+    }
     _player.hspd = 0;
     _player.spd = 0;
     _player.state = PlayerStatePlatformer.DEAD;

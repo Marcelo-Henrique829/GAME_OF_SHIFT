@@ -1,27 +1,45 @@
-// Detecta a chegada à sala de destino e prepara o fade-out para revelá-la.
+#region Som de clique
+// A pressão inicial basta para o feedback. O grupo de efeitos carrega em segundo plano.
+if ((mouse_check_button_pressed(mb_left) || mouse_check_button_pressed(mb_right))
+    && audio_group_is_loaded(ag_SoundEffect))
+{
+    aud_play_sound(snd_click_fx, AUDIO_PRIORITY.UI);
+}
+#endregion
+
+#region Chegada a outra sala
+// A instância persistente ainda guarda a sala anterior. Ao detectar a troca,
+// limpa os alvos da transição e começa a revelar a nova sala com a tela coberta.
+// O reinício mantém o ID da sala, então scr_fade_in prepara o fade-out nesse caso.
 if (room != fade_current_room)
 {
-	fade_current_room = room;
-	fade_restart_room = false;
-	shortcut_zoom_target = noone;
-	player_dead_active = false;
-	player_dead_target = noone;
-	fade_in_active = false;
-	fade_in_progress = 0;
-	fade_out_active = true;
-	fade_out_progress = 1;
+    fade_current_room = room;
+    fade_restart_room = false;
+    shortcut_zoom_target = noone;
+    player_dead_active = false;
+    player_dead_target = noone;
+    fade_in_active = false;
+    fade_in_progress = 0;
+    fade_out_active = true;
+    fade_out_progress = 1;
 }
+#endregion
 
-// Ao pressionar K, escolhe a outra sala de teste e começa a cobrir a tela.
-if (keyboard_check_pressed(ord("K")) && !fade_in_active && !player_dead_active && !global.player_in_menu)
+#region Atalho entre salas de teste
+// K alterna entre plataforma e top-down quando o menu está fechado e a tela pode ser coberta.
+if (keyboard_check_pressed(ord("K")) && !fade_in_active
+    && !player_dead_active && !global.player_in_menu)
 {
-	fade_target_room = (room == Rm_TopDownTest) ? Rm_platform_test : Rm_TopDownTest;
-	fade_in_active = true;
-	fade_in_progress = 0;
-	fade_out_active = false;
+    fade_target_room = (room == Rm_TopDownTest) ? Rm_platform_test : Rm_TopDownTest;
+    fade_in_active = true;
+    fade_in_progress = 0;
+    fade_out_active = false;
 }
+#endregion
 
-// A morte cobre a tela e reinicia antes de a animação de destruição terminar.
+#region Fade sincronizado com a morte
+// Converte o quadro da animação de destruição em cobertura entre os pontos
+// configurados no jogador. O max mantém a cobertura que scr_fade_in já avançou.
 if (player_dead_active && fade_restart_room && instance_exists(player_dead_target))
 {
     var _player = player_dead_target;
@@ -38,14 +56,30 @@ if (player_dead_active && fade_restart_room && instance_exists(player_dead_targe
         }
     }
 }
+#endregion
 
-// Atualiza os dois efeitos; o script inativo retorna sem alterar seu estado.
+#region Estado compartilhado da transição
+// A morte também bloqueia a interface durante a aproximação, antes de cobrir a tela.
 global.fade_active = player_dead_active || fade_in_active || fade_out_active;
-var _fade_in_ready = !instance_exists(shortcut_zoom_target);
 
-// O contador compartilhado mantém a animação contínua na troca de sala.
+// O End Step do atalho libera o fade-in ao terminar o zoom. O fade-out é independente.
+var _fade_in_ready = !instance_exists(shortcut_zoom_target);
+#endregion
+
+#region Fade da trilha
+// Começa a baixar a música junto da cobertura ou já na aproximação da morte.
+var _fade_music_out = room != room_music_room || (_fade_in_ready && fade_in_active)
+    || (player_dead_active && fade_restart_room);
+var _music_ready_to_leave = update_room_music(_fade_music_out);
+#endregion
+
+#region Atualização dos fades
+// Cobertura e revelação compartilham o contador para manter a animação entre as salas.
 if ((_fade_in_ready && fade_in_active) || fade_out_active) fade_animation_steps++;
 else fade_animation_steps = -1;
 
-if (_fade_in_ready) scr_fade_in();
+// A cobertura pode avançar durante a rampa. Quando a tela está coberta, aguarda
+// o áudio chegar ao silêncio para scr_fade_in trocar ou reiniciar a sala.
+if (_fade_in_ready && (_music_ready_to_leave || fade_in_progress < fade_in_cover_progress)) scr_fade_in();
 scr_fade_out();
+#endregion

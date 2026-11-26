@@ -1,5 +1,7 @@
 // Estados usados pelo jogador de plataforma.
 player_dead = false;
+footstep_sound = -1;
+footstep_audio_id = -1;
 
 // Frações da animação de morte: inicia o fade em 35% e reinicia em 85%.
 dead_fade_start_progress = 0.35;

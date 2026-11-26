@@ -14,6 +14,11 @@ last_key = vk_down;
 hspd = 0;
 vspd = 0;
 
+footstep_sound = -1;
+footstep_audio_id = -1;
+var _floor_layer = layer_get_id("Tile_floor");
+footstep_floor_tilemap = (_floor_layer == -1) ? -1 : layer_tilemap_get_id(_floor_layer);
+
 // Objetos colidíveis. Os filhos dos objetos pais também entram na colisão.
 objetos_colisiveis = [obj_arvore, obj_construct_ph];
 
