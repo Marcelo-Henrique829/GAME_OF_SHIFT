@@ -33,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_memory_palace_shortcut_ph",
-    "path":"sprites/spr_memory_palace_shortcut_ph/spr_memory_palace_shortcut_ph.yy",
+    "name":"spr_memory_palace",
+    "path":"sprites/spr_memory_palace/spr_memory_palace.yy",
   },
   "spriteMaskId":null,
   "visible":true,

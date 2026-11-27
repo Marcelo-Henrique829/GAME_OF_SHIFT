@@ -1,4 +1,8 @@
-if (memoria_alpha <= 0 || image_alpha <= 0) exit;
+#region Transformação da memória
+if (memoria_alpha <= 0 || image_alpha <= 0)
+{
+    exit;
+}
 
 // Aplica a escala da aparição ao conjunto de imagens usando draw_sprite().
 var _matriz_anterior = matrix_get(matrix_world);
@@ -9,7 +13,9 @@ var _matriz_memoria = matrix_build(x, y, 0, 0, 0, image_angle,
 matrix_set(matrix_world, matrix_multiply(_matriz_memoria, _matriz_anterior));
 var _alpha_memoria = clamp(image_alpha * memoria_alpha, 0, 1);
 draw_set_alpha(_alpha_memoria);
+#endregion
 
+#region Imagens e moldura
 var _moldura = memoria_moldura_sprite;
 var _tem_moldura = sprite_exists(_moldura);
 if (_tem_moldura)
@@ -23,7 +29,10 @@ if (_tem_moldura)
 for (var _i = 0; _i < array_length(memoria_imagens); _i++)
 {
     var _imagem = memoria_imagens[_i];
-    if (!sprite_exists(_imagem.sprite)) continue;
+    if (!sprite_exists(_imagem.sprite))
+    {
+        continue;
+    }
     draw_sprite(_imagem.sprite, _imagem.subimagem, _imagem.offset_x, _imagem.offset_y);
 
     if (_tem_moldura)
@@ -39,8 +48,14 @@ for (var _i = 0; _i < array_length(memoria_imagens); _i++)
             _scale_x, _scale_y, 0, c_white, _alpha_memoria);
     }
 }
+#endregion
 
+#region Restauração do desenho
 // Restaura o estado de desenho para os outros objetos da sala.
-if (_tem_moldura) _nine_slice.enabled = _nine_slice_ativo;
+if (_tem_moldura)
+{
+    _nine_slice.enabled = _nine_slice_ativo;
+}
 matrix_set(matrix_world, _matriz_anterior);
 draw_set_alpha(_alpha_anterior);
+#endregion
