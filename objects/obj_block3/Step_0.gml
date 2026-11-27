@@ -17,7 +17,6 @@ if(position_meeting(mouse_x,mouse_y,self))
 	 {
 		image_angle+=90;
 	 }
- 
 }
 
 if(image_angle >= 360)

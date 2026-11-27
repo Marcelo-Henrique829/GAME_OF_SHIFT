@@ -1,7 +1,8 @@
 screenshake();
-show_debug_overlay(1);
+show_debug_overlay(1.2);
 
 if(ship.state = SHIP_STATE.DEFEAT) exit
+
 /*
 create_enemy_shooter();
 create_base_enemy();

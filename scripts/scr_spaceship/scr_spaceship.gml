@@ -1,7 +1,7 @@
 global.black_screen = 0;
 global.surface = noone;
 global.histop = 0;
-
+global.spaceships_points = 0;
 
 function dust_effect(_x,_y)
 {

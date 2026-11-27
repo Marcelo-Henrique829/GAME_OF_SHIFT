@@ -111,7 +111,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2026.1.0.27",
+    "IDEVersion":"2026.1.1.34",
   },
   "name":"game_of_2026",
   "resources":[
@@ -138,7 +138,8 @@
     {"id":{"name":"obj_block1","path":"objects/obj_block1/obj_block1.yy",},},
     {"id":{"name":"obj_block2","path":"objects/obj_block2/obj_block2.yy",},},
     {"id":{"name":"obj_block3","path":"objects/obj_block3/obj_block3.yy",},},
-    {"id":{"name":"obj_boss","path":"objects/obj_boss/obj_boss.yy",},},
+    {"id":{"name":"obj_boss_gun","path":"objects/obj_boss_gun/obj_boss_gun.yy",},},
+    {"id":{"name":"obj_boss1","path":"objects/obj_boss1/obj_boss1.yy",},},
     {"id":{"name":"obj_box","path":"objects/obj_box/obj_box.yy",},},
     {"id":{"name":"obj_buble","path":"objects/obj_buble/obj_buble.yy",},},
     {"id":{"name":"obj_cama","path":"objects/obj_cama/obj_cama.yy",},},
@@ -301,6 +302,7 @@
     {"id":{"name":"spr_black_screen","path":"sprites/spr_black_screen/spr_black_screen.yy",},},
     {"id":{"name":"spr_blue","path":"sprites/spr_blue/spr_blue.yy",},},
     {"id":{"name":"spr_blur","path":"sprites/spr_blur/spr_blur.yy",},},
+    {"id":{"name":"spr_boss_gun","path":"sprites/spr_boss_gun/spr_boss_gun.yy",},},
     {"id":{"name":"spr_boss","path":"sprites/spr_boss/spr_boss.yy",},},
     {"id":{"name":"spr_botijao_de_agua_ph","path":"sprites/spr_botijao_de_agua_ph/spr_botijao_de_agua_ph.yy",},},
     {"id":{"name":"spr_bottle_house_ph","path":"sprites/spr_bottle_house_ph/spr_bottle_house_ph.yy",},},
@@ -494,8 +496,8 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
-    {"roomId":{"name":"rm_main_menu","path":"rooms/rm_main_menu/rm_main_menu.yy",},},
     {"roomId":{"name":"Rm_space_ship_test","path":"rooms/Rm_space_ship_test/Rm_space_ship_test.yy",},},
+    {"roomId":{"name":"rm_main_menu","path":"rooms/rm_main_menu/rm_main_menu.yy",},},
     {"roomId":{"name":"rm_memory_palace","path":"rooms/rm_memory_palace/rm_memory_palace.yy",},},
     {"roomId":{"name":"Rm_platform_test","path":"rooms/Rm_platform_test/Rm_platform_test.yy",},},
     {"roomId":{"name":"rm_pointclick_test","path":"rooms/rm_pointclick_test/rm_pointclick_test.yy",},},

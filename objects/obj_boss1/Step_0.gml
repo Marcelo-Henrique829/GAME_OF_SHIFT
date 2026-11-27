@@ -1,3 +1,4 @@
+damage();
 switch(b_state)
 {
 	case BOSS.B_NOONE: boss_noone();break;

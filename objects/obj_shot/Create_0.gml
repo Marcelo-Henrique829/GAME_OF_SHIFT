@@ -1,1 +1,1 @@
-enemy_ar = [oEnemy03,oEnemy_sps,oEnemy04,oEnemy_explode];
+enemy_ar = [oEnemy03,oEnemy_sps,oEnemy04,oEnemy_explode,obj_boss1];

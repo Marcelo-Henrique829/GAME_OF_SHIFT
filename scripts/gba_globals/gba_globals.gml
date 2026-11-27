@@ -6,5 +6,3 @@ global.memory_fragment = {
     total: 0,
     coletados_por_sala: {}
 };
-
-
