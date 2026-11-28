@@ -35,6 +35,11 @@ last_key = vk_down;
 grv = 0.5;
 jump_force = 8;
 
+// Ajustes temporários do trampolim, em pixels por Step.
+buble_jump_forca_centro = 13;
+buble_jump_forca_lateral = 12;
+buble_jump_contact = noone;
+
 // Coyote time: permite pular por mais 6 frames após sair da borda (0,1 s a 60 FPS).
 coyote_frames = 6;
 coyote_timer = 0;

@@ -1,5 +1,4 @@
 painel_imagem_ativo = false;
 painel_hover = false;
-boing_frames = 0;
-boing_escala = 0;
+scr_boing_create();
 escala_texto_bloqueio = 0;

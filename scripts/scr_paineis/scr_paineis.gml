@@ -85,8 +85,7 @@ function scr_desenhar_painel_bloqueado(_painel, _imagem, _texto)
         _painel.sprite_index = _imagem;
         _painel.image_xscale = 1;
         _painel.image_yscale = 1;
-        _painel.boing_frames = 0;
-        _painel.boing_escala = 0;
+        with (_painel) scr_boing_create();
         _painel.escala_texto_bloqueio = 0;
 
         if (global.selected.index == _painel.index)
@@ -96,13 +95,13 @@ function scr_desenhar_painel_bloqueado(_painel, _imagem, _texto)
         }
     }
 
-    if (painel_atualizar)
+    var _atualizar = painel_atualizar;
+    var _disparar_boing = false;
+    if (_atualizar)
     {
         var _hover = scr_mouse_sobre_painel_imagem(_painel);
         _painel.painel_hover = _hover;
-        var _duracao_boing = 24;
-        if (_hover && mouse_check_button_pressed(mb_left)) _painel.boing_frames = _duracao_boing;
-        scr_atualizar_boing_painel(_painel, _duracao_boing, 0.22, 2.5);
+        _disparar_boing = _hover && mouse_check_button_pressed(mb_left);
 
         var _escala = _hover ? 1.5 : 1;
         _painel.x = lerp(_painel.x, _painel.xstart, 0.15);
@@ -112,15 +111,10 @@ function scr_desenhar_painel_bloqueado(_painel, _imagem, _texto)
         _painel.escala_texto_bloqueio = lerp(_painel.escala_texto_bloqueio, _hover ? 0.4 : 0, 0.15);
     }
 
-    if (!_painel.visible) return;
-
     var _alpha = scr_opacidade_painel(_painel);
-    draw_sprite_ext(_imagem, _painel.image_index, _painel.x, _painel.y,
-        _painel.image_xscale * (1 - _painel.boing_escala),
-        _painel.image_yscale * (1 + _painel.boing_escala),
-        _painel.image_angle, _painel.image_blend, _alpha);
+    with (_painel) scr_boing_draw(_disparar_boing, _atualizar, true, _alpha);
 
-    if (_painel.escala_texto_bloqueio <= 0.005) return;
+    if (!_painel.visible || _painel.escala_texto_bloqueio <= 0.005) return;
 
     // A legenda acompanha a borda superior do fragmento enquanto sua escala muda.
     var _fonte_anterior = draw_get_font();
@@ -229,6 +223,7 @@ function scr_desenhar_painel_texto(_painel, _texto, _fonte, _destino, _atualizar
     draw_set_halign(fa_center);
     draw_set_valign(fa_middle);
 
+    var _disparar_boing = false;
     if (_atualizar)
     {
         // Mede o texto com a escala de hover. A oscilação visual não altera a área clicável.
@@ -239,10 +234,9 @@ function scr_desenhar_painel_texto(_painel, _texto, _fonte, _destino, _atualizar
             _painel.x + _meia_largura, _painel.y + _meia_altura);
         _painel.painel_hover = _hover;
 
-        var _duracao = max(0, round(_frames_boing));
-        if (_hover && mouse_check_button_pressed(mb_left))
+        _disparar_boing = _hover && mouse_check_button_pressed(mb_left);
+        if (_disparar_boing)
         {
-            _painel.boing_frames = _duracao;
             if (room_exists(_destino))
             {
                 // O controlador geral desenha o fade e troca de sala quando a tela está coberta.
@@ -268,13 +262,17 @@ function scr_desenhar_painel_texto(_painel, _texto, _fonte, _destino, _atualizar
         var _resposta = clamp(_velocidade_lerp, 0, 1);
         _painel.image_xscale = lerp(_painel.image_xscale, _escala, _resposta);
         _painel.image_yscale = lerp(_painel.image_yscale, _escala, _resposta);
-
-        scr_atualizar_boing_painel(_painel, _duracao, _intensidade_boing, _oscilacoes_boing);
     }
 
     // Comprime um eixo enquanto estica o outro. A posição do centro fica fixa.
-    var _escala_x = _painel.image_xscale * (1 - _painel.boing_escala);
-    var _escala_y = _painel.image_yscale * (1 + _painel.boing_escala);
+    var _deformacao = 0;
+    with (_painel)
+    {
+        _deformacao = scr_boing_draw(_disparar_boing, _atualizar, false, undefined,
+            _frames_boing, _intensidade_boing, _oscilacoes_boing);
+    }
+    var _escala_x = _painel.image_xscale * (1 - _deformacao);
+    var _escala_y = _painel.image_yscale * (1 + _deformacao);
     var _alpha = scr_opacidade_painel(_painel);
 
     if (_contorno > 0)
@@ -292,15 +290,4 @@ function scr_desenhar_painel_texto(_painel, _texto, _fonte, _destino, _atualizar
     draw_set_font(_fonte_anterior);
     draw_set_halign(_halign_anterior);
     draw_set_valign(_valign_anterior);
-}
-
-/// Avança a deformação do painel em um quadro. Para iniciar, atribua a duração a boing_frames.
-function scr_atualizar_boing_painel(_painel, _duracao, _intensidade, _oscilacoes)
-{
-    // O seno alterna a deformação e o lerp reduz sua amplitude até zero.
-    _painel.boing_frames = min(_painel.boing_frames, _duracao);
-    var _progresso = 1 - _painel.boing_frames / max(1, _duracao);
-    var _amplitude = lerp(clamp(_intensidade, 0, 0.99), 0, _progresso);
-    _painel.boing_escala = sin(_progresso * 2 * pi * _oscilacoes) * _amplitude;
-    _painel.boing_frames = max(0, _painel.boing_frames - 1);
 }

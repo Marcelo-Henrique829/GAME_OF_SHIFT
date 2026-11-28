@@ -98,10 +98,8 @@ else
 // Aplica a velocidade interpolada, gravidade e colisões.
 direction = dir;
 if (state != PlayerStatePlatformer.STOP) vspd += grv;
-var _descending_before_collision = vspd > 0;
-
 var _previous_x = x;
-scr_colision(collision_targets);
+var _descending_before_collision = scr_colisao_jogador_plataforma();
 
 var _footstep_sound = -1;
 if (state == PlayerStatePlatformer.WALK && abs(x - _previous_x) > idle_speed_deadzone
